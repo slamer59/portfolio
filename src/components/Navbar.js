@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
-import React, { useState } from "react";
-import Logo from "./Logo";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
   DribbbleIcon,
   GithubIcon,
@@ -11,8 +12,7 @@ import {
   SunIcon,
   TwitterIcon,
 } from "./Icons";
-import { motion } from "framer-motion";
-import { useThemeSwitch } from "./Hooks/useThemeSwitch";
+import Logo from "./Logo";
 
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
@@ -70,13 +70,11 @@ const Navbar = () => {
 
 
   return (
-    <header className="w-full flex items-center justify-between px-32 py-8 font-medium z-10 dark:text-light
-    lg:px-16 relative z-1 md:px-12 sm:px-8
-    ">
+    <header className="relative z-10 flex items-center justify-between w-full px-32 py-8 font-medium dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 ">
       
       <button
         type="button"
-        className=" flex-col items-center justify-center hidden lg:flex"
+        className="flex-col items-center justify-center hidden lg:flex"
         aria-controls="mobile-menu"
         aria-expanded={isOpen}
         onClick={handleClick}
@@ -87,17 +85,18 @@ const Navbar = () => {
         <span className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
       </button>
 
-      <div className="w-full flex justify-between items-center lg:hidden"
+      <div className="flex items-center justify-between w-full lg:hidden"
       >
       <nav className="flex items-center justify-center">
-        <CustomLink className="mr-4" href="/" title="Home" />
-        <CustomLink className="mx-4" href="/about" title="About" />
-        <CustomLink className="mx-4" href="/projects" title="Projects" />
+        <CustomLink className="mr-4" href="/" title="Accueil" />
+        <CustomLink className="mx-4" href="/apropos" title="A propos" />
+          <CustomLink className="mx-4" href="/photographie" title="Photos" />
+          <CustomLink className="mx-4" href="/projets-dev" title="Projets" />
+
         <CustomLink className="ml-4" href="/articles" title="Articles" />
       </nav>
       <nav
-        className="flex items-center justify-center flex-wrap lg:mt-2
-      "
+        className="flex flex-wrap items-center justify-center lg:mt-2 "
       >
         <motion.a
           target={"_blank"}
@@ -131,7 +130,7 @@ const Navbar = () => {
         </motion.a>
         <motion.a
           target={"_blank"}
-          className="w-6 mx-3 bg-light rounded-full"
+          className="w-6 mx-3 rounded-full bg-light"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -175,15 +174,14 @@ const Navbar = () => {
       initial={{scale:0,x:"-50%",y:"-50%", opacity:0}}
       animate={{scale:1,opacity:1}}
       >
-      <nav className="flex items-center justify-center flex-col">
+      <nav className="flex flex-col items-center justify-center">
         <CustomMobileLink toggle={handleClick} className="mr-4 lg:m-0 lg:my-2" href="/" title="Home" />
         <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/about" title="About" />
         <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/projects" title="Projects" />
         <CustomMobileLink toggle={handleClick} className="ml-4 lg:m-0 lg:my-2" href="/articles" title="Articles" />
       </nav>
       <nav
-        className="flex items-center justify-center  mt-2
-      "
+        className="flex items-center justify-center mt-2 "
       >
         <motion.a
           target={"_blank"}
@@ -197,7 +195,7 @@ const Navbar = () => {
         </motion.a>
         <motion.a
           target={"_blank"}
-          className="w-6 m-1 mx-3 bg-light rounded-full dark:bg-dark sm:mx-1"
+          className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
@@ -217,7 +215,7 @@ const Navbar = () => {
         </motion.a>
         <motion.a
           target={"_blank"}
-          className="w-6 m-1 mx-3 bg-light rounded-full sm:mx-1"
+          className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}

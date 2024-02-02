@@ -1,17 +1,17 @@
 import AnimatedText from "@/components/AnimatedText";
 import { GithubIcon } from "@/components/Icons";
 import Layout from "@/components/Layout";
+import TransitionEffect from "@/components/TransitionEffect";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import proj1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
-import proj2 from "../../public/images/projects/nft-collection-website-cover-image.jpg";
-import proj3 from "../../public/images/projects/fashion-studio-website.jpg";
-import proj4 from "../../public/images/projects/portfolio-cover-image.jpg";
 import proj5 from "../../public/images/projects/agency-website-cover-image.jpg";
+import proj1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
 import proj6 from "../../public/images/projects/devdreaming.jpg";
-import TransitionEffect from "@/components/TransitionEffect";
+import proj3 from "../../public/images/projects/fashion-studio-website.jpg";
+import proj2 from "../../public/images/projects/nft-collection-website-cover-image.jpg";
+import proj4 from "../../public/images/projects/portfolio-cover-image.jpg";
 
 const FramerImage = motion(Image);
 
@@ -19,10 +19,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
 
   return (
     <article
-      className="relative flex w-full items-center  justify-between rounded-3xl rounded-br-2xl border
-border-solid border-dark bg-light p-12 shadow-2xl  dark:border-light dark:bg-dark  lg:flex-col 
-lg:p-8 xs:rounded-2xl  xs:rounded-br-3xl xs:p-4 
-    "
+      className="relative flex items-center justify-between w-full p-12 border border-solid shadow-2xl rounded-3xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 "
     >
       <div
         className="absolute  top-0 -right-3 -z-10 h-[103%] w-[101%] rounded-[2.5rem] rounded-br-3xl bg-dark
@@ -33,11 +30,11 @@ lg:p-8 xs:rounded-2xl  xs:rounded-br-3xl xs:p-4
       <Link
         href={link}
         target={"_blank"}
-        className="w-1/2 cursor-pointer overflow-hidden rounded-lg lg:w-full"
+        className="w-1/2 overflow-hidden rounded-lg cursor-pointer lg:w-full"
       >
         <FramerImage
           src={img}
-          className="h-auto w-full"
+          className="w-full h-auto"
           alt={title}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
@@ -47,7 +44,7 @@ lg:p-8 xs:rounded-2xl  xs:rounded-br-3xl xs:p-4
           priority
         />
       </Link>
-      <div className="flex w-1/2 flex-col items-start justify-between pl-6 lg:w-full lg:pl-0 lg:pt-6">
+      <div className="flex flex-col items-start justify-between w-1/2 pl-6 lg:w-full lg:pl-0 lg:pt-6">
         <span className="text-xl font-medium text-primary dark:text-primaryDark xs:text-base">
           {type}
         </span>
@@ -56,14 +53,14 @@ lg:p-8 xs:rounded-2xl  xs:rounded-br-3xl xs:p-4
           target={"_blank"}
           className="underline-offset-2 hover:underline"
         >
-          <h2 className="my-2 w-full text-left text-4xl font-bold lg:text-3xl xs:text-2xl">
+          <h2 className="w-full my-2 text-4xl font-bold text-left lg:text-3xl xs:text-2xl">
             {title}
           </h2>
         </Link>
-        <p className=" my-2 rounded-md font-medium text-dark dark:text-light sm:text-sm">
+        <p className="my-2 font-medium rounded-md  text-dark dark:text-light sm:text-sm">
           {summary}
         </p>
-        <div className="mt-2 flex items-center">
+        <div className="flex items-center mt-2">
           <Link
             href={github}
             target={"_blank"}
@@ -75,10 +72,7 @@ lg:p-8 xs:rounded-2xl  xs:rounded-br-3xl xs:p-4
           <Link
             href={link}
             target={"_blank"}
-            className="ml-4 rounded-lg
-             bg-dark p-2 px-6 text-lg font-semibold text-light dark:bg-light dark:text-dark 
-             sm:px-4 sm:text-base
-            "
+            className="p-2 px-6 ml-4 text-lg font-semibold rounded-lg bg-dark text-light dark:bg-light dark:text-dark sm:px-4 sm:text-base "
             aria-label="Crypto Screener Application"
           >
             Visit Project
@@ -93,10 +87,7 @@ const Project = ({ title, type, img, link, github }) => {
 
   return (
     <article
-      className="relative flex w-full flex-col items-center justify-center rounded-2xl  rounded-br-2xl 
-      border  border-solid  border-dark bg-light p-6  shadow-2xl dark:border-light dark:bg-dark 
-      xs:p-4
-      "
+      className="relative flex flex-col items-center justify-center w-full p-6 border border-solid shadow-2xl rounded-2xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark xs:p-4 "
     >
       <div
         className="absolute  top-0 -right-3 -z-10 h-[103%] w-[102%] rounded-[2rem] rounded-br-3xl bg-dark
@@ -107,12 +98,12 @@ const Project = ({ title, type, img, link, github }) => {
       <Link
         href={link}
         target={"_blank"}
-        className="w-full cursor-pointer overflow-hidden rounded-lg"
+        className="w-full overflow-hidden rounded-lg cursor-pointer"
       >
         <FramerImage
           src={img}
           alt={title}
-          className="h-auto w-full"
+          className="w-full h-auto"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           sizes="(max-width: 768px) 100vw,
@@ -120,7 +111,7 @@ const Project = ({ title, type, img, link, github }) => {
               33vw"
         />
       </Link>
-      <div className="mt-4 flex w-full flex-col items-start justify-between">
+      <div className="flex flex-col items-start justify-between w-full mt-4">
         <span className="text-xl font-medium text-primary dark:text-primaryDark lg:text-lg md:text-base">
           {type}
         </span>
@@ -130,17 +121,15 @@ const Project = ({ title, type, img, link, github }) => {
           target={"_blank"}
           className="underline-offset-2 hover:underline"
         >
-          <h2 className="my-2 w-full text-left text-3xl font-bold lg:text-2xl ">
+          <h2 className="w-full my-2 text-3xl font-bold text-left lg:text-2xl ">
             {title}
           </h2>
         </Link>
-        <div className="flex w-full items-center  justify-between">
+        <div className="flex items-center justify-between w-full">
           <Link
             href={link}
             target={"_blank"}
-            className="rounded text-lg
-            font-medium underline md:text-base
-            "
+            className="text-lg font-medium underline rounded md:text-base "
             aria-label={title}
           >
             Visit

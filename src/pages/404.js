@@ -3,7 +3,6 @@ import Layout from "@/components/Layout";
 import TransitionEffect from "@/components/TransitionEffect";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 
 const NotFound = () => {
   return (
@@ -20,7 +19,7 @@ const NotFound = () => {
       <TransitionEffect />
       <main className="h-[75vh] w-full dark:bg-dark ">
         <Layout className="relative !bg-transparent !pt-16 flex flex-col items-center justify-center">
-          <AnimatedText text="404" className=" " />
+          <AnimatedText text="404" className="" />
           <AnimatedText
             text="Page Not Found."
             className=" !text-7xl "
@@ -32,7 +31,7 @@ const NotFound = () => {
         dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light
         "
           >
-            Go To Home
+            Allez à la page principale
           </Link>
         </Layout>
       </main>
