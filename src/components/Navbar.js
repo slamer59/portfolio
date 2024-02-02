@@ -6,11 +6,10 @@ import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
   DribbbleIcon,
   GithubIcon,
+  InstagramIcon,
   LinkedInIcon,
   MoonIcon,
-  PinterestIcon,
   SunIcon,
-  TwitterIcon,
 } from "./Icons";
 import Logo from "./Logo";
 
@@ -98,7 +97,7 @@ const Navbar = () => {
       <nav
         className="flex flex-wrap items-center justify-center lg:mt-2 "
       >
-        <motion.a
+        {/* <motion.a
           target={"_blank"}
           className="w-6 mr-3"
           href="#"
@@ -107,38 +106,38 @@ const Navbar = () => {
           aria-label="Checkout my twitter profile"
         >
           <TwitterIcon />
-        </motion.a>
+        </motion.a> */}
         <motion.a
-          target={"_blank"}
+          target={"https://github.com/slamer59"}
           className="w-6 mx-3"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my github profile"
+          aria-label="Voici mon profile github"
         >
           <GithubIcon />
         </motion.a>
         <motion.a
-          target={"_blank"}
+          target={"linkedin.com/in/thomaspedot/"}
           className="w-6 mx-3"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my linkedin profile"
+          aria-label="Voici mon profile linkedin"
         >
           <LinkedInIcon />
         </motion.a>
         <motion.a
-          target={"_blank"}
+          target={"https://www.instagram.com/teepeetlse"}
           className="w-6 mx-3 rounded-full bg-light"
           href="#"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
           aria-label="Checkout my pinterest profile"
         >
-          <PinterestIcon />
+          <InstagramIcon />
         </motion.a>
-        <motion.a
+        {/* <motion.a
           target={"_blank"}
           className="w-6 mx-3"
           href="#"
@@ -147,7 +146,7 @@ const Navbar = () => {
           aria-label="Checkout my dribbble profile"
         >
           <DribbbleIcon />
-        </motion.a>
+        </motion.a> */}
 
         <button
           onClick={() => setMode(mode === "light" ? "dark" : "light")}
