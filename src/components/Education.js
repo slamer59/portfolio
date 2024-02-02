@@ -7,29 +7,27 @@ const educationData = [
     type: "PhD",
     time: "2008 - 2011",
     place: "University of Toulouse",
-    info: "Energy transfers: Focused on studying energy transfers, specifically in the context of the research topic."
+    info: "Energy transfers: Focused on studying energy transfers, specifically in the context of the research topic.",
   },
   {
     type: "Ingénieur",
     time: "2005 - 2008",
     place: "ENSEEIHT",
-    info: "Hydraulique et mécanique des fluides (Energie): Specialized in hydraulic and fluid mechanics with a focus on energy-related applications."
+    info: "Hydraulique et mécanique des fluides (Energie): Specialized in hydraulic and fluid mechanics with a focus on energy-related applications.",
   },
   {
     type: "Master",
     time: "2008",
     place: "University of Toulouse",
-    info: "Dynamique des Fluides, Energétique et Transferts (DET): Studied fluid dynamics, energetics, and transfers as part of the master's program."
+    info: "Dynamique des Fluides, Energétique et Transferts (DET): Studied fluid dynamics, energetics, and transfers as part of the master's program.",
   },
   {
     type: "Exchange Erasmus",
     time: "2007",
     place: "TU Hamburg-Harburg",
-    info: "Energie et Mécanique des Fluides: Participated in an exchange program at TU Hamburg-Harburg, focusing on energy and fluid mechanics."
-  }
+    info: "Energie et Mécanique des Fluides: Participated in an exchange program at TU Hamburg-Harburg, focusing on energy and fluid mechanics.",
+  },
 ];
-
-  
 
 const Details = ({ type, time, place, info }) => {
   const ref = useRef(null);
@@ -44,7 +42,9 @@ const Details = ({ type, time, place, info }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="text-2xl font-bold capitalize sm:text-xl xs:text-lg">{type}</h3>
+        <h3 className="text-2xl font-bold capitalize sm:text-xl xs:text-lg">
+          {type}
+        </h3>
         <span className="font-medium capitalize text-dark/75 dark:text-light/50 xs:text-sm">
           {time} | {place}
         </span>
@@ -64,7 +64,9 @@ const Education = () => {
 
   return (
     <div className="my-64">
-      <h2 className="w-full mb-32 font-bold text-center text-8xl md:text-6xl xs:text-4xl md:mb-16">Education</h2>
+      <h2 className="w-full mb-32 font-bold text-center text-8xl md:text-6xl xs:text-4xl md:mb-16">
+        Education
+      </h2>
 
       <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
         <motion.div
@@ -72,15 +74,14 @@ const Education = () => {
           style={{ scaleY: scrollYProgress }}
         />
         <ul className="flex flex-col items-start justify-between w-full ml-4">
-        {educationData.map((details) => (
-          <Details            
-            type={details.type}
-            time={details.time}
-            place={details.place}
-            info={details.info}
+          {educationData.map((details) => (
+            <Details
+              type={details.type}
+              time={details.time}
+              place={details.place}
+              info={details.info}
             />
-        ))
-          }
+          ))}
         </ul>
       </div>
     </div>
