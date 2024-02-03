@@ -1,18 +1,18 @@
-import AnimatedText from "@/components/AnimatedText";
+import AnimatedText from "components/AnimatedText";
 import { motion, useMotionValue } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
-import blog7 from "../../public/images/articles/What is Redux with easy explanation.png";
-import blog8 from "../../public/images/articles/What is higher order component in React.jpg";
-import blog2 from "../../public/images/articles/create loading screen in react js.jpg";
-import blog5 from "../../public/images/articles/create modal component in react using react portals.png";
-import blog3 from "../../public/images/articles/form validation in reactjs using custom react hook.png";
-import blog1 from "../../public/images/articles/pagination component in reactjs.jpg";
-import blog4 from "../../public/images/articles/smooth scrolling in reactjs.png";
-import blog6 from "../../public/images/articles/todo list app built using react redux and framer motion.png";
+import blog7 from "../public/images/articles/What is Redux with easy explanation.png";
+import blog8 from "../public/images/articles/What is higher order component in React.jpg";
+import blog2 from "../public/images/articles/create loading screen in react js.jpg";
+import blog5 from "../public/images/articles/create modal component in react using react portals.png";
+import blog3 from "../public/images/articles/form validation in reactjs using custom react hook.png";
+import blog1 from "../public/images/articles/pagination component in reactjs.jpg";
+import blog4 from "../public/images/articles/smooth scrolling in reactjs.png";
+import blog6 from "../public/images/articles/todo list app built using react redux and framer motion.png";
 
-import Layout from "@/components/Layout";
-import TransitionEffect from "@/components/TransitionEffect";
+import Layout from "components/Layout";
+import TransitionEffect from "components/TransitionEffect";
 import Link from "next/link";
 import { useRef } from "react";
 
