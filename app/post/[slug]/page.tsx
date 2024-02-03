@@ -1,34 +1,20 @@
 
 // import { PortableText } from "@portabletext/react"
-import imageUrlBuilder from "@sanity/image-url";
 // import groq from "groq"
 
-import { client } from "@/sanity/lib/client";
+import { getArticleData } from "@/sanity/queries/articles";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
-async function getData(slug: string) {
-    const query = `
-    *[_type == "article" && slug.current == '${slug}'] {
-        "currentSlug": slug.current,
-          title,
-          content,
-          titleImage
-      }[0]`;
-
-    const data = await client.fetch(query);
-    return data;
-}
 
 export default async function BlogArticle({
     params,
 }: {
     params: { slug: string };
 }) {
-    const data = await getData(params.slug);
-    console.log("🚀 ~ data:", data)
+    const data = await getArticleData(params.slug);
 
     return (
         <div className="mt-8">
@@ -59,9 +45,7 @@ export default async function BlogArticle({
 
 
 
-function urlFor(source) {
-    return imageUrlBuilder(client).image(source)
-}
+
 
 // const ptComponents = {
 //     types: {

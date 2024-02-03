@@ -1,5 +1,6 @@
+"use client"
+
 import { motion } from "framer-motion";
-import React from "react";
 
 const quote = {
   hidden: {
@@ -30,8 +31,7 @@ const singleWord = {
 
 const AnimatedText = ({ text, className = "" }) => {
   return (
-    <div className="py-2 w-full mx-auto flex flex-col items-center justify-center  text-center  
-    overflow-hidden sm:py-0">
+    <div className="flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden text-center sm:py-0">
       <motion.h1
         className={`inline-block text-dark dark:text-light
       text-8xl font-bold w-full capitalize  ${className} xl:text-6xl`}
