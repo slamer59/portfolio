@@ -2,6 +2,7 @@
 // import { PortableText } from "@portabletext/react"
 // import groq from "groq"
 
+import { urlFor } from "@/sanity/lib/client";
 import { getArticleData } from "@/sanity/queries/articles";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
