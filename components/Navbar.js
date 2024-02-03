@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
@@ -14,7 +14,8 @@ import {
 import Logo from "./Logo";
 
 const CustomLink = ({ href, title, className = "" }) => {
-  const router = useRouter();
+  
+  const pathname = usePathname()
 
   return (
     <Link
@@ -27,7 +28,7 @@ const CustomLink = ({ href, title, className = "" }) => {
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
               ${
-                router.asPath === href ? "w-full" : " w-0"
+                pathname === href ? "w-full" : " w-0"
               } lg:bg-light lg:dark:bg-dark
               `}
       >
@@ -38,6 +39,7 @@ const CustomLink = ({ href, title, className = "" }) => {
 };
 
 const CustomMobileLink = ({ href, title, className = "", toggle }) => {
+  const pathname = usePathname()
   const router = useRouter();
 
   const handleClick = () => {
@@ -56,7 +58,7 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
               ${
-                router.asPath === href ? "w-full" : " w-0"
+                pathname === href ? "w-full" : " w-0"
               } lg:bg-light lg:dark:bg-dark
               `}
       >

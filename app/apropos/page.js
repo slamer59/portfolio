@@ -1,3 +1,6 @@
+"use client"
+
+import profile from "@/public/images/profile/developer-pic-2.jpg";
 import AnimatedText from "components/AnimatedText";
 import Education from "components/Education";
 import Experience from "components/Experience";
@@ -7,7 +10,6 @@ import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import profile from "../public/images/profile/developer-pic-2.jpg";
 
 function AnimatedNumberFramerMotion({ value }) {
   const ref = useRef(null);

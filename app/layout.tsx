@@ -1,13 +1,17 @@
-import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
+import ClientLayout from "./ClientLayout";
 
-export default function Document() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <Html lang="en">
-      <Head />
+    <html lang="en">
+      <head />
       <body>
         <Script id="theme-switcher" strategy="beforeInteractive">
-        {`
+          {`
  if (
   localStorage.getItem('theme') === 'dark' ||
   (!('theme' in localStorage) &&
@@ -19,9 +23,10 @@ export default function Document() {
 }
   `}
         </Script>
-        <Main />
-        <NextScript />
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
-    </Html>
+    </html>
   );
 }
