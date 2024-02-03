@@ -1,3 +1,11 @@
+"use client"
+
+import proj5 from "@/public/images/projects/agency-website-cover-image.jpg";
+import proj1 from "@/public/images/projects/crypto-screener-cover-image.jpg";
+import proj6 from "@/public/images/projects/devdreaming.jpg";
+import proj3 from "@/public/images/projects/fashion-studio-website.jpg";
+import proj2 from "@/public/images/projects/nft-collection-website-cover-image.jpg";
+import proj4 from "@/public/images/projects/portfolio-cover-image.jpg";
 import AnimatedText from "components/AnimatedText";
 import { GithubIcon } from "components/Icons";
 import Layout from "components/Layout";
@@ -6,12 +14,6 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import proj5 from "../public/images/projects/agency-website-cover-image.jpg";
-import proj1 from "../public/images/projects/crypto-screener-cover-image.jpg";
-import proj6 from "../public/images/projects/devdreaming.jpg";
-import proj3 from "../public/images/projects/fashion-studio-website.jpg";
-import proj2 from "../public/images/projects/nft-collection-website-cover-image.jpg";
-import proj4 from "../public/images/projects/portfolio-cover-image.jpg";
 
 const FramerImage = motion(Image);
 
@@ -57,7 +59,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
             {title}
           </h2>
         </Link>
-        <p className="my-2 font-medium rounded-md  text-dark dark:text-light sm:text-sm">
+        <p className="my-2 font-medium rounded-md text-dark dark:text-light sm:text-sm">
           {summary}
         </p>
         <div className="flex items-center mt-2">

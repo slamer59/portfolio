@@ -1,3 +1,7 @@
+"use client"
+
+import profilePic from "@/public/images/profile/developer-pic-1.png";
+import lightBulb from "@/public/images/svgs/miscellaneous_icons_1.svg";
 import AnimatedText from "components/AnimatedText";
 import { HireMe } from "components/HireMe";
 import { LinkArrow } from "components/Icons";
@@ -6,8 +10,6 @@ import TransitionEffect from "components/TransitionEffect";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import profilePic from "../public/images/profile/developer-pic-1.png";
-import lightBulb from "../public/images/svgs/miscellaneous_icons_1.svg";
 
 
 export default function Home() {
