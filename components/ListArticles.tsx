@@ -1,0 +1,18 @@
+import { urlFor } from "@/sanity/lib/client";
+import { Article } from "./Article";
+
+export function ListArticles({ articles }: { articles: any }) {
+  return (
+    <ul className="relative flex flex-col items-center">
+      {articles &&
+        articles.map((article, index) => <Article
+          key={index}
+          title={article.title}
+          img={urlFor(article.mainImage).url()}
+          date={`${new Date(article._updatedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`}
+          link={`/articles/${article.currentSlug}`}
+        />
+        )}
+    </ul>
+  );
+}

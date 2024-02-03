@@ -13,7 +13,7 @@ export function ListFeaturedArticles({ articles }: { articles: any }) {
           title={article.title}
           time={article.readingTime || "8 min read"}
           summary={article.description}
-          link={`/articles/${article.slug}`} />
+          link={`/articles/${article.currentSlug}`} />
         )}
     </ul>
 

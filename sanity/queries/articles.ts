@@ -19,7 +19,22 @@ export async function getFeaturedArticles() {
         "currentSlug": slug.current,
           title,
           content,
-          mainImage
+          mainImage,
+      }`;
+
+  const data = await client.fetch(query);
+  return data;
+}
+
+
+export async function getArticles() {
+  const query = `
+    *[_type == "article"] {
+        "currentSlug": slug.current,
+          title,
+          content,
+          mainImage,
+          _updatedAt
       }`;
 
   const data = await client.fetch(query);
