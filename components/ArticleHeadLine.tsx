@@ -1,5 +1,4 @@
 import { urlFor } from "@/sanity/lib/client";
-import article from "@/sanity/schemas/article";
 import Image from "next/image";
 
 export default async function ArticleHead({ author, date, title }: { author: { name: string, image: any, postion: string }, date: string, title: string }) {
@@ -21,7 +20,7 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                             <a href="#" rel="author" className="text-xl font-bold text-primary dark:text-white">{author.name}</a>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">{author.postion}</p>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                                <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(article._updatedAt).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
+                                <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
                                     {new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                                 </time>
                             </p>
