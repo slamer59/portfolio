@@ -1,7 +1,3 @@
-
-// import { PortableText } from "@portabletext/react"
-// import groq from "groq"
-
 import ArticleHeadLine from "@/components/ArticleHeadLine";
 import { urlFor } from "@/sanity/lib/client";
 import { getArticleData } from "@/sanity/queries/articles";
@@ -105,6 +101,7 @@ export default async function BlogArticle({
                 }
                 <div className="mt-16 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
                     <PortableText
+                        /* @ts-ignore */
                         components={components}
                         value={data.body}
                     />
