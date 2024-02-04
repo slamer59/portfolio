@@ -5,8 +5,14 @@ export async function getArticleData(slug: string) {
     *[_type == "article" && slug.current == '${slug}'] {
         "currentSlug": slug.current,
           title,
-          content,
-          mainImage
+          body,
+          mainImage,
+          _updatedAt,
+          author-> {
+            name,
+            image,
+            postion,
+          }          
       }[0]`;
 
   const data = await client.fetch(query);
@@ -18,7 +24,7 @@ export async function getFeaturedArticles() {
     *[_type == "article" && featured == true] {
         "currentSlug": slug.current,
           title,
-          content,
+          body,
           mainImage,
       }`;
 
@@ -32,7 +38,7 @@ export async function getArticles() {
     *[_type == "article"] {
         "currentSlug": slug.current,
           title,
-          content,
+          body,
           mainImage,
           _updatedAt
       }`;

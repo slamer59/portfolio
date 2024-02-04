@@ -27,7 +27,7 @@ export const MovingImg = ({ title, img, link }) => {
     <>
       <Link
         href={link}
-        target={"_blank"}
+        // target={"_blank"}
         className="relative"
         onMouseMove={handleMouse}
         onMouseLeave={handleMouseLeave}

@@ -31,7 +31,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
 
       <Link
         href={link}
-        target={"_blank"}
+        // target={"_blank"}
         className="w-1/2 overflow-hidden rounded-lg cursor-pointer lg:w-full"
       >
         <FramerImage
@@ -52,7 +52,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
         </span>
         <Link
           href={link}
-          target={"_blank"}
+          // target={"_blank"}
           className="underline-offset-2 hover:underline"
         >
           <h2 className="w-full my-2 text-4xl font-bold text-left lg:text-3xl xs:text-2xl">
@@ -65,7 +65,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
         <div className="flex items-center mt-2">
           <Link
             href={github}
-            target={"_blank"}
+            // target={"_blank"}
             className="w-10"
             aria-label="Crypto Screener Application github link"
           >
@@ -73,7 +73,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
           </Link>
           <Link
             href={link}
-            target={"_blank"}
+            // target={"_blank"}
             className="p-2 px-6 ml-4 text-lg font-semibold rounded-lg bg-dark text-light dark:bg-light dark:text-dark sm:px-4 sm:text-base "
             aria-label="Crypto Screener Application"
           >
@@ -99,7 +99,7 @@ const Project = ({ title, type, img, link, github }) => {
 
       <Link
         href={link}
-        target={"_blank"}
+        // target={"_blank"}
         className="w-full overflow-hidden rounded-lg cursor-pointer"
       >
         <FramerImage
@@ -120,7 +120,7 @@ const Project = ({ title, type, img, link, github }) => {
 
         <Link
           href={link}
-          target={"_blank"}
+          // target={"_blank"}
           className="underline-offset-2 hover:underline"
         >
           <h2 className="w-full my-2 text-3xl font-bold text-left lg:text-2xl ">
@@ -130,7 +130,7 @@ const Project = ({ title, type, img, link, github }) => {
         <div className="flex items-center justify-between w-full">
           <Link
             href={link}
-            target={"_blank"}
+            // target={"_blank"}
             className="text-lg font-medium underline rounded md:text-base "
             aria-label={title}
           >
@@ -138,7 +138,7 @@ const Project = ({ title, type, img, link, github }) => {
           </Link>
           <Link
             href={github}
-            target={"_blank"}
+            // target={"_blank"}
             className="w-8 md:w-6"
             aria-label={title}
           >

@@ -1,6 +1,6 @@
 import {
-  motion,
-  useScroll,
+    motion,
+    useScroll,
 } from "framer-motion";
 import { useRef } from "react";
 import LiIcon from "./LiIcon";
@@ -81,7 +81,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
           <a
             className="capitalize text-primary dark:text-primaryDark"
             href={companyLink}
-            target={"_blank"}
+            // target={"_blank"}
           >
             @{company}
           </a>

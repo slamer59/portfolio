@@ -12,7 +12,7 @@ export const FeaturedArticle = ({ img, title, time, summary, link }) => {
         -z-10  "/>
       <Link
         href={link}
-        target={"_blank"}
+        // // target={"_blank"}
         className="inline-block w-full overflow-hidden rounded-lg"
       >
         <FramerImage
@@ -30,7 +30,10 @@ export const FeaturedArticle = ({ img, title, time, summary, link }) => {
         />
       </Link>
 
-      <Link href={link} target={"_blank"}>
+      <Link
+        href={link}
+        // // target={"_blank"}
+      >
         <h2 className="my-2 mt-4 text-2xl font-bold capitalize hover:underline xs:text-lg">
           {title}
         </h2>

@@ -4,12 +4,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
-  // DribbbleIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  MoonIcon,
-  SunIcon,
+    // DribbbleIcon,
+    GithubIcon,
+    InstagramIcon,
+    LinkedInIcon,
+    MoonIcon,
+    SunIcon,
 } from "./Icons";
 import Logo from "./Logo";
 
@@ -113,7 +113,7 @@ const Navbar = () => {
         </nav>
         <nav className="flex flex-wrap items-center justify-center lg:mt-2 ">
           {/* <motion.a
-          target={"_blank"}
+          // target={"_blank"}
           className="w-6 mr-3"
           href="#"
           whileHover={{ y: -2 }}
@@ -210,7 +210,7 @@ const Navbar = () => {
           </nav>
           <nav className="flex items-center justify-center mt-2 ">
             {/* <motion.a
-          target={"_blank"}
+          // target={"_blank"}
           className="w-6 m-1 mr-3 sm:mx-1"
           href="#"
           whileHover={{ y: -2 }}

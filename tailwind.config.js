@@ -15,6 +15,17 @@ module.exports = {
       fontFamily: {
         mont: ["var(--font-mont)", ...fontFamily.sans],
       },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "3rem",
+          xl: "4rem",
+          "2xl": "6rem",
+        },
+        
+      },
       colors: {
         // https://color.adobe.com/fr/create/image
         dark: "#080A40",
