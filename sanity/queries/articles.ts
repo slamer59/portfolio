@@ -6,7 +6,11 @@ export async function getArticleData(slug: string) {
         "currentSlug": slug.current,
           title,
           body,
-          mainImage,
+          "mainImage":{
+            "asset": mainImage.asset,      
+            "dimensions": mainImage.asset->metadata.dimensions,
+            "lqip": mainImage.asset->metadata.lqip
+          },
           _updatedAt,
           author-> {
             name,
@@ -26,6 +30,7 @@ export async function getFeaturedArticles() {
           title,
           body,
           mainImage,
+
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
       }`;
 

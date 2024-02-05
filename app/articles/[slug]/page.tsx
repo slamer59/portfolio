@@ -84,8 +84,6 @@ export default async function BlogArticle({
     params: { slug: string };
 }) {
     const data = await getArticleData(params.slug);
-    console.log("🚀 ~ data:", data.mainImage)
-
     return (
         <div className="container mt-8">
             <ArticleHeadLine author={data.author} date={data._updatedAt} title={data.title} />
@@ -98,7 +96,7 @@ export default async function BlogArticle({
                         alt="Title Image"
                         priority
                         className="w-full max-w-6xl mx-auto mt-8 border rounded-lg "
-                    // blurDataURL={data.mainImage.asset.metadata.lqip}
+                        blurDataURL={data.mainImage.lqip}
                     />
                 }
                 <div className="mt-16 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
