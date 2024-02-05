@@ -26,10 +26,12 @@ export async function getFeaturedArticles() {
           title,
           body,
           mainImage,
+          "galleryRef": *[_type == "gallery" && references(^._id)]._id,
       }`;
 
   const data = await client.fetch(query);
-  return data;
+  const filteredData = data.filter((article) => article.galleryRef.length == 0)
+  return filteredData
 }
 
 
@@ -40,9 +42,11 @@ export async function getArticles() {
           title,
           body,
           mainImage,
+          "galleryRef": *[_type == "gallery" && references(^._id)]._id,
           _updatedAt
       }`;
 
   const data = await client.fetch(query);
-  return data;
+  const filteredData = data.filter((article) => article.galleryRef.length == 0)
+  return filteredData
 }

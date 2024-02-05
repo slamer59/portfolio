@@ -6,8 +6,8 @@ const EMULATION_METRICS = {
   disabled: false,
 };
 
-const baseUrl = "https://portfolio-seven-phi-29.vercel.app"
-export default {
+const baseUrl = "https://portfolio-seven-phi-29.vercel.app";
+const config = {
   // example
   site: baseUrl, // The site that will be scanned
   root: process.cwd(), // The path to the app that represents the site
@@ -68,4 +68,6 @@ export default {
     emulatedUserAgent: "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36", // User agent for Moto G Power
   }
 
-}
+};
+
+export default config;

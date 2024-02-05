@@ -2,6 +2,7 @@ import { urlFor } from "@/sanity/lib/client";
 import { Article } from "./Article";
 
 export function ListArticles({ articles }: { articles: any }) {
+
   return (
     <ul className="relative flex flex-col items-center">
       {articles &&
