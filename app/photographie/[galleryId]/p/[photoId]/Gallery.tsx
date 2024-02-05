@@ -27,6 +27,7 @@ export default function Gallery({ galleryImageData, galleryData, photoId
         <>
             {photoId && (
                 <Modal
+                    photoId={photoId}
                     images={galleryData.gallery.images}
                     returnTo={`/photographie/${galleryData.slug.current}`}
                     onClose={() => {

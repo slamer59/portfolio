@@ -1,16 +1,20 @@
+// "use client"
+
 import type { ImageProps } from "@/lib/types";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
 import SharedModal from "./SharedModal";
 
 export default function Modal({
+  photoId,
   images,
   returnTo,
   onClose,
 }: {
+  photoId: string;
   images: ImageProps[];
   returnTo: string;
   onClose: () => void;
@@ -18,7 +22,7 @@ export default function Modal({
   let overlayRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
   const pathname = usePathname()
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
 
   // const createQueryString = useCallback(
   //   (name: string, value: string) => {
@@ -30,7 +34,7 @@ export default function Modal({
   //   [searchParams]
   // )
 
-  const photoId = searchParams.get('photoId')
+  // const photoId = searchParams.get('photoId')
 
   let index = Number(photoId);
 
@@ -90,6 +94,6 @@ export default function Modal({
         closeModal={handleClose}
         navigation={true}
       />
-    </Dialog>
+    </Dialog >
   );
 }
