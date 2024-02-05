@@ -95,11 +95,11 @@ export default async function BlogArticle({
                         height={800}
                         alt="Title Image"
                         priority
-                        className="w-full max-w-6xl mx-auto mt-8 border rounded-lg "
+                        className="w-full max-w-6xl mx-auto border rounded-lg sm:mt-2"
                         blurDataURL={data.mainImage.lqip}
                     />
                 }
-                <div className="mt-16 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
+                <div className="mt-8 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
                     <PortableText
                         /* @ts-ignore */
                         components={components}

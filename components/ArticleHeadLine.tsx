@@ -27,7 +27,7 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                         </div>
                     </div>
                 </address>
-                <h1 className="inline-block text-dark dark:text-light font-bold w-full capitalize mb-4 !text-4xl !leading-tight lg:!text-3xl sm:!text-3xl xs:!text-xl sm:mb-8 xl:text-4xl" contentEditable={false}>
+                <h1 className="inline-block text-dark dark:text-light font-bold w-full capitalize mb-4 !text-4xl !leading-tight lg:!text-3xl sm:!text-3xl xs:!text-xl xl:text-4xl sm:mb-2" contentEditable={false}>
                     {title}
                 </h1>
             </div>
