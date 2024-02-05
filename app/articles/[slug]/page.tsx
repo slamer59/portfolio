@@ -20,7 +20,7 @@ const components = {
                         src={urlFor(value)
                             .fit("max")
                             .auto("format")
-                            .url()}
+                            .format("webp").url()}
                         width={width}
                         height={height}
                         alt={value.alt || " "}
@@ -84,6 +84,7 @@ export default async function BlogArticle({
     params: { slug: string };
 }) {
     const data = await getArticleData(params.slug);
+    console.log("🚀 ~ data:", data.mainImage)
 
     return (
         <div className="container mt-8">
@@ -91,12 +92,13 @@ export default async function BlogArticle({
             <article className="w-full max-w-6xl mx-auto mb-8 format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                 {data.mainImage &&
                     <Image
-                        src={urlFor(data.mainImage).url()}
+                        src={urlFor(data.mainImage).format("webp").url()}
                         width={800}
                         height={800}
                         alt="Title Image"
                         priority
                         className="w-full max-w-6xl mx-auto mt-8 border rounded-lg "
+                    // blurDataURL={data.mainImage.asset.metadata.lqip}
                     />
                 }
                 <div className="mt-16 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">

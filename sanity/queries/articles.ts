@@ -24,7 +24,7 @@ export async function getFeaturedArticles() {
     *[_type == "article" && featured == true] {
         "currentSlug": slug.current,
           title,
-          description,
+          body,
           mainImage,
       }`;
 
@@ -38,7 +38,7 @@ export async function getArticles() {
     *[_type == "article"] {
         "currentSlug": slug.current,
           title,
-          description,
+          body,
           mainImage,
           _updatedAt
       }`;

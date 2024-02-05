@@ -74,11 +74,16 @@ If you have any questions or You want me to make a project then You can reach ou
 My Channel: [codebucks](https://www.youtube.com/codebucks)
 My Website: [devdreaming.com](https://devdreaming.com/)
 
+
+
 ## Sanity Studio
 
 https://github.com/sanity-io/next-sanity?tab=readme-ov-file#peer-dependencies-for-embedded-sanity-studio
 
+## Inspired by
+https://github.com/suncel-io/nextjs-blog-starter
 
+https://nextjsconf-pics.vercel.app/
 
 ## Gallery
 https://github.com/yogyy/Gallery.git

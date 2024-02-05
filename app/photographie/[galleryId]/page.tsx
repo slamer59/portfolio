@@ -1,5 +1,3 @@
-"use client"
-
 import { urlFor } from '@/sanity/lib/client';
 import { getGalleryImages } from '@/sanity/queries/galleries';
 import Image from 'next/image';
@@ -10,6 +8,7 @@ export default async function ImageGalleryPage({
 }: {
   params: { galleryId: string };
 }) {
+
   const galleryData = await getGalleryImages(params.galleryId)
   return (
     <div>
@@ -18,20 +17,19 @@ export default async function ImageGalleryPage({
       {galleryData.gallery.images.map((image, index) => (
         <>
           {/* Use client a extraire */}
-
           <Link
             key={image._ref}
-            href={`/?photoId=${image.asset._ref}`}
-            as={`/photographie/${params.galleryId}/p/${image.asset._ref}`}
+            href={`/?photoId=${index}`}
+            as={`/photographie/${params.galleryId}/p/${index}?photoId=${index}`}  //${image.asset._ref}`}
             // ref={image._ref === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-            ref={image.asset._ref}
+            // ref={image.asset._ref}
             shallow
             className="relative block w-full mb-5 after:content group cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
           >
             <Image
               key={index}
               className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110"
-              src={urlFor(image).url()}
+              src={urlFor(image).width(720).height(480).format("webp").url()}
               alt={image.name}
               width={720}
               height={480}

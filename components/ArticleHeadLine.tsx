@@ -9,7 +9,7 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                     <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         {author.image && (
                             <Image
-                                src={urlFor(author.image).size(2 * 128, 2 * 128).url()}
+                                src={urlFor(author.image).size(2 * 128, 2 * 128).format("webp").url()}
                                 alt={author.name}
                                 width={64}
                                 height={64}

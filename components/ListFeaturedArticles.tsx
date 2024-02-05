@@ -9,7 +9,7 @@ export function ListFeaturedArticles({ articles }: { articles: any }) {
       {articles &&
         articles.map((article, index) => <FeaturedArticle
           key={index}
-          img={urlFor(article.mainImage).url()}
+          img={urlFor(article.mainImage).format("webp").url()}
           title={article.title}
           time={article.readingTime || "8 min read"}
           summary={article.description}
