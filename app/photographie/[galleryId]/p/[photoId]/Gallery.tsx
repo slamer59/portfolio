@@ -17,9 +17,9 @@ export default function Gallery({ galleryImageData, galleryData, photoId
 
     useEffect(() => {
         // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-        if (lastViewedPhoto && !photoId) {
+        if (lastViewedPhoto && lastViewedPhotoRef.current && !photoId) {
             lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-            setLastViewedPhoto(null);
+            setLastViewedPhoto(0);
         }
     }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
 
