@@ -1,5 +1,5 @@
 export const range = (start: number, end: number) => {
-  let output = [];
+  let output: number[] = []; // Specify the type of the output array as an array of numbers
   if (typeof end === "undefined") {
     end = start;
     start = 0;
