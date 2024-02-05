@@ -1,6 +1,6 @@
 import {
-    motion,
-    useScroll,
+  motion,
+  useScroll,
 } from "framer-motion";
 import { useRef } from "react";
 import LiIcon from "./LiIcon";
@@ -119,8 +119,9 @@ const Experience = () => {
             style={{ scaleY: scrollYProgress }}
           />
           <ul className="flex flex-col items-start justify-between w-full ml-4 xs:ml-2">
-          {detailsData.map((details) => (
+          {detailsData.map((details, index) => (
             <Details
+              key={index}
               position={details.position}
               company={details.company}
               companyLink={details.companyLink}

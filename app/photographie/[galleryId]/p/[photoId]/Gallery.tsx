@@ -10,7 +10,6 @@ import { useEffect, useRef } from "react";
 
 export default function Gallery({ galleryImageData, galleryData, photoId
 }) {
-    console.log("🚀 ~ galleryData:", galleryData)
 
     const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
     const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);

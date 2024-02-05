@@ -74,8 +74,9 @@ const Education = () => {
           style={{ scaleY: scrollYProgress }}
         />
         <ul className="flex flex-col items-start justify-between w-full ml-4">
-          {educationData.map((details) => (
+          {educationData.map((details, index) => (
             <Details
+              key={index}
               type={details.type}
               time={details.time}
               place={details.place}

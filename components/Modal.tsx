@@ -13,9 +13,9 @@ export default function Modal({
 }: {
   images: ImageProps[];
   returnTo: string;
-  onClose?: () => void;
+  onClose: () => void;
 }) {
-  let overlayRef = useRef();
+  let overlayRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -75,7 +75,7 @@ export default function Modal({
       className="fixed inset-0 z-10 flex items-center justify-center"
     >
       <Dialog.Overlay
-        ref={overlayRef}
+        ref={overlayRef as React.RefObject<HTMLDivElement>}
         as={motion.div}
         key="backdrop"
         className="fixed inset-0 z-30 bg-black/70 backdrop-blur-2xl"

@@ -30,6 +30,7 @@ export default function SharedModal({
   const [loaded, setLoaded] = useState(false);
 
   let filteredImages = images?.filter((img: ImageProps) =>
+    // @ts-ignore
     range(index - 15, index + 15).includes(img.id),
   );
 
@@ -174,7 +175,7 @@ export default function SharedModal({
                 className="mx-auto mt-6 mb-6 flex aspect-[3/2] h-14"
               >
                 <AnimatePresence initial={false}>
-                  {filteredImages.map(({ public_id, format, id }) => (
+                  {filteredImages.map(({ id }) => (
                     <motion.button
                       initial={{
                         width: "0%",
