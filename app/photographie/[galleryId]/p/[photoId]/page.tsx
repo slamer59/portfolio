@@ -46,7 +46,7 @@ export default async function ImageGalleryPage({
   const galleryImageData = await getGalleryImageByIndex(params.galleryId, id)
   const galleryData = await getGalleryImages(params.galleryId)
 
-  console.log("🚀 ~ galleryImageData:", galleryImageData)
+  console.log("🚀 ~ galleryImageData:", galleryImageData.image[0])
   console.log("🚀 ~ galleryData:", galleryData)
   // const currentPhotoUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
 

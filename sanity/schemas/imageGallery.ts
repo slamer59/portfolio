@@ -5,7 +5,8 @@ const ImageField = defineField({
     type: "image",
     title: "Image",
     options: {
-        hotspot: true,
+        hotspot: true, // <-- Defaults to false
+        metadata: ["blurhash", "lqip", "palette"],
     },
     fields: [
         defineField({

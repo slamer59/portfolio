@@ -10,6 +10,8 @@ export default async function ImageGalleryPage({
 }) {
 
   const galleryData = await getGalleryImages(params.galleryId)
+  console.log("🚀 ~ galleryData.gallery.images:", galleryData.gallery.images[0])
+
   return (
     <div>
       {galleryData.title}
@@ -39,9 +41,10 @@ export default async function ImageGalleryPage({
               blurDataURL={image.lqip}
               style={{ transform: "translate3d(0, 0, 0)" }}
               sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
+                      (max-width: 1280px) 50vw,
+                      (max-width: 1536px) 33vw,
+                      25vw"
+              objectPosition={`${image.hotspot?.x * 100 || 100}% ${image.hotspot?.y * 100 || 100}%`}
             />
           </Link>
         </>

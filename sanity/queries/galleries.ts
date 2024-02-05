@@ -11,7 +11,8 @@ export async function getGalleryImages(slug: string) {
               images[]{
                 "asset": asset,      
                 "dimensions": asset->metadata.dimensions,
-                "lqip": asset->metadata.lqip
+                "lqip": asset->metadata.lqip,
+                "hotspot": asset->hotspot,
               }
             }
           }`;
