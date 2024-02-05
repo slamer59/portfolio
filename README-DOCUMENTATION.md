@@ -80,3 +80,5 @@ https://github.com/sanity-io/next-sanity?tab=readme-ov-file#peer-dependencies-fo
 
 
 
+## Gallery
+https://github.com/yogyy/Gallery.git

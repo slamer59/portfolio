@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "unlighthouse": "npx unlighthouse --site https://portfolio-seven-phi-29.vercel.app --config-file unlighthouse.config.prod.ts"
   },
   "dependencies": {
     "@portabletext/react": "^3.0.11",
@@ -19,8 +20,10 @@
     "next-sanity": "^7.0.17",
     "react": "latest",
     "react-dom": "latest",
+    "react-hooks-global-state": "^2.1.0",
     "sanity": "^3.27.1",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "unlighthouse": "^0.10.6"
   },
   "devDependencies": {
     "@types/node": "20.11.16",
