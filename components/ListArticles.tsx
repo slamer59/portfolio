@@ -11,6 +11,7 @@ export function ListArticles({ articles }: { articles: any }) {
           img={urlFor(article.mainImage).url()}
           date={`${new Date(article._updatedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`}
           link={`/articles/${article.currentSlug}`}
+          summary={article.description}
         />
         )}
     </ul>
