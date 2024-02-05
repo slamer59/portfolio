@@ -4,12 +4,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
-    // DribbbleIcon,
-    GithubIcon,
-    InstagramIcon,
-    LinkedInIcon,
-    MoonIcon,
-    SunIcon,
+  // DribbbleIcon,
+  GithubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  MoonIcon,
+  SunIcon,
 } from "./Icons";
 import Logo from "./Logo";
 
@@ -125,7 +125,7 @@ const Navbar = () => {
           <motion.a
             target={"https://github.com/slamer59"}
             className="w-6 mx-3"
-            href="#"
+            href="https://github.com/slamer59"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Voici mon profile github"
@@ -135,7 +135,7 @@ const Navbar = () => {
           <motion.a
             target={"linkedin.com/in/thomaspedot/"}
             className="w-6 mx-3"
-            href="#"
+            href="https://linkedin.com/in/thomaspedot/"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Voici mon profile linkedin"
@@ -145,7 +145,7 @@ const Navbar = () => {
           <motion.a
             target={"https://www.instagram.com/teepeetlse"}
             className="w-6 mx-3 rounded-full bg-light"
-            href="#"
+            href="https://www.instagram.com/teepeetlse"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Voici mon profile Instagram"
@@ -222,7 +222,7 @@ const Navbar = () => {
             <motion.a
             target={"https://github.com/slamer59"}
             className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
-              href="#"
+              href="https://github.com/slamer59"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Voici mon profile github"
@@ -232,7 +232,7 @@ const Navbar = () => {
             <motion.a
             target={"linkedin.com/in/thomaspedot/"}
             className="w-6 m-1 mx-3 sm:mx-1"
-              href="#"
+              href="linkedin.com/in/thomaspedot/"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Voici mon profile linkedin"
@@ -242,7 +242,7 @@ const Navbar = () => {
             <motion.a
             target={"https://www.instagram.com/teepeetlse"}
             className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
-              href="#"
+              href="https://www.instagram.com/teepeetlse"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Voici mon profile Instagram"
