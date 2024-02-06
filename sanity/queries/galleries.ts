@@ -23,6 +23,28 @@ export async function getGalleryImages(slug: string) {
   return data;
 }
 
+export async function getGalleryNextImages(slug: string) {
+  const query = `
+        *[_type == "article" && slug.current == '${slug}'][0] {
+            slug,
+              title,
+              description,
+              body,
+              "date": publishedAt,
+              "gallery": *[_type == "gallery" && references(^._id)][0] {
+                images[]{
+                  "asset": asset,      
+                  "aspect_ratio": asset->metadata.dimensions.aspectRatio,
+                  "lqip": asset->metadata.lqip,
+                  "hotspot": asset->hotspot,
+                }
+            }
+          }`;
+
+  const data = await client.fetch(query);
+  return data;
+}
+
 export async function getGalleryImageRefs(slug: string) {
   const query = `
   *[_type == "article" && slug.current == "${slug}"][0] {

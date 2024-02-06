@@ -26,7 +26,7 @@ export default function SharedModal({
   currentPhoto,
   direction,
 }: SharedModalProps) {
-  console.log("🚀 ~ index:", index)
+
   const [loaded, setLoaded] = useState(false);
 
   let filteredImages = images?.filter((img: ImageProps) =>

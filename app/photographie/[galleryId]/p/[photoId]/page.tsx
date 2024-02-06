@@ -6,10 +6,7 @@ import Gallery from "./Gallery";
 // }: {
 //   params: { galleryId: string };
 // }) {
-//   console.log("🚀 ~ params:", params)
-//   console.log("🚀 ~ galleryId:", params.galleryId)
 //   const imageRefs = await getGalleryImageRefs(params.galleryId)
-//   console.log("🚀 ~ imageRefs:", imageRefs)
 
 
 //   let fullPaths = [];
@@ -31,12 +28,6 @@ export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }]
 }
 
-// async function getImages(params) {
-
-
-//   return galleryImageData
-// }
-
 export default async function ImageGalleryPage({
   params,
 }: {
@@ -46,8 +37,6 @@ export default async function ImageGalleryPage({
   const galleryImageData = await getGalleryImageByIndex(params.galleryId, id)
   const galleryData = await getGalleryImages(params.galleryId)
 
-  console.log("🚀 ~ galleryImageData:", galleryImageData.image[0])
-  console.log("🚀 ~ galleryData:", galleryData)
   // const currentPhotoUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
 
   return (

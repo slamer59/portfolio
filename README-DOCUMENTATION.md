@@ -87,3 +87,5 @@ https://nextjsconf-pics.vercel.app/
 
 ## Gallery
 https://github.com/yogyy/Gallery.git
+
+https://github.com/fmkra/next-gallery/blob/development/src/Gallery.tsx
