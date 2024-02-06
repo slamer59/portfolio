@@ -47,7 +47,7 @@ export default function SharedModal({
   });
 
   let currentImage = images ? images[index] : currentPhoto;
-
+  console.log(currentImage.dimensions)
   return (
     <MotionConfig
       transition={{
@@ -56,7 +56,7 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex aspect-[3/2] w-full items-center wide:h-full xl:taller-than-854:h-auto"
+        className="relative z-50 flex items-center w-full wide:h-full xl:taller-than-854:h-auto"
         {...handlers}
       >
         {/* Main image */}
@@ -78,13 +78,14 @@ export default function SharedModal({
                   //   }.${currentImage.format}`}
                   /* @ts-ignore */
                   src={urlFor(currentImage).size(currentImage.dimensions?.width || 1920, currentImage.dimensions?.height || 1280).fit("scale").url()}
-                  /* @ts-ignore */
-                  // width={navigation ? currentImage.dimensions.width / 1.5 : currentImage.dimensions.width}
                   // /* @ts-ignore */
-                  // height={navigation ? currentImage.dimensions.height / 1.5 : currentImage.dimensions.height}
-                  width={currentImage.dimensions?.width || 1280}
+                  // width={navigation ? currentImage.dimensions.width / 1.5 : currentImage.dimensions.width}
                   /* @ts-ignore */
-                  height={currentImage.dimensions?.height || 853}
+                  // height={navigation ? currentImage.dimensions?.height / 1.5 : currentImage.dimensions?.height}
+                  /* @ts-ignore */
+                  width={currentImage.dimensions?.width * currentImage.dimensions?.aspectRatio}
+                  /* @ts-ignore */
+                  height={currentImage.dimensions?.height}
                   priority
                   alt={currentImage?.alt || "A photo gallery image"}
                   onLoad={() => setLoaded(true)}
