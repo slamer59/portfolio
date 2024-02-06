@@ -1,8 +1,7 @@
 "use client"
 
 import { variants } from "@/lib/animationVariants";
-import { range } from "@/lib/range";
-import type { ImageProps, SharedModalProps } from "@/lib/types";
+import type { SharedModalProps } from "@/lib/types";
 import { urlFor } from "@/sanity/lib/client";
 import {
   ArrowTopRightOnSquareIcon,
@@ -12,7 +11,7 @@ import {
   XMarkIcon
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
-import Image from "next/image";
+import { default as Image } from "next/image";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { InstagramIcon } from "./Icons";
@@ -29,10 +28,9 @@ export default function SharedModal({
 
   const [loaded, setLoaded] = useState(false);
 
-  let filteredImages = images?.filter((img: ImageProps) =>
-    // @ts-ignore
-    range(index - 15, index + 15).includes(img.id),
-  );
+  let startIndex = Math.max(0, index - 15);
+  let endIndex = Math.min(index + 15, images?.length || 0);
+  let filteredImages = images?.slice(startIndex, endIndex);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -58,7 +56,7 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
+        className="relative z-50 flex aspect-[3/2] w-full items-center wide:h-full xl:taller-than-854:h-auto"
         {...handlers}
       >
         {/* Main image */}
@@ -78,11 +76,15 @@ export default function SharedModal({
                   // src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
                   //   }/image/upload/c_scale,${navigation ? "w_1280" : "w_1920"}/${currentImage.public_id
                   //   }.${currentImage.format}`}
-                  src={urlFor(currentImage).fit("scale").url()}
                   /* @ts-ignore */
-                  width={navigation ? currentImage.dimensions.width / 1.5 : currentImage.dimensions.width}
+                  src={urlFor(currentImage).size(currentImage.dimensions?.width || 1920, currentImage.dimensions?.height || 1280).fit("scale").url()}
                   /* @ts-ignore */
-                  height={navigation ? currentImage.dimensions.height / 1.5 : currentImage.dimensions.height}
+                  // width={navigation ? currentImage.dimensions.width / 1.5 : currentImage.dimensions.width}
+                  // /* @ts-ignore */
+                  // height={navigation ? currentImage.dimensions.height / 1.5 : currentImage.dimensions.height}
+                  width={currentImage.dimensions?.width || 1280}
+                  /* @ts-ignore */
+                  height={currentImage.dimensions?.height || 853}
                   priority
                   alt={currentImage?.alt || "A photo gallery image"}
                   onLoad={() => setLoaded(true)}
@@ -177,7 +179,7 @@ export default function SharedModal({
                 className="mx-auto mt-6 mb-6 flex aspect-[3/2] h-14"
               >
                 <AnimatePresence initial={false}>
-                  {filteredImages?.map(({ id }) => (
+                  {filteredImages?.map((image, id) => (
                     <motion.button
                       initial={{
                         width: "0%",
@@ -206,7 +208,7 @@ export default function SharedModal({
                           : "brightness-50 contrast-125 hover:brightness-75"
                           } h-full transform object-cover transition`}
                         // https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_180/${public_id}.${format}
-                        src={urlFor(currentImage).size(180, 120).fit("scale").url()}
+                        src={urlFor(image).size(180, 120).fit("scale").url()}
                       />
                     </motion.button>
                   ))}

@@ -16,6 +16,7 @@ export default function Carousel({
   currentPhoto, //: ImageProps;
   images, //: ImageProps[];
 }) {
+
   const router = useRouter();
   const [, setLastViewedPhoto] = useLastViewedPhoto();
 
@@ -48,6 +49,7 @@ export default function Carousel({
       </button>
       <SharedModal
         index={index}
+        images={images}
         changePhotoId={changePhotoId}
         currentPhoto={currentPhoto}
         closeModal={closeModal}

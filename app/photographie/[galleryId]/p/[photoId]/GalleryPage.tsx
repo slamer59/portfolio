@@ -1,5 +1,6 @@
 "use client"
 
+import Carousel from "@/components/Carousel";
 import Modal from "@/components/Modal";
 import { useLastViewedPhoto } from "@/lib/useLastViewedPhoto";
 import { useEffect, useRef } from "react";
@@ -34,7 +35,7 @@ export default function GalleryPage({ galleryImageData, galleryData, photoId
                         setLastViewedPhoto(Number(photoId));
                     }} />
             )}
-            {/* <Carousel images={galleryData.gallery.images} currentPhoto={galleryImageData.image[0]} index={Number(photoId)} /> */}
+            <Carousel images={galleryData.gallery.images} currentPhoto={galleryImageData.image[0]} index={Number(photoId)} />
         </>
     );
 }
