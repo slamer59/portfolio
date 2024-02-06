@@ -1,5 +1,5 @@
 import { getGalleryImageByIndex, getGalleryImages } from "@/sanity/queries/galleries";
-import Gallery from "./Gallery";
+import GalleryPage from "./GalleryPage";
 
 // export async function generateStaticParams({
 //   params,
@@ -47,7 +47,7 @@ export default async function ImageGalleryPage({
         <meta name="twitter:image" content={currentPhotoUrl} />
       </Head> */}
       <main className="mx-auto max-w-[1960px] p-4">
-        <Gallery galleryData={galleryData} galleryImageData={galleryImageData} photoId={params.photoId} />
+        <GalleryPage galleryData={galleryData} galleryImageData={galleryImageData} photoId={params.photoId} />
       </main>
     </>
   );

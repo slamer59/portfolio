@@ -27,7 +27,7 @@ export type GalleryProps = GalleryCalculationProps & {
 }
 
 export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, imgLoader, galleryId, ...props }: GalleryProps) {
-    console.log(props.images.length)
+
     if (widths.length + 1 != props.ratios.length) {
         const isShorter = props.ratios.length < widths.length + 1
         throw new Error(
@@ -95,7 +95,7 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                 alt={props.images[i].alt ?? ''}
                                 className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110"
                                 placeholder="blur"
-                                blurDataURL={props.images[0].lqip}
+                                blurDataURL={props.images[i].lqip}
                                 style={{ transform: "translate3d(0, 0, 0)", objectPosition: `${props.images[0].hotspot?.x * 100 || 100}% ${props.images[0].hotspot?.y * 100 || 100}%` }}
                                 fill
                                 loader={imgLoader}
@@ -107,21 +107,22 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                 {...(props.images[i].nextImageProps ?? {})}
 
                             />
+
+                            {overlay && (
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: gap,
+                                        left: gap,
+                                        right: gap,
+                                        bottom: gap,
+                                        zIndex: 2,
+                                    }}
+                                >
+                                    {overlay(i)}
+                                </div>
+                            )}
                         </Link>
-                        {overlay && (
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: gap,
-                                    left: gap,
-                                    right: gap,
-                                    bottom: gap,
-                                    zIndex: 2,
-                                }}
-                            >
-                                {overlay(i)}
-                            </div>
-                        )}
                     </div>
                 ))}
                 <div

@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 //   return galleryImageData
 // }
 
-export default function Gallery({ galleryImageData, galleryData, photoId
+export default function GalleryPage({ galleryImageData, galleryData, photoId
 }) {
 
     const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();

@@ -8,6 +8,16 @@ import { PortableText } from '@portabletext/react';
 
 const widths = [500, 1000, 1600]
 const ratios = [2.2, 4, 6, 8]
+
+const overlayStyle: React.CSSProperties = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  background: "rgba(0,0,0,0.5)",
+}
+
 export default async function ImageGalleryPage({
   params,
 }: {
@@ -16,11 +26,14 @@ export default async function ImageGalleryPage({
 
   const galleryData = await getGalleryImages(params.galleryId)
   const galleryNextData = await getGalleryNextImages(params.galleryId);
+
   const images = galleryNextData.gallery.images.map((image) => ({
     aspect_ratio: image.aspect_ratio,
     src: urlFor(image).format("webp").url(),
+    // pour oeverlays mais marche pas..    alt: image.alt,
     lqip: image.lqip,
-    hotspot: image.hotspot
+    hotspot: image.hotspot,
+
   }));
 
   return (
@@ -34,7 +47,21 @@ export default async function ImageGalleryPage({
             value={galleryData.body}
           />
         </div>
-        <GalleryCustom images={images} widths={widths} ratios={ratios} galleryId={params.galleryId} />
+        <GalleryCustom
+          images={images} widths={widths} ratios={ratios} galleryId={params.galleryId}
+          lastRowBehavior="match-previous" // "match-previous", "fill" or "preserve"
+          overlay={(i) =>
+            <div key={i} className="z-20 flex flex-col items-center justify-center h-full">
+              <div className="text-2xl font-bold text-white">{galleryNextData.gallery.images[i].title}</div>
+              <div className="text-lg text-white">{galleryNextData.gallery.images[i].description}</div>
+            </div>
+          }
+        // overlay={(i) => (
+        //   <div style={overlayStyle}>
+        //     {overlays[i]}
+        //   </div>
+        // )}
+        />
       </article>
     </div >
   );
