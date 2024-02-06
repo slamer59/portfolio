@@ -24,6 +24,7 @@ export default async function BlogArticle({
                         alt="Title Image"
                         priority
                         className="w-full max-w-6xl mx-auto border rounded-lg sm:mt-2"
+                        placeholder="blur"
                         blurDataURL={data.mainImage.lqip}
                     />
                 }
