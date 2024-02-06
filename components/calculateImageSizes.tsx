@@ -7,6 +7,10 @@ export interface Image {
     src: string
     aspect_ratio: number
     lqip: string
+    hotspot?: {
+        x: number
+        y: number
+    }
     alt?: string
     nextImageProps?: Partial<NextImageProps>
 }

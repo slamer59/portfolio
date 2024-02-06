@@ -3,6 +3,11 @@ export interface ImageProps {
   id: number;
   alt: string;
   blurDataUrl?: string;
+  dimensions?: {
+    height: number;
+    width: number;
+    aspectRatio?: number
+  }
 }
 
 export interface SharedModalProps {

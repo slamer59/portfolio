@@ -78,9 +78,11 @@ export default function SharedModal({
                   // src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
                   //   }/image/upload/c_scale,${navigation ? "w_1280" : "w_1920"}/${currentImage.public_id
                   //   }.${currentImage.format}`}
-                  src={urlFor(currentImage).size(navigation ? 1280 : 1920, navigation ? 853 : 1280).fit("scale").url()}
-                  width={navigation ? 1280 : 1920}
-                  height={navigation ? 853 : 1280}
+                  src={urlFor(currentImage).fit("scale").url()}
+                  /* @ts-ignore */
+                  width={navigation ? currentImage.dimensions.width / 1.5 : currentImage.dimensions.width}
+                  /* @ts-ignore */
+                  height={navigation ? currentImage.dimensions.height / 1.5 : currentImage.dimensions.height}
                   priority
                   alt={currentImage?.alt || "A photo gallery image"}
                   onLoad={() => setLoaded(true)}

@@ -96,7 +96,8 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                 className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110"
                                 placeholder="blur"
                                 blurDataURL={props.images[i].lqip}
-                                style={{ transform: "translate3d(0, 0, 0)", objectPosition: `${props.images[0].hotspot?.x * 100 || 100}% ${props.images[0].hotspot?.y * 100 || 100}%` }}
+                                /* @ts-ignore */
+                                style={{ transform: "translate3d(0, 0, 0)", objectPosition: `${props.images[0]?.hotspot?.x * 100 || 100}% ${props.images[0]?.hotspot?.y * 100 || 100}%` }}
                                 fill
                                 loader={imgLoader}
                                 sizes={
