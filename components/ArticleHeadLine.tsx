@@ -19,9 +19,9 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                         <div>
                             <a href="#" rel="author" className="text-xl font-bold text-primary dark:text-white">{author.name}</a>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">{author.postion}</p>
-                            <p className="text-base font-light text-gray-500 dark:text-gray-400">
-                                <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
-                                    {new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                            <p className="text-base font-light text-gray-500 capitalize dark:text-gray-400">
+                                <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
+                                    {new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                                 </time>
                             </p>
                         </div>

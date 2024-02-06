@@ -7,13 +7,15 @@ export async function getGalleryImages(slug: string) {
             slug,
               title,
               description,
+              body,
+              "date": publishedAt,
               "gallery": *[_type == "gallery" && references(^._id)][0] {
-              images[]{
-                "asset": asset,      
-                "dimensions": asset->metadata.dimensions,
-                "lqip": asset->metadata.lqip,
-                "hotspot": asset->hotspot,
-              }
+                images[]{
+                  "asset": asset,      
+                  "dimensions": asset->metadata.dimensions,
+                  "lqip": asset->metadata.lqip,
+                  "hotspot": asset->hotspot,
+                }
             }
           }`;
 
