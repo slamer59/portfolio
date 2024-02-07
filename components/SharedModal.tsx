@@ -47,7 +47,7 @@ export default function SharedModal({
   });
 
   let currentImage = images ? images[index] : currentPhoto;
-  console.log(currentImage)
+
   return (
     <MotionConfig
       transition={{

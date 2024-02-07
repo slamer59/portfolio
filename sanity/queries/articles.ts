@@ -30,7 +30,6 @@ export async function getFeaturedArticles() {
           title,
           body,
           mainImage,
-
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
       }`;
 
@@ -55,3 +54,29 @@ export async function getArticles() {
   const filteredData = data.filter((article) => article.galleryRef.length == 0)
   return filteredData
 }
+
+export async function getAllPhotoProjects() {
+  const query = `
+    *[_type == "article"] {
+      "currentSlug": slug.current,
+        title,
+        featured,
+        _updatedAt,
+        description,
+        _updatedAt,
+        "galleryRef": *[_type == "gallery" && references(^._id)]._id,
+        "mainImage": {
+          "asset": *[_type == "gallery" && references(^._id)].images[0].asset,
+          "dimensions": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.dimensions,
+          "lqip": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.lqip
+        }
+  }`;
+
+  const data = await client.fetch(query);
+  console.log("🚀 ~ getAllPhotoProjects ~ data:", data)
+  const filteredData = data.filter((article) => article.galleryRef.length != 0)
+  // console.log("🚀 ~ getAllPhotoProjects ~ filteredData:", filteredData)
+  console.log("🚀 ~ getAllPhotoProjects ~ filteredData:", filteredData)
+  return filteredData
+}
+
