@@ -56,7 +56,7 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex items-center w-full wide:h-full xl:taller-than-854:h-auto"
+        className="relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
         {...handlers}
       >
         {/* Main image */}
@@ -70,12 +70,14 @@ export default function SharedModal({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute"
+                className="absolute border-8 border-black"
+
               >
                 <Image
                   /* @ts-ignore */
                   src={urlFor(currentImage).size(currentImage.dimensions?.width || 1920, currentImage.dimensions?.height || 1280).fit("scale").url()}
                   /* @ts-ignore */
+                  // className="border-black border-x-[20px] border-y-[50px]"
                   width={currentImage.dimensions?.width * currentImage.dimensions?.aspectRatio}
                   /* @ts-ignore */
                   height={currentImage.dimensions?.height}
@@ -92,7 +94,7 @@ export default function SharedModal({
         </div>
 
         {/* Buttons + bottom nav bar */}
-        <div className="absolute inset-0 flex items-center justify-center mx-auto max-w-7xl">
+        <div className="absolute inset-0 flex items-center justify-center max-w-full max-h-full mx-auto">
           {/* Buttons */}
           {loaded && (
             <div className="relative aspect-[3/2] max-h-full w-full">
