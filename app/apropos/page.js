@@ -75,10 +75,7 @@ export default function About() {
         full-stack development, front-end development, and back-end development." />
       </Head>
       <TransitionEffect />
-      <main
-        className={`flex  w-full flex-col items-center justify-center dark:text-light`}
-      >
-        <Layout className="pt-16">
+        <Layout className="flex flex-col items-center justify-center w-full dark:text-light">
           <AnimatedText
             text="Créatif & passioné"
             className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8"
@@ -147,7 +144,6 @@ export default function About() {
           <Experience />
           <Education />
         </Layout>
-      </main>
     </>
   );
 }

@@ -22,21 +22,17 @@ export default async function Articles() {
         />
       </Head>
       <TransitionEffect />
-      <main
-        className={`w-full mb-16 flex flex-col items-center justify-center dark:text-light overflow-hidden`}
-      >
-        <Layout className="pt-16">
-          <AnimatedText
-            text="Words Can Change the World!"
-            className="!text-8xl !leading-tight mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8"
-          />
-          <ListFeaturedArticles articles={featuredArticles} />
-          <h2 className="w-full my-16 mt-32 text-4xl font-bold text-center">
-            Tous les articles
-          </h2>
-          <ListArticles articles={articles} />
-        </Layout>
-      </main>
+      <Layout className="flex flex-col items-center justify-center w-full mb-16 overflow-hidden dark:text-light">
+        <AnimatedText
+          text="Words Can Change the World!"
+          className="!text-8xl !leading-tight mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8"
+        />
+        <ListFeaturedArticles articles={featuredArticles} />
+        <h2 className="w-full my-16 mt-32 text-4xl font-bold text-center">
+          Tous les articles
+        </h2>
+        <ListArticles articles={articles} />
+      </Layout>
     </>
   );
 }

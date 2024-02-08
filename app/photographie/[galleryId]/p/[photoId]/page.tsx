@@ -46,9 +46,9 @@ export default async function ImageGalleryPage({
         <meta property="og:image" content={currentPhotoUrl} />
         <meta name="twitter:image" content={currentPhotoUrl} />
       </Head> */}
-      <main className="mx-auto max-w-[1960px] p-4">
+      <div className="mx-auto max-w-[1960px] p-4">
         <GalleryPage galleryData={galleryData} galleryImageData={galleryImageData} photoId={params.photoId} />
-      </main>
+      </div>
     </>
   );
 }

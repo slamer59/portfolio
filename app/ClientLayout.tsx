@@ -13,7 +13,6 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-mont" });
 
 export default function App({ children }: { children: React.ReactNode }) {
 
-
   return (
     <>
       <Head>
@@ -21,7 +20,7 @@ export default function App({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className={`${montserrat.variable} font-mont  bg-light dark:bg-dark w-full min-h-screen h-full`}
+        className={`${montserrat.variable} pt-20 font-mont  bg-light dark:bg-dark w-full min-h-screen h-full`}
       >
         <Navbar />
         <AnimatePresence initial={false} mode="wait">

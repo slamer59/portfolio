@@ -26,9 +26,8 @@ const CustomLink = ({ href, title, className = "" }) => {
         className={`
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
-              ${
-                pathname === href ? "w-full" : " w-0"
-              } lg:bg-light lg:dark:bg-dark
+              ${pathname === href ? "w-full" : " w-0"
+          } lg:bg-light lg:dark:bg-dark
               `}
       >
         &nbsp;
@@ -56,9 +55,8 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
         className={`
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
-              ${
-                pathname === href ? "w-full" : " w-0"
-              } lg:bg-light lg:dark:bg-dark
+              ${pathname === href ? "w-full" : " w-0"
+          } lg:bg-light lg:dark:bg-dark
               `}
       >
         &nbsp;
@@ -76,7 +74,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="relative z-10 flex items-center justify-between w-full px-32 py-8 font-medium dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 ">
+    <header className="fixed top-0 z-10 flex items-center justify-between w-full p-10 px-32 py-8 font-medium dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8">
       <button
         type="button"
         className="flex-col items-center justify-center hidden lg:flex"
@@ -86,24 +84,21 @@ const Navbar = () => {
       >
         <span className="sr-only">Open main menu</span>
         <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-          }`}
+          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+            }`}
         ></span>
         <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "opacity-0" : "opacity-100"
-          } my-0.5`}
+          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "opacity-0" : "opacity-100"
+            } my-0.5`}
         ></span>
         <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-          }`}
+          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+            }`}
         ></span>
       </button>
 
       <div className="flex items-center justify-between w-full lg:hidden">
-        <nav className="flex items-center justify-center">
+        <nav className="flex items-center justify-center ">
           <CustomLink className="mr-4" href="/" title="Accueil" />
           <CustomLink className="mx-4" href="/apropos" title="A propos" />
           <CustomLink className="mx-4" href="/photographie" title="Photos" />
