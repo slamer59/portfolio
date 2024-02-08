@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
-import SharedModal from "./SharedModal";
+import SharedModal from "./Photo/SharedModal";
 
 export default function Modal({
   photoId,

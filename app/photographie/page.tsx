@@ -4,7 +4,7 @@ import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
 import Head from "next/head";
-import PhotoProjectLayout from "./PhotoProjectLayout";
+import PhotoProjectLayout from "../../components/Photo/PhotoProjectLayout";
 
 export default function Projects() {
   return (

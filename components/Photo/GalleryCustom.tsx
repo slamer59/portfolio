@@ -1,7 +1,7 @@
 import { default as Image, ImageLoader } from 'next/image';
 import Link from 'next/link';
 import { useId } from 'react';
-import { GalleryCalculationProps, calculateImageSizes } from "./calculateImageSizes";
+import { GalleryCalculationProps, calculateImageSizes } from "../calculateImageSizes";
 
 const containerStyle = {
     display: `flex`,

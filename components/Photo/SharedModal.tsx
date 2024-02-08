@@ -14,7 +14,7 @@ import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { default as Image } from "next/image";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
-import { InstagramIcon } from "./Icons";
+import { InstagramIcon } from "../Icons";
 
 export default function SharedModal({
   index,
