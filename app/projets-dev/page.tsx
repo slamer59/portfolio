@@ -28,7 +28,7 @@ export default function Projects() {
           >
             <h2 className="mb-4 text-xl text-center dark:text-light">
               Voici la vitrine <span className="font-bold text-primary dark:text-lime-500">numérique</span> à mon parcours et à mon <span className="font-bold text-primary dark:text-lime-500">expertise</span>.
-              À travers cette plateforme, vous pouvez appercevoir la diversité des projets sur lesquels j'ai travaillé publiquement (une infime partie donc), mettant en avant mes compétences dans différents domaines tels que le développement de logiciels, la science des données, l'apprentissage automatique, le développement web, et bien plus encore.
+              À travers cette plateforme, vous pouvez appercevoir la diversité des projets sur lesquels j'ai travaillé publiquement (une infime partie donc), mettant en avant mes compétences dans différents domaines tels que <span className="font-bold text-primary dark:text-lime-500">l'architecture de solutions logiciels</span>, la science des données, l'apprentissage automatique, le développement web, et bien plus encore.
               Il sert de fenêtre sur mes compétences, mes intérêts et mes contributions dans le domaine <span className="font-bold text-primary dark:text-lime-500">numérique</span>, offrant ainsi aux autres la possibilité d'explorer et d'apprécier mon travail au sein de la communauté GitHub et au-delà.
             </h2>
           </AnimatedText>

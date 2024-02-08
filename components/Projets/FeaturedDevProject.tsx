@@ -23,7 +23,7 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                     <Link
                         href={link}
                         // target={"_blank"}
-                        className="w-1/2 overflow-hidden rounded-lg cursor-pointer lg:w-full"
+                        className="w-1/3 overflow-hidden rounded-lg cursor-pointer lg:w-full"
                     >
                         <FramerImage
                             src={img || "/images/projects/project.png"}
@@ -31,8 +31,8 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                             alt={title || "featured project image"}
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
-                            width={800}
-                            height={800}
+                            width={480}
+                            height={480}
                             sizes="(max-width: 768px) 100vw,
                             (max-width: 1200px) 50vw,
                         33vw"
@@ -48,8 +48,8 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                             alt={title || "featured project image"}
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
-                            width={800}
-                            height={800}
+                            width={480}
+                            height={480}
                             sizes="(max-width: 768px) 100vw,
                             (max-width: 1200px) 50vw,
                         33vw"
@@ -96,12 +96,23 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                             </Link>
                         }
                     </div>
-                    <div className="flex items-center justify-between mt-4">
-                        Technologies :
-                        <div className="flex items-center justify-between m-1">
-                            {technologies.map((tech: string, index: number) => (
-                                <Image key={index} src={`/images/techs/${tech}.svg`} alt={tech} width={30} height={30} className="ml-1 rounded-full bg-primary dark:bg-light" />
-                            ))
+                    <div className="flex items-center mt-4">
+                        <div className="w-1/2">
+                            Technologies :
+                        </div>
+                        <div className="grid w-1/2 grid-cols-3 gap-4">
+                            {
+                                technologies.map((tech: string, index: number) => (
+                                    <Image
+                                        key={index}
+                                        src={`/images/techs/${tech}.svg`}
+                                        alt={tech}
+                                        width={40}
+                                        height={40}
+                                        className="p-2 border-2 rounded-full border-primaryDark dark:bg-light"
+                                    />
+
+                                ))
                             }
                         </div>
                     </div>

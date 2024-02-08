@@ -89,11 +89,22 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
                         }
                     </div>
                     <div className="flex items-center justify-between mt-4">
-                        Technologies :
-                        <div className="flex items-center justify-between m-1">
-                            {technologies.map((tech: string, index: number) => (
-                                <Image key={index} src={`/images/techs/${tech}.svg`} alt={tech} width={30} height={30} className="ml-1 rounded-full bg-primary dark:bg-light" />
-                            ))
+                        <div className="w-1/2">
+                            Technologies :
+                        </div>
+                        <div className="grid justify-start w-1/2 grid-cols-3 gap-4 m-1">
+                            {
+                                technologies.map((tech: string, index: number) => (
+                                    <Image
+                                        key={index}
+                                        src={`/images/techs/${tech}.svg`}
+                                        alt={tech}
+                                        width={30}
+                                        height={30}
+                                        className="p-2 border-2 rounded-full border-primaryDark dark:bg-light"
+                                    />
+
+                                ))
                             }
                         </div>
                     </div>
