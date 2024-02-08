@@ -7,18 +7,41 @@ import { PortableComponentsDefinitions as components } from "@/components/Portab
 import { urlFor } from '@/sanity/lib/client';
 import { getGalleryImages, getGalleryNextImages } from '@/sanity/queries/galleries';
 import { PortableText } from '@portabletext/react';
+import { Metadata, ResolvingMetadata } from "next";
 
 const widths = [500, 1000, 1600]
 const ratios = [2.2, 4, 6, 8]
 
-const overlayStyle: React.CSSProperties = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  background: "rgba(0,0,0,0.5)",
+
+export async function generateMetadata(
+  { params, searchParams },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const galleryData = await getGalleryImages(params.galleryId)
+  const galleryNextData = await getGalleryNextImages(params.galleryId);
+
+  const ogImages = galleryNextData.gallery.images.map((image) => urlFor(image).format("webp").url()
+  );
+  return {
+    title: galleryData.title,
+    description: galleryData.description,
+    openGraph: {
+      title: galleryData.title,
+      description: galleryData.description,
+      type: "website",
+      images: ogImages
+    },
+  }
 }
+
+// const overlayStyle: React.CSSProperties = {
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   width: "100%",
+//   height: "100%",
+//   background: "rgba(0,0,0,0.5)",
+// }
 
 export default async function ImageGalleryPage({
   params,

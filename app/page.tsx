@@ -1,5 +1,3 @@
-"use client"
-
 import profilePic from "@/public/images/profile/developer-pic-1.png";
 import AnimatedText from "components/AnimatedText";
 import { LinkArrow } from "components/Icons";
@@ -9,20 +7,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Thomas Pedot | Accueil",
-  description: "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
+  title: "Thomas Pedot photographe, docteur en énergie et développeur. Immortaliser L'instant Présent, Savourer Chaque Moment. | Accueil",
+  description: "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.",
+  keywords: "photographe, développeur, web, photographe, docteur, énergie",
   opengraph: {
     "title": "Thomas Pedot | Accueil",
     "description": "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
-  }
+  },
 }
 
 export default function Home() {
-  
+
   return (
     <>
-
-
       <TransitionEffect />
       <article
         className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start`}
@@ -44,7 +41,7 @@ export default function Home() {
                 className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
               />
               <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
-              Toujours en quête de nouvelles perspectives à travers l'objectif de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.
+                Toujours en quête de nouvelles perspectives à travers l'objectif de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.
               </p>
               <div className="flex items-center self-start mt-2 lg:self-center">
                 <Link

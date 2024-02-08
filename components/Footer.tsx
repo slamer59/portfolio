@@ -20,16 +20,16 @@ const Footer = () => {
           </Link>
         </div>
         <div className="flex items-center lg:py-2">
-          
-        <Link
-          href="https://devdreaming.com/about"
-          target="_blank"
-          className="underline underline-offset-2"
-        >
-          Hey ! 
+
+          <Link
+            href="https://devdreaming.com/about"
+            target="_blank"
+            className="underline underline-offset-2"
+          >
+            Hey !
           </Link>
           👋
-          </div>
+        </div>
       </Layout>
     </footer>
   );

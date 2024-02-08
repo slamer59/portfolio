@@ -13,12 +13,14 @@ export const MovingImg = ({ title, img, link }) => {
   const imgRef = useRef(null);
 
   function handleMouse(event) {
+    /* @ts-ignore */
     imgRef.current.style.display = "inline-block";
     x.set(event.pageX);
     y.set(-10);
   }
 
   function handleMouseLeave(event) {
+    /* @ts-ignore */
     imgRef.current.style.display = "none";
     x.set(0);
     y.set(0);

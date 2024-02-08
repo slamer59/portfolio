@@ -1,5 +1,3 @@
-"use client"
-
 import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
@@ -7,7 +5,7 @@ import PhotoProjectLayout from "../../components/Photo/PhotoProjectLayout";
 
 
 export const metadata = {
-  title: "Mon univers photographique",
+  title: "Créatif & Passioné  docteur en énergétique, architecte informatique ou développeur, avec une passion pour la création photographiques ou la musique",
   description: "Découvrez mon univers photographique, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
   openGraph: {
     title: "Mon univers photographique",

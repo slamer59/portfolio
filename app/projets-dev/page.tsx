@@ -1,5 +1,3 @@
-"use client"
-
 import AnimatedText from "@/components/AnimatedText";
 import DevProjectLayout from "@/components/Projets/DevProjectLayout";
 import TransitionEffect from "@/components/TransitionEffect";

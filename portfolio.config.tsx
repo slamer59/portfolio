@@ -363,3 +363,61 @@ export const devProject = [
         "license": "MIT License"
     }
 ];
+export const detailsData = [
+    {
+        position: "Chief Technical Officer",
+        company: "Jokosun",
+        companyLink: "https://www.jokosun.com",
+        time: "September 2021 - Present (2 years 5 months)",
+        address: "Toulouse, Occitanie, France",
+        work: "Responsible for all activities related to the Jokosun solar technology roadmap and Research & Development programs. Provide industry level insight and vision on technology trends. Drive scientific direction of the business unit to seek out and evaluate new technology, conduct feasibility testing and proof of concept, oversee product development process. Manage, implement, and ensure usability of information and computer technologies. Analyze various technologies' benefits for the company and integrate systems to realize improvements. Focus on EasyEnergyEverywhere."
+    },
+    {
+        position: "Powerplant Computational Physics Methods and Tools",
+        company: "Airbus",
+        companyLink: "https://www.airbus.com",
+        time: "October 2019 - Present (4 years 4 months)",
+        address: "Toulouse, France",
+        work: "Define high-level design choices related to overall system structure and behavior in systems such as legacy information extraction from documents. Provide insights on DevOps setup. Balance between IT architecture definition and development with technologies like Kubernetes, Docker, Python, and NodeJS. Embrace a full end-to-end vision on digital topics."
+    },
+    {
+        position: "Head of Numerical Method for Fluid Mechanics",
+        company: "boostHEAT",
+        companyLink: "https://www.boostheat-group.com/fr/",
+        time: "March 2015 - October 2019 (4 years 8 months)",
+        address: "Ramonville-Saint-Agne",
+        work: "Developed efficient heating and hot water systems fueled by natural gas and renewable energy. Led detailed knowledge acquisition about thermodynamic cycles and fluid flow control. Implemented simulation tools including CFD, Modelica, Digital Lab, and continuous technological intelligence using Machine Learning. Focused on reproducible research and multidisciplinary design optimization."
+    },
+    {
+        position: "Thermal Engineer in R&D Fields",
+        company: "EPSILON Ingénierie",
+        companyLink: "https://www.epsyl-alcen.com/en",
+        time: "February 2012 - February 2015 (3 years 1 month)",
+        address: "Toulouse",
+        work: "In charge of developing coupling solutions between CFD software and Thermal software with autonomy. Tested Open Source technologies like OpenFOAM, OpenModelica, SALOME, CANTERA. Supervised thermal simulations support for industrial engines design. Wrote technical reports and specifications. Developed multi-physics code coupling interface for thermal analysis of systems."
+    },
+    {
+        position: "PhD: Modelling of the coupling between combustion and fouling inside furnace pipes",
+        company: "CERFACS",
+        companyLink: "https://cerfacs.fr/",
+        time: "October 2008 - February 2012 (3 years 5 months)",
+        address: "Toulouse",
+        work: "Researched fouling in crude oil processing, focusing on heat exchanger performance degradation due to deposits formation. Developed a solid background in heat transfer phenomena. Collaborated with TOTAL group. Enhanced CERFACS codes for efficient coupling in parallel architecture."
+    },
+    {
+        position: "Topology analysis and Optimization of Double Swirl Burner in a combustion Chamber",
+        company: "Turbomeca | Safran Helicopter Engine",
+        companyLink: "https://www.safran-group.com/companies/safran-helicopter-engines",
+        time: "May 2008 - September 2008 (5 months)",
+        address: "Toulouse",
+        work: "Developed tools to predict Swirl Number of a Double Swirl Burner. Improved topology using RANS and LES codes."
+    },
+    {
+        position: "Realisation of a graphic interface",
+        company: "CERFACS",
+        companyLink: "https://cerfacs.fr/",
+        time: "February 2007 - March 2007 (2 months)",
+        address: "Toulouse",
+        work: "Developed a graphic interface in Tcl/Tk for an Acoustic codes."
+    }
+];

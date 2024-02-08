@@ -1,4 +1,6 @@
+import { urlFor } from "@/sanity/lib/client";
 import { getGalleryImageByIndex, getGalleryImages } from "@/sanity/queries/galleries";
+import { Metadata, ResolvingMetadata } from "next";
 import GalleryPage from "./GalleryPage";
 
 // export async function generateStaticParams({
@@ -28,16 +30,27 @@ export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }]
 }
 
-export const metadata = {
-  title: "Gallery photo",
-  description: "",
-  openGraph: {
-    title: "",
-    description: "",
-    type: "website",
-  },
-}
 
+export async function generateMetadata(
+  { params, searchParams },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  let id = Number(params.photoId);
+  const galleryData = await getGalleryImages(params.galleryId)
+  const galleryImageData = await getGalleryImageByIndex(params.galleryId, id)
+  const ogImages = [urlFor(galleryImageData.image[0]).format("webp").url()]
+
+  return {
+    title: galleryData.title,
+    description: galleryData.description,
+    openGraph: {
+      title: galleryData.title,
+      description: galleryData.description,
+      type: "website",
+      images: ogImages
+    },
+  }
+}
 export default async function ImageGalleryPage({
   params,
 }: {
