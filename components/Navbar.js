@@ -14,8 +14,7 @@ import {
 import Logo from "./Logo";
 
 const CustomLink = ({ href, title, className = "" }) => {
-  
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <Link
@@ -39,7 +38,7 @@ const CustomLink = ({ href, title, className = "" }) => {
 };
 
 const CustomMobileLink = ({ href, title, className = "", toggle }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const router = useRouter();
 
   const handleClick = () => {
@@ -133,7 +132,7 @@ const Navbar = () => {
             <GithubIcon />
           </motion.a>
           <motion.a
-            target={"linkedin.com/in/thomaspedot/"}
+            target={"https://linkedin.com/in/thomaspedot/"}
             className="w-6 mx-3"
             href="https://linkedin.com/in/thomaspedot/"
             whileHover={{ y: -2 }}
@@ -189,7 +188,7 @@ const Navbar = () => {
               href="/apropos"
               title="A propos"
             />
-                        <CustomMobileLink
+            <CustomMobileLink
               toggle={handleClick}
               className="mx-4 lg:m-0 lg:my-2"
               href="/photographie"
@@ -220,28 +219,28 @@ const Navbar = () => {
           <TwitterIcon />
         </motion.a> */}
             <motion.a
-            target={"https://github.com/slamer59"}
-            className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
+              target={"https://github.com/slamer59"}
+              className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
               href="https://github.com/slamer59"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Voici mon profile github"
-              >
+            >
               <GithubIcon />
             </motion.a>
             <motion.a
-            target={"linkedin.com/in/thomaspedot/"}
-            className="w-6 m-1 mx-3 sm:mx-1"
-              href="linkedin.com/in/thomaspedot/"
+              target={"https://linkedin.com/in/thomaspedot/"}
+              className="w-6 m-1 mx-3 sm:mx-1"
+              href="https://linkedin.com/in/thomaspedot/"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Voici mon profile linkedin"
-              >
+            >
               <LinkedInIcon />
             </motion.a>
             <motion.a
-            target={"https://www.instagram.com/teepeetlse"}
-            className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
+              target={"https://www.instagram.com/teepeetlse"}
+              className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
               href="https://www.instagram.com/teepeetlse"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}

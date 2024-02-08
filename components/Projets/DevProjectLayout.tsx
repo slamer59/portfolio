@@ -5,11 +5,23 @@ import { FeaturedDevProject } from "./FeaturedDevProject";
 const devProject = [
     {
         "featured": true,
-        "type": "portfolio",
+        "type": "Projet Sélectionné",
+        "title": "Portfolio",
+        "summary": "My personal portfolio website.",
+        "date": "2024-02-02",
+        "img": "/images/projects/portfolio.png",
+        "link": "",
+        "github": "https://github.com/slamer59/portfolio",
+        "technologies": ["nextjs", "typescript", "tailwind"],
+        "license": "Other"
+    },
+    {
+        "featured": false,
+        "type": "Workflow",
         "title": "mage-ai",
         "summary": "The modern replacement for Airflow. Build, run, and manage data pipelines for integrating and transforming data.",
         "date": "2023-11-16",
-        "img": "",
+        "img": "/images/projects/mageai.png",
         "link": "",
         "github": "https://github.com/mage-ai/mage-ai",
         "technologies": ["python"],
@@ -17,109 +29,87 @@ const devProject = [
     },
     {
         "featured": false,
-        "type": "portfolio",
+        "type": "LLM",
         "title": "langcorn",
         "summary": "Serving LangChain LLM apps automatically with FastApi.",
         "date": "2023-08-24",
-        "img": "",
+        "img": "/images/projects/langcorn.png",
         "link": "",
         "github": "https://github.com/msoedov/langcorn",
         "technologies": ["python"],
         "license": "MIT License"
     },
+
     {
-        "featured": false,
-        "type": "portfolio",
-        "title": "dagster-meltano",
-        "summary": "A Dagster plugin that allows you to run Meltano in Dagster.",
-        "date": "2023-01-15",
-        "img": "",
-        "link": "",
-        "github": "https://github.com/quantile-development/dagster-meltano",
-        "technologies": ["python", "dagster", "nextjs"],
-        "license": "MIT License"
-    },
-    {
-        "featured": false,
-        "type": "portfolio",
+        "featured": true,
+        "type": "Data",
         "title": "hvplot_panel",
         "summary": "Combine hvplot graphs with panel functionalities.",
         "date": "2022-12-27",
-        "img": "",
+        "img": "/images/projects/hvplot_panel.png",
         "link": "",
-        "github": "",
+        "github": "https://github.com/slamer59/hvplot_panel",
         "technologies": ["jupyter"],
         "license": "MIT License"
     },
     {
-        "featured": false,
-        "type": "portfolio",
+        "featured": true,
+        "type": "Jokosun",
         "title": "saleor",
-        "summary": "A modular, high performance, headless e-commerce platform built with python, GraphQL, Django, and React.",
+        "summary": "Used in Jokosun e-commerce, A modular, high performance, headless e-commerce platform built with python, GraphQL, Django, and React.",
         "date": "2022-02-09",
-        "img": "",
-        "link": "",
+        "img": "/images/projects/saleor.png",
+        "link": "https://www.jokosun.com",
         "github": "https://github.com/saleor/saleor",
-        "technologies": ["python"],
-        "license": "Not specified"
+        "technologies": ["python", "django", "graphql", "nextjs"],
+        "license": "Jokosun"
     },
     {
         "featured": false,
-        "type": "documentation",
-        "title": "documentation",
+        "type": "CRM",
+        "title": "Strapi CRM",
         "summary": "Strapi Documentation mono-repo.",
         "date": "2022-04-27",
-        "img": "",
+        "img": "/images/projects/strapi.png",
         "link": "",
         "github": "https://github.com/strapi/documentation",
-        "technologies": ["javascript"],
+        "technologies": ["javascript", "docker", "graphql"],
         "license": "Other"
     },
+    // {
+    //     "featured": false,
+    //     "type": "private",
+    //     "title": "cash-flow-dashboard",
+    //     "summary": "",
+    //     "date": "2022-04-03",
+    //     "img": "",
+    //     "link": "",
+    //     "github": "",
+    //     "technologies": ["html"],
+    //     "license": ""
+    // },
     {
-        "featured": false,
-        "type": "private",
-        "title": "cash-flow-dashboard",
-        "summary": "",
-        "date": "2022-04-03",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["html"],
-        "license": ""
-    },
-    {
-        "featured": false,
+        "featured": true,
         "type": "private",
         "title": "helm-chart-viz",
-        "summary": "",
+        "summary": "Developped in Jokosun. Help to represent the helm chart depenceies in a visual way.",
         "date": "2022-03-23",
         "img": "",
         "link": "",
-        "github": "",
-        "technologies": ["python"],
-        "license": ""
+        "github": "https://github.com/slamer59/helm-chart-viz",
+        "technologies": ["python", "helm"],
+        "license": "MIT"
     },
-    {
-        "featured": false,
-        "type": "public",
-        "title": "dagster-argocd-configuration",
-        "summary": "",
-        "date": "2022-02-23",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["mustache"],
-        "license": ""
-    },
+
     {
         "featured": false,
         "type": "private",
         "title": "openxml-document",
         "summary": "Parser for docx with schema and xsdata",
         "date": "2022-02-19",
-        "img": "",
+        "img": "/images/projects/openxml.png",
         "link": "",
-        "github": "",
+        "github": "https://github.com/slamer59/openxml-document",
         "technologies": ["python"],
         "license": ""
     },
@@ -136,41 +126,53 @@ const devProject = [
         "license": "MIT License"
     },
     {
-        "featured": false,
+        "featured": true,
         "type": "public",
         "title": "dagster",
-        "summary": "A data orchestrator for machine learning, analytics, and ETL.",
+        "summary": "Powerfull data orchestrator for machine learning, analytics, and ETL.",
         "date": "2022-01-27",
-        "img": "",
+        "img": "/images/projects/dagster.webp",
         "link": "",
         "github": "https://github.com/dagster-io/dagster",
-        "technologies": ["python", "dagster"],
+        "technologies": ["python", "dagster", "typescript", "docker", "helm", "kubernetes"],
         "license": "Apache License 2.0"
     },
     {
         "featured": false,
-        "type": "template",
-        "title": "api-platform",
-        "summary": "Create REST and GraphQL APIs, scaffold Jamstack webapps, stream changes in real-time.",
-        "date": "2021-12-24",
-        "img": "",
+        "type": "Workflow",
+        "title": "dagster-meltano",
+        "summary": "A Dagster plugin that allows you to run Meltano in Dagster.",
+        "date": "2023-01-15",
+        "img": "/images/projects/dagster.webp",
         "link": "",
-        "github": "https://github.com/api-platform/api-platform",
-        "technologies": ["typescript"],
+        "github": "https://github.com/quantile-development/dagster-meltano",
+        "technologies": ["python", "dagster", "nextjs"],
         "license": "MIT License"
     },
-    {
-        "featured": false,
-        "type": "public",
-        "title": "xmldiff",
-        "summary": "A library and command line utility for diffing xml",
-        "date": "2021-11-26",
-        "img": "",
-        "link": "",
-        "github": "https://github.com/Shoobx/xmldiff",
-        "technologies": ["python"],
-        "license": "MIT License"
-    },
+    // {
+    //     "featured": false,
+    //     "type": "template",
+    //     "title": "api-platform",
+    //     "summary": "Create REST and GraphQL APIs, scaffold Jamstack webapps, stream changes in real-time.",
+    //     "date": "2021-12-24",
+    //     "img": "",
+    //     "link": "",
+    //     "github": "https://github.com/api-platform/api-platform",
+    //     "technologies": ["typescript"],
+    //     "license": "MIT License"
+    // },
+    // {
+    //     "featured": false,
+    //     "type": "public",
+    //     "title": "xmldiff",
+    //     "summary": "A library and command line utility for diffing xml",
+    //     "date": "2021-11-26",
+    //     "img": "",
+    //     "link": "",
+    //     "github": "https://github.com/Shoobx/xmldiff",
+    //     "technologies": ["python"],
+    //     "license": "MIT License"
+    // },
     {
         "featured": false,
         "type": "public",
@@ -183,18 +185,18 @@ const devProject = [
         "technologies": ["python"],
         "license": "GNU General Public License v3.0"
     },
-    {
-        "featured": false,
-        "type": "public",
-        "title": "sphinx-material",
-        "summary": "A material-based, responsive theme inspired by mkdocs-material",
-        "date": "2021-10-06",
-        "img": "",
-        "link": "",
-        "github": "https://github.com/bashtage/sphinx-material",
-        "technologies": ["css"],
-        "license": "Other"
-    },
+    // {
+    //     "featured": false,
+    //     "type": "public",
+    //     "title": "sphinx-material",
+    //     "summary": "A material-based, responsive theme inspired by mkdocs-material",
+    //     "date": "2021-10-06",
+    //     "img": "",
+    //     "link": "",
+    //     "github": "https://github.com/bashtage/sphinx-material",
+    //     "technologies": ["css"],
+    //     "license": "Other"
+    // },
     {
         "featured": false,
         "type": "public",
@@ -219,64 +221,88 @@ const devProject = [
         "technologies": ["c++"],
         "license": "MIT License"
     },
+
+    {
+        "featured": true,
+        "type": "Workflow",
+        "title": "argocd",
+        "summary": "A declarative orchestrator for Kubernetes used in Jokosun stack",
+        "date": "2021-05-10",
+        "img": "/images/projects/argocd.png",
+        "link": "",
+        "github": "",
+        "technologies": ["python", "helm", "kubernetes"],
+        "license": ""
+    },
+    {
+        "featured": false,
+        "type": "public",
+        "title": "dagster-argocd-configuration",
+        "summary": "",
+        "date": "2022-02-23",
+        "img": "/images/projects/dagster.webp",
+        "link": "",
+        "github": "https://github.com/slamer59/dagster-argocd-configuration",
+        "technologies": ["mustache"],
+        "license": ""
+    },
+
+    {
+        "featured": true,
+        "type": "public",
+        "title": "dagster-another-user-code",
+        "summary": "Test dagster-central",
+        "date": "2021-05-10",
+        "img": "/images/projects/dagster.webp", "link": "",
+        "github": "https://github.com/slamer59/dagster-another-user-code",
+        "technologies": ["python", "dagster", "docker", "helm", "kubernetes"],
+        "license": ""
+    },
+    {
+        "featured": true,
+        "type": "template",
+        "title": "dagster-user-code",
+        "summary": "",
+        "date": "2021-05-09",
+        "img": "/images/projects/dagster.webp",
+        "link": "",
+        "github": "https://github.com/slamer59/dagster-user-code",
+        "technologies": ["python", "dagster", "docker", "helm", "kubernetes"],
+        "license": ""
+    },
     {
         "featured": false,
         "type": "public",
         "title": "dagster-multifilesprocessing",
-        "summary": "Multifilesprocessing of documents",
+        "summary": "Multifilesprocessing of documents with dagster",
         "date": "2021-05-22",
-        "img": "",
+        "img": "/images/projects/dagster.webp",
         "link": "",
         "github": "",
         "technologies": ["python", "dagster"],
         "license": "MIT License"
     },
-    {
-        "featured": false,
-        "type": "public",
-        "title": "flowchartstorm",
-        "summary": "Use of react-diagrams from stormproject",
-        "date": "2021-05-12",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["javascript"],
-        "license": ""
-    },
+    // {
+    //     "featured": false,
+    //     "type": "public",
+    //     "title": "flowchartstorm",
+    //     "summary": "Use of react-diagrams from stormproject",
+    //     "date": "2021-05-12",
+    //     "img": "",
+    //     "link": "",
+    //     "github": "",
+    //     "technologies": ["javascript"],
+    //     "license": ""
+    // },
     {
         "featured": false,
         "type": "public",
         "title": "dagster-central",
         "summary": "",
         "date": "2021-05-11",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["python", "dagster"],
-        "license": ""
-    },
-    {
-        "featured": false,
-        "type": "public",
-        "title": "dagster-another-user-code",
-        "summary": "Test dagster-central",
-        "date": "2021-05-10",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["python", "dagster"],
-        "license": ""
-    },
-    {
-        "featured": false,
-        "type": "template",
-        "title": "dagster-user-code",
-        "summary": "",
-        "date": "2021-05-09",
-        "img": "",
-        "link": "",
-        "github": "",
-        "technologies": ["python", "dagster"],
+        "img": "/images/projects/dagster.webp", "link": "",
+        "github": "https://github.com/slamer59/dagster-central",
+        "technologies": ["python", "dagster", "docker", "helm", "kubernetes"],
         "license": ""
     },
     {
@@ -309,7 +335,7 @@ const devProject = [
         "title": "dagster-mlflow",
         "summary": "Trial for dagster - mlflow",
         "date": "2021-03-09",
-        "img": "",
+        "img": "/images/projects/dagster.webp",
         "link": "",
         "github": "",
         "technologies": ["python", "dagster"],
@@ -336,7 +362,7 @@ const devProject = [
         "img": "",
         "link": "",
         "github": "",
-        "technologies": ["Shell"],
+        "technologies": ["docker"],
         "license": "MIT License"
     }
 ]
@@ -350,6 +376,7 @@ export default async function DevProjectLayout() {
                         return (
                             <FeaturedDevProject
                                 title={project.title}
+                                type={project.type}
                                 summary={project.summary}
                                 date={project.date}
                                 img={project.img}
@@ -363,6 +390,7 @@ export default async function DevProjectLayout() {
                         return (
                             <DevProject
                                 title={project.title}
+                                type={project.type}
                                 summary={project.summary}
                                 date={project.date}
                                 img={project.img}
