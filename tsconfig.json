@@ -30,6 +30,12 @@
     "strictNullChecks": true,
     "target": "ES2017"
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/Icons.js"
+  ],
   "exclude": ["node_modules"]
 }

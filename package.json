@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "unlighthouse": "npx unlighthouse --site https://portfolio-seven-phi-29.vercel.app --config-file unlighthouse.config.prod.ts"
+    "unlighthouse": "npx unlighthouse --site https://portfolio-seven-phi-29.vercel.app --config-file unlighthouse.config.prod.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -35,6 +36,7 @@
     "@types/node": "20.11.16",
     "@types/react": "18.2.52",
     "autoprefixer": "^10.4.13",
+    "husky": "^9.0.10",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
   }

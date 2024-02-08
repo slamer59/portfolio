@@ -1,35 +1,9 @@
 "use client"
 
 import { motion, useScroll } from "framer-motion";
+import { educationData } from "portfolio.config";
 import { useRef } from "react";
 import AboutIcon from "./LiIcon";
-
-const educationData = [
-  {
-    type: "PhD",
-    time: "2008 - 2011",
-    place: "University of Toulouse",
-    info: "Energy transfers: Focused on studying energy transfers, specifically in the context of the research topic.",
-  },
-  {
-    type: "Ingénieur",
-    time: "2005 - 2008",
-    place: "ENSEEIHT",
-    info: "Hydraulique et mécanique des fluides (Energie): Specialized in hydraulic and fluid mechanics with a focus on energy-related applications.",
-  },
-  {
-    type: "Master",
-    time: "2008",
-    place: "University of Toulouse",
-    info: "Dynamique des Fluides, Energétique et Transferts (DET): Studied fluid dynamics, energetics, and transfers as part of the master's program.",
-  },
-  {
-    type: "Exchange Erasmus",
-    time: "2007",
-    place: "TU Hamburg-Harburg",
-    info: "Energie et Mécanique des Fluides: Participated in an exchange program at TU Hamburg-Harburg, focusing on energy and fluid mechanics.",
-  },
-];
 
 const Details = ({ type, time, place, info }) => {
   const ref = useRef(null);
