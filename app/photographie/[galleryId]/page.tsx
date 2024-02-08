@@ -1,7 +1,9 @@
-import GalleryHeadLine from '@/components/GalleryHeadLine';
+
+import { GalleryCustom } from "@/components/Photo/GalleryCustom";
+import GalleryHeadLine from "@/components/Photo/GalleryHeadLine";
 import { PortableComponentsDefinitions as components } from "@/components/PortableComponentsDefinitions";
 
-import { GalleryCustom } from '@/components/GalleryCustom';
+
 import { urlFor } from '@/sanity/lib/client';
 import { getGalleryImages, getGalleryNextImages } from '@/sanity/queries/galleries';
 import { PortableText } from '@portabletext/react';

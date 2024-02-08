@@ -1,7 +1,7 @@
 "use client"
 
-import Carousel from "@/components/Carousel";
 import Modal from "@/components/Modal";
+import Carousel from "@/components/Photo/Carousel";
 import { useLastViewedPhoto } from "@/lib/useLastViewedPhoto";
 import { useEffect, useRef } from "react";
 
