@@ -111,7 +111,6 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                                         height={40}
                                         className="p-2 border-2 rounded-full border-primaryDark dark:bg-light"
                                     />
-
                                 ))
                             }
                         </div>
