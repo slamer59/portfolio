@@ -1,3 +1,4 @@
+
 const EMULATION_METRICS = {
   mobile: true,
   width: 412,
@@ -6,9 +7,11 @@ const EMULATION_METRICS = {
   disabled: false,
 };
 
-const config = {
+
+const baseUrl = "https://portfolio-seven-phi-29.vercel.app";
+export default {
   // example
-  site: "https://portfolio-seven-phi-29.vercel.app", // The site that will be scanned
+  site: baseUrl, // The site that will be scanned
   root: process.cwd(), // The path to the app that represents the site
   cache: false, // Should reports be saved to the local file system and re-used between runs
   configFile: null, // Load the configuration from a custom config file (unlighthouse.config.ts by default)
@@ -22,12 +25,12 @@ const config = {
   routerPrefix: "", // The URL path prefix for the client and API to run from
   apiPrefix: "/api/", // The path that the API should be served from
   urls: [
-    "https://portfolio-seven-phi-29.vercel.app",
-    "https://portfolio-seven-phi-29.vercel.app/apropos",
-    "https://portfolio-seven-phi-29.vercel.app/projets-dev",
-    "https://portfolio-seven-phi-29.vercel.app/photographie",
-    "https://portfolio-seven-phi-29.vercel.app/articles",
-    "https://portfolio-seven-phi-29.vercel.app/articles/renovate-code-dependencies-with-gitlab",
+    `${baseUrl}`,
+    `${baseUrl}/apropos`,
+    `${baseUrl}/projets`,
+    `${baseUrl}/photographie`,
+    `${baseUrl}/articles`,
+    `${baseUrl}/articles/renovate-code-dependencies-with-gitlab`,
   ],
   scanner: {
     customSampling: {}, // Custom mappings for regex strings to route definitions
@@ -67,6 +70,4 @@ const config = {
     emulatedUserAgent: "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36", // User agent for Moto G Power
   }
 
-}
-
-export default config;
+};

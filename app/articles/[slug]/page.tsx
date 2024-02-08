@@ -18,9 +18,9 @@ export default async function BlogArticle({
             <article className="w-full max-w-6xl mx-auto mb-8 format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                 {data.mainImage &&
                     <Image
-                        src={urlFor(data.mainImage).format("webp").url()}
-                        width={800}
-                        height={800}
+                        src={urlFor(data.mainImage).width(1200).height(400).format("webp").url()}
+                        width={1200}
+                        height={400}
                         alt="Title Image"
                         priority
                         className="w-full max-w-6xl mx-auto border rounded-lg sm:mt-2"

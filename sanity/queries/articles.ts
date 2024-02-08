@@ -29,7 +29,11 @@ export async function getFeaturedArticles() {
         "currentSlug": slug.current,
           title,
           body,
-          mainImage,
+          "mainImage":{
+            "asset": mainImage.asset,      
+            "dimensions": mainImage.asset->metadata.dimensions,
+            "lqip": mainImage.asset->metadata.lqip
+          },
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
       }`;
 

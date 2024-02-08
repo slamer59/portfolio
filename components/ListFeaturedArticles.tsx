@@ -1,5 +1,4 @@
 import { FeaturedArticle } from "@/components/FeaturedArticle";
-import { urlFor } from "@/sanity/lib/client";
 
 // import TransitionEffect from "components/TransitionEffect";
 export function ListFeaturedArticles({ articles }: { articles: any }) {
@@ -9,7 +8,7 @@ export function ListFeaturedArticles({ articles }: { articles: any }) {
       {articles &&
         articles.map((article, index) => <FeaturedArticle
           key={index}
-          img={urlFor(article.mainImage).format("webp").url()}
+          img={article.mainImage}
           title={article.title}
           time={article.readingTime || "8 min read"}
           summary={article.description}
