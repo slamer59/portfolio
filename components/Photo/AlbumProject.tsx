@@ -7,9 +7,9 @@ import Link from "next/link";
 
 export const FramerImage = motion(Image);
 
-export const PhotoProject = ({ title, summary, date, img, link }) => {
+export const AlbumProject = ({ title, summary, date, img, link }) => {
     return (
-        <div className="col-span-4 sm:col-span-6">
+        <div className="col-span-4 sm:col-span-12">
             <article
                 className="relative flex flex-col items-center justify-center w-full p-6 border border-solid shadow-2xl rounded-2xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark xs:p-4 "
             >

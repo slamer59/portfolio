@@ -27,13 +27,11 @@ export default function Projects() {
             className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl"
           >
             <h2 className="mb-4 text-xl text-center dark:text-light">
-              C'est souvent dit que l'<span className="font-bold text-primary dark:text-lime-500">imagination</span> est plus importante que la <span className="ont-bold text-primary dark:text-lime-500">connaissance</span>.
+              C'est souvent dit que l'<span className="font-bold text-primary dark:text-lime-500">imagination</span> est plus importante que la <span className="font-bold text-primary dark:text-lime-500">connaissance</span>.
               Cette idée, souvent attribuée à <span className="italic font-bold text-primary dark:text-lime-500">Albert Einstein</span>, souligne l'importance de la créativité et de l'innovation dans la recherche de nouvelles idées et de solutions aux problèmes.
               Bien que la connaissance soit essentielle pour comprendre le monde qui nous entoure, c'est l'imagination qui nous pousse à aller au-delà des limites actuelles et à envisager des possibilités nouvelles et inexplorées. L'<span className="font-bold text-primary dark:text-lime-500">imagination</span> nourrit la pensée créative et la capacité à voir les choses sous un angle différent, ce qui peut conduire à des <span className="font-bold text-primary dark:text-lime-500">découvertes</span> et des réalisations importantes.
             </h2>
           </AnimatedText>
-
-
           <PhotoProjectLayout />
         </Layout>
       </main>

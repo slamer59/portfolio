@@ -1,154 +1,10 @@
 "use client"
 
-import proj5 from "@/public/images/projects/agency-website-cover-image.jpg";
-import proj1 from "@/public/images/projects/crypto-screener-cover-image.jpg";
-import proj6 from "@/public/images/projects/devdreaming.jpg";
-import proj3 from "@/public/images/projects/fashion-studio-website.jpg";
-import proj2 from "@/public/images/projects/nft-collection-website-cover-image.jpg";
-import proj4 from "@/public/images/projects/portfolio-cover-image.jpg";
-import AnimatedText from "components/AnimatedText";
-import { GithubIcon } from "components/Icons";
+import AnimatedText from "@/components/AnimatedText";
+import DevProjectLayout from "@/components/Projets/DevProjectLayout";
+import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
-import TransitionEffect from "components/TransitionEffect";
-import { motion } from "framer-motion";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-
-const FramerImage = motion(Image);
-
-const FeaturedProject = ({ type, title, summary, img, link, github }) => {
-
-  return (
-    <article
-      className="relative flex items-center justify-between w-full p-12 border border-solid shadow-2xl rounded-3xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 "
-    >
-      <div
-        className="absolute  top-0 -right-3 -z-10 h-[103%] w-[101%] rounded-[2.5rem] rounded-br-3xl bg-dark
-         dark:bg-light  xs:-right-2 xs:h-[102%] xs:w-[100%]
-        xs:rounded-[1.5rem] "
-      />
-
-      <Link
-        href={link}
-        // target={"_blank"}
-        className="w-1/2 overflow-hidden rounded-lg cursor-pointer lg:w-full"
-      >
-        <FramerImage
-          src={img}
-          className="w-full h-auto"
-          alt={title}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.2 }}
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-          priority
-        />
-      </Link>
-      <div className="flex flex-col items-start justify-between w-1/2 pl-6 lg:w-full lg:pl-0 lg:pt-6">
-        <span className="text-xl font-medium text-primary dark:text-primaryDark xs:text-base">
-          {type}
-        </span>
-        <Link
-          href={link}
-          // target={"_blank"}
-          className="underline-offset-2 hover:underline"
-        >
-          <h2 className="w-full my-2 text-4xl font-bold text-left lg:text-3xl xs:text-2xl">
-            {title}
-          </h2>
-        </Link>
-        <p className="my-2 font-medium rounded-md text-dark dark:text-light sm:text-sm">
-          {summary}
-        </p>
-        <div className="flex items-center mt-2">
-          <Link
-            href={github}
-            // target={"_blank"}
-            className="w-10"
-            aria-label="Crypto Screener Application github link"
-          >
-            <GithubIcon />
-          </Link>
-          <Link
-            href={link}
-            // target={"_blank"}
-            className="p-2 px-6 ml-4 text-lg font-semibold rounded-lg bg-dark text-light dark:bg-light dark:text-dark sm:px-4 sm:text-base "
-            aria-label="Crypto Screener Application"
-          >
-            Visit Project
-          </Link>
-        </div>
-      </div>
-    </article>
-  );
-};
-
-const Project = ({ title, type, img, link, github }) => {
-
-  return (
-    <article
-      className="relative flex flex-col items-center justify-center w-full p-6 border border-solid shadow-2xl rounded-2xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark xs:p-4 "
-    >
-      <div
-        className="absolute  top-0 -right-3 -z-10 h-[103%] w-[102%] rounded-[2rem] rounded-br-3xl bg-dark
-         dark:bg-light  md:-right-2 md:w-[101%] xs:h-[102%]
-        xs:rounded-[1.5rem]  "
-      />
-
-      <Link
-        href={link}
-        // target={"_blank"}
-        className="w-full overflow-hidden rounded-lg cursor-pointer"
-      >
-        <FramerImage
-          src={img}
-          alt={title}
-          className="w-full h-auto"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.2 }}
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-        />
-      </Link>
-      <div className="flex flex-col items-start justify-between w-full mt-4">
-        <span className="text-xl font-medium text-primary dark:text-primaryDark lg:text-lg md:text-base">
-          {type}
-        </span>
-
-        <Link
-          href={link}
-          // target={"_blank"}
-          className="underline-offset-2 hover:underline"
-        >
-          <h2 className="w-full my-2 text-3xl font-bold text-left lg:text-2xl ">
-            {title}
-          </h2>
-        </Link>
-        <div className="flex items-center justify-between w-full">
-          <Link
-            href={link}
-            // target={"_blank"}
-            className="text-lg font-medium underline rounded md:text-base "
-            aria-label={title}
-          >
-            Visit
-          </Link>
-          <Link
-            href={github}
-            // target={"_blank"}
-            className="w-8 md:w-6"
-            aria-label={title}
-          >
-            <GithubIcon />
-          </Link>
-        </div>
-      </div>
-    </article>
-  );
-};
 
 export default function Projects() {
   return (
@@ -161,76 +17,24 @@ export default function Projects() {
         expertise in React.js and full-stack development. Browse software engineering articles and tutorials for tips on creating your own portfolio."
         />
       </Head>
-
       <TransitionEffect />
       <main
         className={`mb-16  flex w-full flex-col items-center justify-center dark:text-light`}
       >
         <Layout className="pt-16">
           <AnimatedText
-            text="Imagination Trumps Knowledge!"
+            text="Galaxie Numérique : Exploration des Projets"
             className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl"
-          />
-          <div className="grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0">
-            <div className="col-span-12">
-              <FeaturedProject
-                type="Featured Project"
-                title="Crypto Screener Application"
-                summary="A feature-rich Crypto Screener App using React, Tailwind CSS, Context API, React Router and Recharts. It shows detail regarding almost all the cryptocurrency. You can easily convert the price in your local currency."
-                img={proj1}
-                link="https://devdreaming.com/videos/build-crypto-screener-app-with-react-tailwind-css"
-                github="https://github.com/codebucks27/CryptoBucks-Final-Code"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-12">
-              <Project
-                type="Website Template"
-                title="NFT collection Website"
-                img={proj2}
-                link="https://devdreaming.com/videos/create-nft-collection-website-reactjs"
-                github="https://github.com/codebucks27/The-Weirdos-NFT-Website-Starter-Code"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-12">
-              <Project
-                type="Website"
-                title="Fashion Studio Website"
-                img={proj3}
-                link="https://devdreaming.com/videos/build-stunning-fashion-studio-website-with-reactJS-locomotive-scroll-gsap"
-                github="https://github.com/codebucks27/wibe-studio"
-              />
-            </div>
-            <div className="col-span-12">
-              <FeaturedProject
-                type="Portfolio Website"
-                title="React Portfolio Website"
-                summary="A professional portfolio website using React JS, Framer-motion, and Styled-components. It has smooth page transitions, cool background effects, unique design and it is mobile responsive."
-                img={proj4}
-                link="https://devdreaming.com/videos/build-stunning-portfolio-website-react-js-framer-motion"
-                github="https://github.com/codebucks27/react-portfolio-final"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-12">
-              <Project
-                type="Website Template"
-                img={proj5}
-                title="Agency Website Template"
-                link="https://devdreaming.com/videos/build-stunning-fashion-studio-website-with-reactJS-locomotive-scroll-gsap"
-                github="https://github.com/codebucks27/wibe-studio"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-12">
-              <Project
-                type="Blog Website"
-                img={proj6}
-                title="DevDreaming"
-                link="https://devdreaming.com"
-                github="https://github.com/codebucks27"
-              />
-            </div>
-          </div>
+          >
+            <h2 className="mb-4 text-xl text-center dark:text-light">
+              Voici la vitrine <span className="font-bold text-primary dark:text-lime-500">numérique</span> à mon parcours et à mon <span className="font-bold text-primary dark:text-lime-500">expertise</span>.
+              À travers cette plateforme, vous pouvez appercevoir la diversité des projets sur lesquels j'ai travaillé publiquement (une infime partie donc), mettant en avant mes compétences dans différents domaines tels que le développement de logiciels, la science des données, l'apprentissage automatique, le développement web, et bien plus encore.
+              Il sert de fenêtre sur mes compétences, mes intérêts et mes contributions dans le domaine <span className="font-bold text-primary dark:text-lime-500">numérique</span>, offrant ainsi aux autres la possibilité d'explorer et d'apprécier mon travail au sein de la communauté GitHub et au-delà.
+            </h2>
+          </AnimatedText>
+          <DevProjectLayout />
         </Layout>
-      </main>
+      </main >
     </>
   );
 }
