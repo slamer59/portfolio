@@ -3,7 +3,7 @@ import { CircularText } from "./Icons";
 
 export const HireMe = () => {
   return (
-    <div className="fixed z-20 flex flex-col items-center justify-center overflow-hidden left-4 bottom-4 md:right-8 sm:right-0 md:bottom-auto md:left-auto md:top-0 md:absolute">
+    <div className="fixed z-20 flex flex-col items-center justify-center overflow-hidden left-4 bottom-4">
       <div className="relative flex items-center justify-center w-48 h-auto md:w-24">
         <CircularText
           className={"fill-dark dark:fill-light animate-spin-slow duration-200"}
@@ -21,3 +21,12 @@ dark:hover:text-light dark:hover:border-light dark:shadow-light/25 md:w-12 md:h-
     </div>
   );
 };
+
+
+{/* <div className="fixed inline-block w-24 right-8 bottom-8 md:hidden">
+<Image
+  className="relative w-full h-auto"
+  src={lightBulb}
+  alt="Thomas PEDOT"
+/>
+</div> */}
