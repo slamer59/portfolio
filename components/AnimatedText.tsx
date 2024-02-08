@@ -29,7 +29,7 @@ const singleWord = {
   },
 };
 
-const AnimatedText = ({ text, className = "" }) => {
+const AnimatedText = ({ text, className = "", children }: { text: string, className: string, children?: React.ReactNode }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden text-center sm:py-0">
       <motion.h1
@@ -51,6 +51,7 @@ const AnimatedText = ({ text, className = "" }) => {
           );
         })}
       </motion.h1>
+      {children}
     </div>
   );
 };

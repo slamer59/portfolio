@@ -73,10 +73,7 @@ export async function getAllPhotoProjects() {
   }`;
 
   const data = await client.fetch(query);
-  console.log("🚀 ~ getAllPhotoProjects ~ data:", data)
   const filteredData = data.filter((article) => article.galleryRef.length != 0)
-  // console.log("🚀 ~ getAllPhotoProjects ~ filteredData:", filteredData)
-  console.log("🚀 ~ getAllPhotoProjects ~ filteredData:", filteredData)
   return filteredData
 }
 
