@@ -7,9 +7,14 @@ import Experience from "components/Experience";
 import Layout from "components/Layout";
 import TransitionEffect from "components/TransitionEffect";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
-import Head from "next/head";
+
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+
+const metadata = {
+  title: 'Minimal Portfolio Built with Next.js | About Page',
+  description: 'Learn more about CodeBucks, a Next.js developer with a passion for creating innovative solutions. Discover tips for building a developer portfolio and insights on full-stack development, front-end development, and back-end development.'
+};
 
 function AnimatedNumberFramerMotion({ value }) {
   const ref = useRef(null);
@@ -68,12 +73,6 @@ export default function About() {
 
   return (
     <>
-      <Head>
-        <title>Minimal Portfolio Built with Nextjs | About Page</title>
-        <meta name="description" content="Learn more about CodeBucks, a Next.js developer with a passion for 
-        creating innovative solutions. Discover tips for building a developer portfolio and insights on 
-        full-stack development, front-end development, and back-end development." />
-      </Head>
       <TransitionEffect />
         <Layout className="flex flex-col items-center justify-center w-full dark:text-light">
           <AnimatedText
