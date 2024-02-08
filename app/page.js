@@ -5,24 +5,23 @@ import AnimatedText from "components/AnimatedText";
 import { LinkArrow } from "components/Icons";
 import Layout from "components/Layout";
 import TransitionEffect from "components/TransitionEffect";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Thomas Pedot | Accueil",
+  description: "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
+  opengraph: {
+    "title": "Thomas Pedot | Accueil",
+    "description": "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
+  }
+}
 
 export default function Home() {
   
   return (
     <>
-      <Head>
-        <title>Awesome Portfolio Built with Nextjs</title>
-        <meta
-          name="description"
-          content="Explore CodeBucks's Next.js developer portfolio and 
-        discover the latest webapp projects and software engineering articles. 
-        Showcase your skills as a full-stack developer and software engineer."
-        />
-      </Head>
+
 
       <TransitionEffect />
       <article

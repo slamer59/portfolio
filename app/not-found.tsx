@@ -3,21 +3,26 @@
 import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
 import TransitionEffect from "@/components/TransitionEffect";
-import Head from "next/head";
 import Link from "next/link";
 
+
+export const metadata = {
+  title: "Page non trouvée",
+  description: "La page que vous cherchez n'existe pas. Vous pouvez retourner à la page principale.",
+  openGraph: {
+    title: "Page non trouvée",
+    description: "La page que vous cherchez n'existe pas. Vous pouvez retourner à la page principale.",
+    type: "website",
+  },
+  twitter: {
+    title: "Page non trouvée",
+    description: "La page que vous cherchez n'existe pas. Vous pouvez retourner à la page principale.",
+  }
+}
 const NotFound = () => {
   return (
     <>
-      <Head>
-        <title>Awesome Portfolio Built with Nextjs | 404 Page </title>
-        <meta
-          name="description"
-          content="Explore CodeBucks's Next.js developer portfolio and 
-        discover the latest webapp projects and software engineering articles. 
-        Showcase your skills as a full-stack developer and software engineer."
-        />
-      </Head>
+
       <TransitionEffect />
       <Layout className="h-[75vh] w-full dark:bg-dark  relative !bg-transparent !pt-16 flex flex-col items-center justify-center">
         <AnimatedText text="404" className="" />

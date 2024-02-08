@@ -3,20 +3,22 @@
 import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
-import Head from "next/head";
 import PhotoProjectLayout from "../../components/Photo/PhotoProjectLayout";
+
+
+export const metadata = {
+  title: "Mon univers photographique",
+  description: "Découvrez mon univers photographique, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+  openGraph: {
+    title: "Mon univers photographique",
+    description: "Découvrez mon univers photographique, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+    type: "website",
+  },
+}
 
 export default function Projects() {
   return (
     <>
-      <Head>
-        <title>Modern Portfolio Built with Nextjs | Projects Page</title>
-        <meta
-          name="description"
-          content="Discover the latest webapp projects created by CodeBucks, a Next.js developer with 
-        expertise in React.js and full-stack development. Browse software engineering articles and tutorials for tips on creating your own portfolio."
-        />
-      </Head>
       <TransitionEffect />
       <Layout className="flex flex-col items-center justify-center w-full mb-16 dark:text-light">
         <AnimatedText

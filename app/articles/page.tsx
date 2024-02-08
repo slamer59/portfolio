@@ -4,7 +4,16 @@ import { ListArticles } from "@/components/ListArticles";
 import { ListFeaturedArticles } from "@/components/ListFeaturedArticles";
 import { getArticles, getFeaturedArticles } from "@/sanity/queries/articles";
 import TransitionEffect from "components/TransitionEffect";
-import Head from "next/head";
+
+export const metadata = {
+  title: "Bienvenue dans la section dédiée à mon univers, où je vous invite à explorer mes sujets de prédilections",
+  description: "Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+  openGraph: {
+    title: "Bienvenue dans la section dédiée à mon univers, où je vous invite à explorer mes sujets de prédilections",
+    description: "Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+    type: "website",
+  },
+}
 
 export default async function Articles() {
   const featuredArticles = await getFeaturedArticles();
@@ -12,15 +21,6 @@ export default async function Articles() {
 
   return (
     <>
-      <Head>
-        <title>Simple Portfolio Built with Nextjs | Articles Page</title>
-        <meta
-          name="description"
-          content="Browse through CodeBucks's collection of software engineering articles and 
-        tutorials on Next.js, React.js, web development, and more. 
-        Gain valuable insights and stay up-to-date with SEO tips for building a developer portfolio."
-        />
-      </Head>
       <TransitionEffect />
       <Layout className="flex flex-col items-center justify-center w-full mb-16 overflow-hidden dark:text-light">
         <AnimatedText

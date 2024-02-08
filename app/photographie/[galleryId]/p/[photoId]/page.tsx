@@ -28,6 +28,16 @@ export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }]
 }
 
+export const metadata = {
+  title: "Gallery photo",
+  description: "",
+  openGraph: {
+    title: "",
+    description: "",
+    type: "website",
+  },
+}
+
 export default async function ImageGalleryPage({
   params,
 }: {
@@ -41,11 +51,6 @@ export default async function ImageGalleryPage({
 
   return (
     <>
-      {/* <Head>
-        <title>Next.js Conf 2022 Photos</title>
-        <meta property="og:image" content={currentPhotoUrl} />
-        <meta name="twitter:image" content={currentPhotoUrl} />
-      </Head> */}
       <div className="mx-auto max-w-[1960px] p-4">
         <GalleryPage galleryData={galleryData} galleryImageData={galleryImageData} photoId={params.photoId} />
       </div>
