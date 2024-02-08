@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Script from "next/script";
 import ClientLayout from "./ClientLayout";
@@ -29,7 +30,7 @@ export default function RootLayout({
           {children}
         </ClientLayout>
         <Analytics />
-        <SpeedInisghts />
+        <SpeedInsights />
       </body>
     </html>
   );
