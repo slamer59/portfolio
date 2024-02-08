@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const FramerImage = motion(Image);
 export const FeaturedArticle = ({ img, title, time, summary, link }) => {
-  console.log("🚀 ~ FeaturedArticle ~ img:", img)
+
   return (
     <li className="relative w-full col-span-1 p-4 border border-solid bg-light border-dark rounded-2xl dark:bg-dark dark:border-light">
       <div
