@@ -14,39 +14,51 @@ export async function GET() {
   <url> 
     <loc>${domain}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
     </url>
   <url>
     <loc>${domain}/apropos</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>${domain}/articles</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   ${articles.map((article) => (
     `<url>
-    <loc>${domain}/articles/${article.currentSlug}</loc>
-    <lastmod>${new Date(article._updatedAt).toISOString()}</lastmod>
-  </url>`
+      <loc>${domain}/articles/${article.currentSlug}</loc>
+      <lastmod>${new Date(article._updatedAt).toISOString()}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>`
   )
   )}
-
   <url>
     <loc>${domain}/photographie</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   ${allPhotoProjects.map((project) => (
     `<url>
         <loc>${domain}/photographie/${project.currentSlug}</loc>
         <lastmod>${new Date(project._updatedAt).toISOString()}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>    
        </url>`
   )
   )}
   <url>
     <loc>${domain}/projets-dev</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
-
   </urlset>
         `
 
