@@ -1,8 +1,7 @@
 
 import { getAllPhotoProjectsSitemap, getArticlesSitemap } from "@/sanity/queries/articles";
 import { unstable_noStore as noStore } from "next/cache";
-
-const domain = process.env.NODE_ENV === "production" ? "https://thomas.pedot.cc" : process.env.NEXT_PUBLIC_VERCEL_URL;
+import { domain } from "portfolio.config";
 
 // eslint-disable-next-line import/prefer-default-export
 export async function GET() {

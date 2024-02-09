@@ -446,4 +446,5 @@ export const detailsData = [
         info: "Energie et Mécanique des Fluides: Participated in an exchange program at TU Hamburg-Harburg, focusing on energy and fluid mechanics.",
     },
 ];
+export const domain = process.env.NODE_ENV === "production" ? "https://thomas.pedot.cc" : process.env.NEXT_PUBLIC_VERCEL_URL;
 

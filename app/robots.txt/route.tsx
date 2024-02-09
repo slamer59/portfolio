@@ -1,4 +1,4 @@
-
+import { domain } from "portfolio.config";
 // eslint-disable-next-line import/prefer-default-export
 export async function GET() {
     // Disallow: /account/*
@@ -6,9 +6,9 @@ export async function GET() {
 Allow: /
 
 # Host
-Host: ${process.env.NEXT_PUBLIC_VERCEL_URL}
+Host: ${domain}
 
-Sitemap: ${process.env.NEXT_PUBLIC_VERCEL_URL}/sitemap.xml
+Sitemap: ${domain}/sitemap.xml
 `;
     // }
 
