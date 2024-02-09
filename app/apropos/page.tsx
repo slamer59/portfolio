@@ -15,34 +15,34 @@ export const metadata = {
 
 export default function About() {
   // Date de référence (2008)
-  var dateDeReference = new Date('2008-02-01');
+  const dateDeReference = new Date('2008-02-01');
 
   // Date actuelle
-  var dateActuelle = new Date();
+  const dateActuelle = new Date();
 
   // Calcul de la différence en millisecondes entre les deux dates
-  var difference = dateActuelle.getTime() - dateDeReference.getTime();
+  const difference = dateActuelle.getTime() - dateDeReference.getTime();
 
   // Conversion de la différence de millisecondes en années
-  var anneesExperience = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+  const anneesExperience = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
 
 
   // Année de début des projets
-  var anneeDebut = 2012;
+  const anneeDebut = 2012;
 
   // Année actuelle
-  var anneeActuelle = new Date().getFullYear();
+  const anneeActuelle = new Date().getFullYear();
 
   // Nombre moyen de projets photo par an
-  var projetsParAnMin = 4;
-  var morceaux = 100;
+  const projetsParAnMin = 4;
+  const morceaux = 100;
   // Calcul du nombre d'années écoulées depuis le début
-  var anneesEcoulees = anneeActuelle - anneeDebut;
+  const anneesEcoulees = anneeActuelle - anneeDebut;
 
   // Calcul du nombre total de projets photo
-  var nbProjetsPhotos = anneesEcoulees * projetsParAnMin + Math.floor(Math.random() * 3) - 1;
+  const nbProjetsPhotos = anneesEcoulees * projetsParAnMin + Math.floor(Math.random() * 3) - 1;
 
-  var nbFaussesNotes = anneesEcoulees * morceaux + Math.floor(Math.random() * 30) - 1;
+  const nbFaussesNotes = anneesEcoulees * morceaux + Math.floor(Math.random() * 30) - 1;
 
   return (
     <>
@@ -75,7 +75,7 @@ export default function About() {
             <Image
               className="w-full h-auto rounded-2xl"
               src={profile}
-              alt="Codebucks"
+              alt="Photo Perso"
               sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
