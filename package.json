@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "unlighthouse": "npx unlighthouse --site https://portfolio-seven-phi-29.vercel.app --config-file unlighthouse.config.prod.ts",
+    "unlighthouse": "npx unlighthouse --site https://thomas.pedot.cc --config-file unlighthouse.config.prod.ts",
     "prepare": "husky"
   },
   "dependencies": {
@@ -30,9 +30,8 @@
     "react-use-keypress": "^1.3.1",
     "sanity": "^3.27.1",
     "sharp": "^0.33.2",
-    "sirv": "^2.0.4",
     "styled-components": "^6.1.8",
-    "unlighthouse": "^0.10.4"
+    "unlighthouse": "^0.10.6"
   },
   "devDependencies": {
     "@types/node": "20.11.16",

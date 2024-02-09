@@ -8,7 +8,7 @@ const EMULATION_METRICS = {
 
 const config = {
   // example
-  site: "https://portfolio-seven-phi-29.vercel.app", // The site that will be scanned
+  site: "https://thomas.pedot.cc", // The site that will be scanned
   root: process.cwd(), // The path to the app that represents the site
   cache: false, // Should reports be saved to the local file system and re-used between runs
   configFile: null, // Load the configuration from a custom config file (unlighthouse.config.ts by default)
@@ -22,12 +22,12 @@ const config = {
   routerPrefix: "", // The URL path prefix for the client and API to run from
   apiPrefix: "/api/", // The path that the API should be served from
   urls: [
-    "https://portfolio-seven-phi-29.vercel.app",
-    "https://portfolio-seven-phi-29.vercel.app/apropos",
-    "https://portfolio-seven-phi-29.vercel.app/projets-dev",
-    "https://portfolio-seven-phi-29.vercel.app/photographie",
-    "https://portfolio-seven-phi-29.vercel.app/articles",
-    "https://portfolio-seven-phi-29.vercel.app/articles/renovate-code-dependencies-with-gitlab",
+    "https://thomas.pedot.cc",
+    "https://thomas.pedot.cc/apropos",
+    "https://thomas.pedot.cc/projets-dev",
+    "https://thomas.pedot.cc/photographie",
+    "https://thomas.pedot.cc/articles",
+    "https://thomas.pedot.cc/articles/renovate-code-dependencies-with-gitlab",
   ],
   scanner: {
     customSampling: {}, // Custom mappings for regex strings to route definitions
@@ -45,7 +45,7 @@ const config = {
   },
   chrome: {
     // forces the fallback to be used
-    useSystem: false
+    useSystem: true
   },
   lighthouseOptions: {
     formFactor: "mobile",

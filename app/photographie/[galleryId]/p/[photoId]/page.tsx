@@ -3,29 +3,6 @@ import { getGalleryImageByIndex, getGalleryImages } from "@/sanity/queries/galle
 import { Metadata, ResolvingMetadata } from "next";
 import GalleryPage from "./GalleryPage";
 
-// export async function generateStaticParams({
-//   params,
-// }: {
-//   params: { galleryId: string };
-// }) {
-//   const imageRefs = await getGalleryImageRefs(params.galleryId)
-
-
-//   let fullPaths = [];
-//   for (let i = 0; i < imageRefs.length; i++) {
-//     fullPaths.push({ params: { photoId: i.toString() } });
-//   }
-
-//   return {
-//     paths: fullPaths,
-//     fallback: false,
-//   };
-
-// return galleryData.gallery.images.map((image) => ({
-//   params: { photoId: image.asset._ref },
-// }))
-// }
-
 export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }]
 }

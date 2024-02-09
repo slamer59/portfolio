@@ -11,6 +11,19 @@ import { AnimatedNumberFramerMotion } from "./AnimatedNumberFramerMotion";
 export const metadata = {
   title: "Voici Thomas Pedot, photographe, docteur en énergie et développeur.",
   description: "Apprenez en plus sur mon parcours. Découvrez mes compétences, mes expériences et mes passions. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+  openGraph: {
+    title: "Voici Thomas Pedot, photographe, docteur en énergie et développeur.",
+    description: "Apprenez en plus sur mon parcours. Découvrez mes compétences, mes expériences et mes passions. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+    images: [
+      {
+        url: "./images/profile/developer-pic-2.jpg",
+        width: 800,
+        height: 600,
+        alt: "Thomas Pedot, photographe, docteur en énergie et développeur.",
+      },
+    ],
+
+  },
 };
 
 export default function About() {

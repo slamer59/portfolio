@@ -8,7 +8,7 @@ const EMULATION_METRICS = {
 };
 
 
-const baseUrl = "https://portfolio-seven-phi-29.vercel.app";
+const baseUrl = "https://thomas.pedot.cc";
 export default {
   // example
   site: baseUrl, // The site that will be scanned

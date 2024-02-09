@@ -1,7 +1,7 @@
 import AnimatedText from "@/components/AnimatedText";
+import PhotoProjectLayout from "@/components/Photo/PhotoProjectLayout";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
-import PhotoProjectLayout from "../../components/Photo/PhotoProjectLayout";
 
 
 export const metadata = {
@@ -11,6 +11,14 @@ export const metadata = {
     title: "Mon univers photographique",
     description: "Découvrez mon univers photographique, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
     type: "website",
+    images: [
+      {
+        url: "./images/profile/developer-pic-1.jpg",
+        width: 800,
+        height: 600,
+        alt: "Thomas Pedot, photographe, docteur en énergie et développeur.",
+      },
+    ],
   },
 }
 

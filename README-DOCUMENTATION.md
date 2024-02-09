@@ -1,6 +1,6 @@
 # Please read this carefully
 
-Please note that the source code for this project is being sold for personal and educational purposes only. You are not permitted to resell this code. For commercial purposes please contact me via email at [codebucks27@gmail.com](mailto:codebucks27@gmail.com).
+Please note that the source code for this project is being sold for personal and educational purposes only. You are not permitted to resell this code. For commercial purposes please contact me via email at [Thomas PEDOT27@gmail.com](mailto:Thomas PEDOT27@gmail.com).
 
 Feel free to modify and customize this template as needed to fit the specific details and requirements of your project.
 
@@ -13,7 +13,7 @@ Feel free to modify and customize this template as needed to fit the specific de
 [https://minimal-nextjs-portfolio-website.vercel.app/](https://minimal-nextjs-portfolio-website.vercel.app/)
 
 ### Starter Code Files
-[https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code](https://github.com/codebucks27/Next.js-Developer-Portfolio-Starter-Code)
+[https://github.com/Thomas PEDOT27/Next.js-Developer-Portfolio-Starter-Code](https://github.com/Thomas PEDOT27/Next.js-Developer-Portfolio-Starter-Code)
 
 ---
 
@@ -67,11 +67,11 @@ Thank You So Much for purchasing this Project and Supporting My Channel!
 
 If you have any questions or You want me to make a project then You can reach out to me via:
 
-- E-mail : [codebucks27@gmail.com](mailto:codebucks27@gmail.com)
+- E-mail : [Thomas PEDOT27@gmail.com](mailto:Thomas PEDOT27@gmail.com)
 - Twitter: [code_bucks](https://twitter.com/code_bucks)
 - Instagram: [code.bucks](https://www.instagram.com/code.bucks/)
 
-My Channel: [codebucks](https://www.youtube.com/codebucks)
+My Channel: [Thomas PEDOT](https://www.youtube.com/Thomas PEDOT)
 My Website: [devdreaming.com](https://devdreaming.com/)
 
 

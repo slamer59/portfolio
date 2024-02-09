@@ -29,7 +29,7 @@ export default function Home() {
             <div className="w-1/2 lg:hidden md:inline-block md:w-full">
               <Image
                 src={profilePic}
-                alt="CodeBucks"
+                alt="Thomas PEDOT"
                 className="w-full h-auto"
                 sizes="100vw"
                 priority
