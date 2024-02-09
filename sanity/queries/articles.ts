@@ -81,3 +81,55 @@ export async function getAllPhotoProjects() {
   return filteredData
 }
 
+// export async function getFeaturedArticlesSitemap() {
+//   const query = `
+//     *[_type == "article" && featured == true] {
+//         "currentSlug": slug.current,
+//         _updatedAt,
+//           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
+//       }`;
+
+//   const data = await client.fetch(query);
+//   const filteredData = data.filter((article) => article.galleryRef.length == 0)
+//   return filteredData
+// }
+
+
+export async function getArticlesSitemap() {
+  const query = `
+    *[_type == "article"] {
+        "currentSlug": slug.current,
+          "galleryRef": *[_type == "gallery" && references(^._id)]._id,
+          _updatedAt
+      }`;
+
+  const data = await client.fetch(query);
+  const filteredData = data.filter((article) => article.galleryRef.length == 0)
+  return filteredData
+}
+
+export async function getAllPhotoProjectsSitemap() {
+  const query = `
+    *[_type == "article"] {
+      "currentSlug": slug.current,
+        title,
+        featured,
+        _updatedAt,
+        description,
+        _updatedAt,
+        "galleryRef": *[_type == "gallery" && references(^._id)]._id,
+        "mainImage": {
+          "asset": *[_type == "gallery" && references(^._id)].images[0].asset,
+          "dimensions": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.dimensions,
+          "lqip": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.lqip
+        }
+  }`;
+
+  const data = await client.fetch(query);
+  const filteredData = data.filter((article) => article.galleryRef.length != 0)
+  return filteredData
+}
+
+
+
+
