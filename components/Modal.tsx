@@ -22,19 +22,6 @@ export default function Modal({
   let overlayRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
   const pathname = usePathname()
-  // const searchParams = useSearchParams()
-
-  // const createQueryString = useCallback(
-  //   (name: string, value: string) => {
-  //     const params = new URLSearchParams(searchParams.toString())
-  //     params.set(name, value)
-
-  //     return params.toString()
-  //   },
-  //   [searchParams]
-  // )
-
-  // const photoId = searchParams.get('photoId')
 
   let index = Number(photoId);
 

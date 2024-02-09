@@ -7,7 +7,6 @@ export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }]
 }
 
-
 export async function generateMetadata(
   { params, searchParams },
   parent: ResolvingMetadata
@@ -28,6 +27,7 @@ export async function generateMetadata(
     },
   }
 }
+
 export default async function ImageGalleryPage({
   params,
 }: {

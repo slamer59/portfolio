@@ -56,11 +56,11 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
+        className="relative  z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
         {...handlers}
       >
         {/* Main image */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden ">
           <div className="relative flex aspect-[3/2] items-center justify-center">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
@@ -70,7 +70,7 @@ export default function SharedModal({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute border-8 border-black"
+                className="absolute"
 
               >
                 <Image
@@ -78,6 +78,7 @@ export default function SharedModal({
                   src={urlFor(currentImage).size(currentImage.dimensions?.width || 1920, currentImage.dimensions?.height || 1280).fit("scale").url()}
                   /* @ts-ignore */
                   // className="border-black border-x-[20px] border-y-[50px]"
+                  className="border-[10px] border-black"
                   width={currentImage.dimensions?.width * currentImage.dimensions?.aspectRatio}
                   /* @ts-ignore */
                   height={currentImage.dimensions?.height}
