@@ -22,7 +22,7 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
                     <FramerImage
                         src={img || "/images/projects/project.png"}
                         alt={img.title || "project image"}
-                        className="w-full h-auto"
+                        className="w-full h-auto rounded-2xl"
                         width={400}
                         height={400}
                         whileHover={{ scale: 1.05 }}
@@ -37,7 +37,7 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
                     <FramerImage
                         src={img || "/images/projects/project.png"}
                         alt={img.title || "project image"}
-                        className="w-full h-auto"
+                        className="w-full h-auto rounded-2xl"
                         width={400}
                         height={400}
                         whileHover={{ scale: 1.05 }}
@@ -51,7 +51,7 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
 
                 </>
                 }
-                <div className="flex flex-col items-start justify-between w-full mt-4">
+                <div className="flex flex-col justify-between w-full mt-4">
                     <span className="text-lg font-medium capitalize text-primary dark:text-primaryDark xs:text-base">
                         {type}
                     </span>
@@ -88,22 +88,21 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
                             </Link>
                         }
                     </div>
-                    <div className="flex items-center justify-between mt-4">
-                        <div className="w-1/2">
+                    <div className="flex items-center mt-4">
+                        <div className="w-36">
                             Technologies :
                         </div>
-                        <div className="grid justify-start w-1/2 grid-cols-3 gap-4 m-1">
+                        <div className="grid justify-between w-2/3 grid-cols-3 gap-4">
                             {
                                 technologies.map((tech: string, index: number) => (
                                     <Image
                                         key={index}
                                         src={`/images/techs/${tech}.svg`}
                                         alt={tech}
-                                        width={30}
-                                        height={30}
+                                        width={40}
+                                        height={40}
                                         className="p-2 border-2 rounded-full border-primaryDark dark:bg-light"
                                     />
-
                                 ))
                             }
                         </div>

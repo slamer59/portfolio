@@ -15,19 +15,19 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                 className="relative flex items-center justify-between w-full p-12 border border-solid shadow-2xl rounded-3xl rounded-br-2xl border-dark bg-light dark:border-light dark:bg-dark lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 "
             >
                 <div
-                    className="absolute  top-0 -right-3 -z-10 h-[103%] w-[101%] rounded-[2.5rem] rounded-br-3xl bg-dark
-         dark:bg-light  xs:-right-2 xs:h-[102%] xs:w-[100%]
+                    className="absolute  top-0 -right-3 -z-10 h-[103%] rounded-[2.5rem] rounded-br-3xl bg-dark
+         dark:bg-light  xs:-right-2 xs:h-[102%] xs:w-[100%] w-fit
         xs:rounded-[1.5rem] "/>
 
                 {link ?
                     <Link
                         href={link}
                         // target={"_blank"}
-                        className="w-1/3 overflow-hidden rounded-lg cursor-pointer lg:w-full"
+                        className="overflow-hidden rounded-lg cursor-pointer lg:w-full"
                     >
                         <FramerImage
                             src={img || "/images/projects/project.png"}
-                            className="w-full h-auto"
+                            className="w-full h-auto rounded-2xl"
                             alt={title || "featured project image"}
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
@@ -44,7 +44,7 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                     <>
                         <FramerImage
                             src={img || "/images/projects/project.png"}
-                            className="w-full h-auto"
+                            className="w-full h-auto rounded-2xl"
                             alt={title || "featured project image"}
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
@@ -59,7 +59,7 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                         />
                     </>
                 }
-                <div className="flex flex-col items-start justify-between w-1/2 pl-6 lg:w-full lg:pl-0 lg:pt-6">
+                <div className="flex flex-col justify-between w-1/2 pl-6 lg:w-full lg:pl-0 lg:pt-6">
                     <span className="text-xl font-medium capitalize text-primary dark:text-primaryDark xs:text-base">
                         {type}
                     </span>
@@ -74,7 +74,7 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                     <p className="my-2 font-medium rounded-md text-dark dark:text-light sm:text-sm">
                         {summary}
                     </p>
-                    <div className="flex items-center mt-2">
+                    <div className="flex items-center justify-between mt-2">
                         {github &&
                             <Link
                                 href={github}
@@ -97,10 +97,10 @@ export const FeaturedDevProject = ({ title, type, summary, date, img, link, gith
                         }
                     </div>
                     <div className="flex items-center mt-4">
-                        <div className="w-1/2">
+                        <div className="w-36">
                             Technologies :
                         </div>
-                        <div className="grid w-1/2 grid-cols-3 gap-4">
+                        <div className="grid justify-between w-2/3 grid-cols-3 gap-4">
                             {
                                 technologies.map((tech: string, index: number) => (
                                     <Image
