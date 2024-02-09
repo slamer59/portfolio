@@ -48,7 +48,6 @@ export async function getArticles() {
     *[_type == "article"] {
         "currentSlug": slug.current,
           title,
-          body,
           mainImage,
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
           _updatedAt
