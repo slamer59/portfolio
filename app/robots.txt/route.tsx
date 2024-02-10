@@ -5,6 +5,8 @@ export async function GET() {
     const robotTxt = `User-agent: *
 Allow: /
 
+Disallow: /studio/*
+
 # Host
 Host: ${domain}
 
