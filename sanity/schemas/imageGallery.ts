@@ -64,7 +64,7 @@ export default defineType({
     ],
     preview: {
         select: {
-            images: "images",
+            images: "gallery.images",
             imageAlt: "images.0.alt",
             imageAsset: "images.0.asset",
         },

@@ -448,3 +448,4 @@ export const detailsData = [
 ];
 export const domain = process.env.NODE_ENV === "production" ? "https://thomas.pedot.cc" : process.env.NEXT_PUBLIC_VERCEL_URL;
 
+export const revalidatePage = process.env.NODE_ENV === "production" ? 30 : 0;

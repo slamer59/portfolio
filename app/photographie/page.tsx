@@ -3,6 +3,10 @@ import PhotoProjectLayout from "@/components/Photo/PhotoProjectLayout";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
 
+import revalidatePage from "portfolio.config";
+
+export const revalidate = revalidatePage; // revalidate at most 30 seconds
+
 
 export const metadata = {
   title: "Créatif & Passioné  docteur en énergétique, architecte informatique ou développeur, avec une passion pour la création photographiques ou la musique",

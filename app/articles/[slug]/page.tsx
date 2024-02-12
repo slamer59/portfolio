@@ -4,7 +4,9 @@ import { urlFor } from "@/sanity/lib/client";
 import { getArticleData } from "@/sanity/queries/articles";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-export const revalidate = 30; // revalidate at most 30 seconds
+import revalidatePage from "portfolio.config";
+
+export const revalidate = revalidatePage; // revalidate at most 30 seconds
 
 export async function generateMetadata(
     { params, searchParams },

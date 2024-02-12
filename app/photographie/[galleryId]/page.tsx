@@ -3,15 +3,17 @@ import { GalleryCustom } from "@/components/Photo/GalleryCustom";
 import GalleryHeadLine from "@/components/Photo/GalleryHeadLine";
 import { PortableComponentsDefinitions as components } from "@/components/PortableComponentsDefinitions";
 
-
 import { urlFor } from '@/sanity/lib/client';
 import { getGalleryImages, getGalleryNextImages } from '@/sanity/queries/galleries';
 import { PortableText } from '@portabletext/react';
 import { Metadata, ResolvingMetadata } from "next";
 
+import revalidatePage from "portfolio.config";
+
+export const revalidate = revalidatePage; // revalidate at most 30 seconds
+
 const widths = [500, 1000, 1600]
 const ratios = [2.2, 4, 6, 8]
-
 
 export async function generateMetadata(
   { params, searchParams },
