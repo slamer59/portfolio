@@ -16,7 +16,7 @@ export async function GET() {
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    </url>
+  </url>
   <url>
     <loc>${domain}/apropos</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -59,8 +59,7 @@ export async function GET() {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  </urlset>
-        `
+  </urlset>`
 
   return new Response(xmlContent, {
     headers: {
