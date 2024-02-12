@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/client";
 import { getArticleData } from "@/sanity/queries/articles";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import revalidatePage from "portfolio.config";
+import { revalidatePage } from "portfolio.config";
 
 export const revalidate = revalidatePage; // revalidate at most 30 seconds
 

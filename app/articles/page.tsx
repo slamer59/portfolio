@@ -5,7 +5,7 @@ import { ListFeaturedArticles } from "@/components/ListFeaturedArticles";
 import { getArticles, getFeaturedArticles } from "@/sanity/queries/articles";
 import TransitionEffect from "components/TransitionEffect";
 
-import revalidatePage from "portfolio.config";
+import { revalidatePage } from "portfolio.config";
 
 export const revalidate = revalidatePage; // revalidate at most 30 seconds
 
