@@ -76,9 +76,9 @@ export default function SharedModal({
                 <Image
                   /* @ts-ignore */
                   src={urlFor(currentImage).size(currentImage.dimensions?.width || 1920, currentImage.dimensions?.height || 1280).fit("scale").url()}
-                  /* @ts-ignore */
                   // className="border-black border-x-[20px] border-y-[50px]"
                   className="border-[10px] border-black"
+                  /* @ts-ignore */
                   width={currentImage.dimensions?.width * currentImage.dimensions?.aspectRatio}
                   /* @ts-ignore */
                   height={currentImage.dimensions?.height}
