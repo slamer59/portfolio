@@ -7,9 +7,6 @@ Allow: /
 
 Disallow: /studio/*
 
-# Host
-Host: ${domain}
-
 Sitemap: ${domain}/sitemap.xml
 `;
     // }

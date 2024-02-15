@@ -4,12 +4,13 @@ import { FeaturedAlbumProject } from "./FeaturedAlbum";
 
 export default async function PhotoProjectLayout() {
     const allPhotoProjects = await getAllPhotoProjects()
+
     const photoProjects = allPhotoProjects.map((project) => {
         return {
             "type": project.featured,
             "title": project.title,
             "summary": project.description,
-            "date": project._updatedAt,
+            "date": project.publishedAt,
             "img": {
                 "asset": project.mainImage.asset[0],
                 "dimensions": project.mainImage.dimensions[0],
@@ -19,6 +20,8 @@ export default async function PhotoProjectLayout() {
         }
     }
     )
+    console.log("🚀 ~ PhotoProjectLayout ~ allPhotoProjects:", photoProjects)
+
     return (
         <>
             <div className="grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0">

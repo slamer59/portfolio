@@ -40,7 +40,7 @@ export default async function BlogArticle({
     const data = await getArticleData(params.slug);
     return (
         <div className="container mt-8">
-            <ArticleHeadLine author={data.author} date={data._updatedAt} title={data.title} />
+            <ArticleHeadLine author={data.author} date={data.publishedAt} title={data.title} />
             <article className="w-full max-w-6xl mx-auto mb-8 format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                 {data.mainImage &&
                     <Image

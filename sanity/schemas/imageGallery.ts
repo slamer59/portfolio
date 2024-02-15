@@ -17,27 +17,27 @@ const ImageField = defineField({
     ],
 });
 
-const DisplayField = defineField({
-    name: "display",
-    type: "string",
-    title: "Display as",
-    description: "How should we display these images?",
-    options: {
-        list: [
-            { title: "Stacked on top of each other", value: "stacked" },
-            { title: "In-line", value: "inline" },
-            { title: "Carousel", value: "carousel" },
-        ],
-        layout: "radio",
-    },
-});
+// const DisplayField = defineField({
+//     name: "display",
+//     type: "string",
+//     title: "Display as",
+//     description: "How should we display these images?",
+//     options: {
+//         list: [
+//             { title: "Stacked on top of each other", value: "stacked" },
+//             { title: "In-line", value: "inline" },
+//             { title: "Carousel", value: "carousel" },
+//         ],
+//         layout: "radio",
+//     },
+// });
 
-const ZoomField = defineField({
-    name: "zoom",
-    type: "boolean",
-    title: "Zoom enabled",
-    description: "Should we enable zooming of images?",
-});
+// const ZoomField = defineField({
+//     name: "zoom",
+//     type: "boolean",
+//     title: "Zoom enabled",
+//     description: "Should we enable zooming of images?",
+// });
 
 export default defineType({
     name: "gallery",
@@ -59,8 +59,8 @@ export default defineType({
                 layout: "grid",
             },
         }),
-        DisplayField,
-        ZoomField,
+        // DisplayField,
+        // ZoomField,
     ],
     preview: {
         select: {

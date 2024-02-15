@@ -75,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-10 flex items-center justify-between w-full p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 border-primary">
+      <header className="fixed top-0 z-10 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 border-primary">
         <button
           type="button"
           className="flex-col items-center justify-center hidden lg:flex"
@@ -111,25 +111,16 @@ const Navbar = () => {
             <MoonIcon className={"fill-dark"} />
           )}
         </button>
-        <div className="flex items-center justify-between w-full lg:hidden">
+        <div className="flex items-center justify-center w-full h-2 mt-2 lg:hidden">
           <nav className="flex items-center justify-center ">
-            <CustomLink className="mr-4" href="/" title="Accueil" />
+            <CustomLink className="mx-4" href="/" title="Accueil" />
             <CustomLink className="mx-4" href="/apropos" title="A propos" />
             <CustomLink className="mx-4" href="/photographie" title="Photos" />
-            <CustomLink className="mx-4" href="/projets-dev" title="Projets" />
-            <CustomLink className="ml-4" href="/articles" title="Articles" />
+            <CustomLink className="mx-4" href="/articles" title="Articles" />
           </nav>
-          <nav className="flex flex-wrap items-center justify-center lg:mt-2 ">
-            {/* <motion.a
-          // target={"_blank"}
-          className="w-6 mr-3"
-          href="#"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my twitter profile"
-        >
-          <TwitterIcon />
-        </motion.a> */}
+          <Logo className="flex flex-wrap items-center justify-center mt-8"/>
+          <nav className="flex flex-wrap items-center justify-center lg:mt-2">
+            <CustomLink className="mx-4" href="/projets-dev" title="Projets numériques" />
             <motion.a
               target={"https://github.com/slamer59"}
               className="w-6 mx-3"
@@ -208,7 +199,7 @@ const Navbar = () => {
                 toggle={handleClick}
                 className="mx-4 lg:m-0 lg:my-2"
                 href="/projets-dev"
-                title="Projets"
+                title="Projets numériques"
               />
               <CustomMobileLink
                 toggle={handleClick}
@@ -276,9 +267,7 @@ const Navbar = () => {
           </motion.div>
         ) : null}
 
-        <div className="absolute left-[50%] top-2 translate-x-[-50%] ">
-          <Logo />
-        </div>
+
       </header>
       {/* <div className="fixed top-0 z-10 flex items-center justify-end w-full py-6 lg:px-8">
 

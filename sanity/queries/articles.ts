@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 
 export async function getArticleData(slug: string) {
   const query = `
-    *[_type == "article" && slug.current == '${slug}'] {
+    *[_type == "article" && slug.current == '${slug}' && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
           body,
@@ -11,7 +11,7 @@ export async function getArticleData(slug: string) {
             "dimensions": mainImage.asset->metadata.dimensions,
             "lqip": mainImage.asset->metadata.lqip
           },
-          _updatedAt,
+          publishedAt,
           author-> {
             name,
             image,
@@ -25,7 +25,7 @@ export async function getArticleData(slug: string) {
 
 export async function getFeaturedArticles() {
   const query = `
-    *[_type == "article" && featured == true] {
+    *[_type == "article" && featured == true && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
           body,
@@ -42,15 +42,14 @@ export async function getFeaturedArticles() {
   return filteredData
 }
 
-
 export async function getArticles() {
   const query = `
-    *[_type == "article"] {
+    *[_type == "article" && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
           mainImage,
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
-          _updatedAt
+          publishedAt
       }`;
 
   const data = await client.fetch(query);
@@ -60,13 +59,12 @@ export async function getArticles() {
 
 export async function getAllPhotoProjects() {
   const query = `
-    *[_type == "article"] {
+    *[_type == "article" && defined(publishedAt)] {
       "currentSlug": slug.current,
         title,
         featured,
-        _updatedAt,
+        publishedAt,
         description,
-        _updatedAt,
         "galleryRef": *[_type == "gallery" && references(^._id)]._id,
         "mainImage": {
           "asset": *[_type == "gallery" && references(^._id)].images[0].asset,
@@ -84,7 +82,7 @@ export async function getAllPhotoProjects() {
 //   const query = `
 //     *[_type == "article" && featured == true] {
 //         "currentSlug": slug.current,
-//         _updatedAt,
+//         publisedAt,
 //           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
 //       }`;
 
@@ -96,10 +94,12 @@ export async function getAllPhotoProjects() {
 
 export async function getArticlesSitemap() {
   const query = `
-    *[_type == "article"] {
+    *[_type == "article" && defined(publishedAt)] {
         "currentSlug": slug.current,
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
-          _updatedAt
+          publishedAt,
+          _updatedAt,
+
       }`;
 
   const data = await client.fetch(query);
@@ -109,12 +109,9 @@ export async function getArticlesSitemap() {
 
 export async function getAllPhotoProjectsSitemap() {
   const query = `
-    *[_type == "article"] {
+    *[_type == "article" && defined(publishedAt)] {
       "currentSlug": slug.current,
-        title,
-        featured,
-        _updatedAt,
-        description,
+        publishedAt,
         _updatedAt,
         "galleryRef": *[_type == "gallery" && references(^._id)]._id,
         "mainImage": {

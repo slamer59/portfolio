@@ -8,7 +8,6 @@ import Link from "next/link";
 export const FramerImage = motion(Image);
 
 export const FeaturedAlbumProject = ({ title, summary, date, img, link }) => {
-
     return (
         <div className="col-span-12">
             <article
