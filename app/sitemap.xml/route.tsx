@@ -3,6 +3,8 @@ import { getAllPhotoProjectsSitemap, getArticlesSitemap } from "@/sanity/queries
 import { unstable_noStore as noStore } from "next/cache";
 import { domain } from "portfolio.config";
 
+export const dynamic = "force-dynamic"
+
 // eslint-disable-next-line import/prefer-default-export
 export async function GET() {
   noStore()
