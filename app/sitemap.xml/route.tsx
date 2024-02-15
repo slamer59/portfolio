@@ -1,10 +1,11 @@
+import { domain } from "portfolio.config";
 
 // eslint-disable-next-line import/prefer-default-export
 export async function GET() {
   const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <sitemap>
-        <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}/sitemap-blog.xml</loc>
+        <loc>${domain}/sitemap-blog.xml</loc>
       </sitemap>
     </sitemapindex>
     `;
