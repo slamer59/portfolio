@@ -64,16 +64,16 @@ export default defineType({
     ],
     preview: {
         select: {
-            images: "gallery.images",
-            imageAlt: "images.0.alt",
+            article: "article.title",
+            images: "images",
             imageAsset: "images.0.asset",
         },
         prepare(selection) {
-            const { images, imageAlt, imageAsset } = selection;
+            const { article, images, imageAsset } = selection;
 
             return {
-                title: `Gallery block of ${images?.length || 0} images`,
-                subtitle: `Alt text: ${imageAlt}`,
+                title: `${article} - ${Object.keys(images).length || 0} images`,
+                subtitle: `Alt text: ${article}`,
                 media: imageAsset,
             };
         },

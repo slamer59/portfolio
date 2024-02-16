@@ -20,7 +20,6 @@ export default async function PhotoProjectLayout() {
         }
     }
     )
-    console.log("🚀 ~ PhotoProjectLayout ~ allPhotoProjects:", photoProjects)
 
     return (
         <>
