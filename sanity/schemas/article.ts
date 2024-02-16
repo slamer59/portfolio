@@ -11,11 +11,6 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "featured",
-      title: "Featured Article",
-      type: "boolean",
-    }),
-    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -23,35 +18,6 @@ export default defineType({
         source: "title",
         maxLength: 96,
       },
-    }),
-    defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      validation: Rule => Rule.required().error("Description is missing!"),
-    }),
-    defineField({
-      name: "keywords",
-      title: "Keywords",
-      type: "array",
-      of: [{ type: "string" }],
-    }),
-    defineField({
-      name: "url",
-      title: "URL",
-      type: "url",
-    }),
-    defineField({
-      name: "canonical",
-      title: "Canonical URL",
-      type: "url",
-      // validation: Rule => Rule.required().error("Canonical URL is not defined."),
-    }),
-    defineField({
-      name: "author",
-      title: "Author",
-      type: "reference",
-      to: { type: "author" },
     }),
     defineField({
       name: "mainImage",
@@ -70,20 +36,43 @@ export default defineType({
       ]
     }),
     defineField({
-      name: "categories",
-      title: "Categories",
-      type: "array",
-      of: [{ type: "reference", to: { type: "category" } }],
-    }),
-    defineField({
       name: "publishedAt",
       title: "Published at",
       type: "datetime",
     }),
     defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: Rule => Rule.required().error("Description is missing!"),
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "blockContent",
+    }),
+    defineField({
+      name: "author",
+      title: "Author",
+      type: "reference",
+      to: { type: "author" },
+    }),
+    defineField({
+      name: "featured",
+      title: "Featured Article",
+      type: "boolean",
+    }),
+    defineField({
+      name: "keywords",
+      title: "Keywords",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "categories",
+      title: "Categories",
+      type: "array",
+      of: [{ type: "reference", to: { type: "category" } }],
     }),
   ],
 
@@ -92,10 +81,11 @@ export default defineType({
       title: "title",
       author: "author.name",
       media: "mainImage",
+      date: "publishedAt"
     },
     prepare(selection) {
-      const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
+      const { author, date } = selection
+      return { ...selection, subtitle: author && `by ${author} - ${date || "Not Published"}` }
     },
   },
 })

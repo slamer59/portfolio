@@ -59,8 +59,6 @@ async function createArticle(data) {
 
 // Create Gallery
 async function createGallery(articleId, images) {
-console.log("🚀 ~ createGallery ~ articleId, images:", articleId, images)
-
   return client.create({
     _type: "gallery",
     article: {
