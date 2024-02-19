@@ -9,7 +9,7 @@ export function ListArticles({ articles }: { articles: any }) {
         articles.map((article, index) => <Article
           key={index}
           title={article.title}
-          img={urlFor(article.mainImage).format("webp").url()}
+          img={article.mainImage ? urlFor(article.mainImage).format("webp").url() : "/images/projects/project.png"}
           date={`${new Date(article.publisedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`}
           link={`/articles/${article.currentSlug}`}
           summary={article.description}
