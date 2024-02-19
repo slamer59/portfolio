@@ -35,9 +35,8 @@ export async function GET() {
       <lastmod>${new Date(article._updatedAt).toISOString()}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
-    </url>`
-  )
-  )}
+    </url>`.trim()
+  )).join("")}
   <url>
     <loc>${domain}/photographie</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -50,9 +49,8 @@ export async function GET() {
         <lastmod>${new Date(project._updatedAt).toISOString()}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>    
-       </url>`
-  )
-  )}
+       </url>`.trim()
+  )).join("")}
   <url>
     <loc>${domain}/projets-dev</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
