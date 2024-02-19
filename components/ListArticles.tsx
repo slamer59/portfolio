@@ -10,7 +10,7 @@ export function ListArticles({ articles }: { articles: any }) {
           key={index}
           title={article.title}
           img={article.mainImage ? urlFor(article.mainImage).format("webp").url() : "/images/projects/project.png"}
-          date={`${new Date(article.publisedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`}
+          date={`${new Date(article.publishedAt).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}`}
           link={`/articles/${article.currentSlug}`}
           summary={article.description}
         />
