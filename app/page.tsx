@@ -1,76 +1,74 @@
-import profilePic from "@/public/images/profile/developer-pic-1.png";
-import AnimatedText from "components/AnimatedText";
-import { LinkArrow } from "components/Icons";
+
+
+import AnimatedText from "@/components/AnimatedText";
+
+import { ButtonsCardPrimary, ButtonsCardSecondary } from "@/components/ui/tailwindcss-buttons";
 import Layout from "components/Layout";
 import TransitionEffect from "components/TransitionEffect";
 import Image from "next/image";
-import Link from "next/link";
-
 export const metadata = {
-  title: "Thomas Pedot photographe, docteur en énergie et développeur. Immortaliser L'instant Présent, Savourer Chaque Moment. | Accueil",
-  description: "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.",
-  keywords: "photographe, développeur, web, photographe, docteur, énergie",
-  opengraph: {
-    "title": "Thomas Pedot | Accueil",
-    "description": "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
-  },
+    title: "Thomas Pedot photographe, docteur en énergie et développeur. Immortaliser L'instant Présent, Savourer Chaque Moment. | Accueil",
+    description: "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.",
+    keywords: "photographe, développeur, web, photographe, docteur, énergie",
+    opengraph: {
+        "title": "Thomas Pedot | Accueil",
+        "description": "Photographe et développeur web, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants."
+    },
 }
 
+
 export default function Home() {
+    // https://websitedemos.net/photographer-04/
+    return (
+        <>
+            <TransitionEffect />
+            <Layout className="container">
+                <div className="flex flex-row items-center gap-6 sm:flex-col md:flex-row max-w-8xl">
+                    <div className="w-1/3 sm:w-full md:w-full">
+                        <AnimatedText
+                            text="Immortaliser l'instant présent, savourer chaque moment."
+                            // text=" Un monde de photos !"
+                            className="mb-16 lg:!text-4xl md:!text-4xl !leading-tight sm:mb-8 sm:!text-3xl xs:!text-4xl"
+                        >
+                            <h2 className="mb-4 text-xl text-center dark:text-light">
+                                Toujours en quête de nouvelles perspectives à travers l'<span className="font-bold text-primary dark:text-lime-500">objectif</span> de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des <span className="font-bold text-primary dark:text-lime-500">projets uniques et inspirants</span>.
+                            </h2>
+                        </AnimatedText>
+                        <div className="flex flex-row items-center justify-center gap-2 mt-10 max-w-8 lg:flex-col xl:flex-col md:justify-start">
+                            <ButtonsCardPrimary text="Lire mes articles" />
+                            <ButtonsCardSecondary text="Regarder mes photos" />
+                        </div>
+                    </div>
 
-  return (
-    <>
-      <TransitionEffect />
-      <article
-        className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start`}
-      >
-        <Layout className="!pt-0 md:!pt-16 sm:!pt-16">
-          <div className="flex items-start justify-between w-full md:flex-col">
-            <div className="w-1/2 lg:hidden md:inline-block md:w-full">
-              <Image
-                src={profilePic}
-                alt="Thomas PEDOT"
-                className="w-full h-auto"
-                sizes="100vw"
-                priority
-              />
-            </div>
-            <div className="flex flex-col items-center self-center w-1/2 lg:w-full lg:text-center">
-              <AnimatedText
-                text="Immortaliser l'instant présent, savourer chaque moment."
-                className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
-              />
-              <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
-                Toujours en quête de nouvelles perspectives à travers l'objectif de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des projets uniques et inspirants.
-              </p>
-              <div className="flex items-center self-start mt-2 lg:self-center">
-                <Link
-                  // whileHover={{
-                  //   cursor: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='font-size:24px;'><text y='50%'>👆</text></svg>"), auto`,
-                  // }}
-                  href="/photographie"
-                  // // target={"_blank"}
-                  className={`flex items-center rounded-lg border-2 border-solid bg-dark p-2.5 px-6 text-lg font-semibold
-            capitalize text-light hover:border-dark hover:bg-transparent hover:text-dark 
-            dark:bg-light dark:text-dark dark:hover:border-light dark:hover:bg-dark dark:hover:text-light
-            md:p-2 md:px-4 md:text-base
-             `}
-                  download
-                >
-                  Projets photos <LinkArrow className="ml-1 !w-6 md:!w-4" />
-                </Link>
+                    <div className="flex justify-center w-2/3 md:w-full sm:w-full md:justify-end">
+                        <div className="flex flex-wrap items-center content-center justify-center h-48">
+                            <Image
+                                className="inline-block sm:hidden md:hidden"
+                                src="/images/profile/1.png"
+                                width="256"
+                                height="256"
+                                alt={"Image hero 1"}
+                            />
 
-                <Link
-                  href="mailto:thomas.pedot@gmail.com"
-                  className="ml-4 text-lg font-medium underline capitalize text-dark dark:text-light md:text-base"
-                >
-                  Contact
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Layout>
-      </article>
-    </>
-  );
+                            <Image
+                                className="inline-block p-8 mt-10 hover:scale-125"
+                                src="/images/profile/13.png"
+                                width="512"
+                                height="512"
+                                alt={"Image hero 2"}
+                            />
+
+                            <Image
+                                className="inline-block md:hidden sm:hidden hover:scale-110"
+                                src="/images/profile/15.png"
+                                width="256"
+                                height="256"
+                                alt={"Image hero 3"}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </Layout>
+        </>
+    );
 }
