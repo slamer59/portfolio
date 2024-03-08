@@ -25,7 +25,7 @@ export default function Home() {
                 className="bg-fixed bg-center bg-no-repeat bg-cover"
                 style={{ backgroundImage: `url('/images/profile/717A1222.png')` }}
             >
-                <div className="container bg-light">
+                <div className="container bg-light dark:bg-dark">
                     <div className="container flex flex-row items-center gap-6 pb-32 mt-10 sm:flex-col md:flex-row max-w-8xl">
                         <div className="">
                             <AnimatedText
@@ -71,7 +71,7 @@ export default function Home() {
                 </div>
                 <div className="relative flex flex-row w-full mx-auto bg-transparent md:grid-cols-1 h-[900px] md:flex-col">
                     <div className="flex flex-col items-center content-center justify-center w-full bg-opacity-50 bg-light">
-                        <h2 className="flex m-4 text-4xl font-semibold text-center text-dark">
+                        <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary">
                             Ma passion de la photographie
                         </h2>
                         <Image
@@ -82,7 +82,7 @@ export default function Home() {
                             alt={"Image hero 2"}
                         />
                     </div>
-                    <div className="flex flex-col items-center content-center justify-center w-full bg-light">
+                    <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark dark:text-light">
                         <div className="p-2 m-2 text-2xl text-center">
                             <p>
                                 J'ai découvert la photographie en 2011 grâce à mon frère qui m'a donné son appareil photo reflex Canon 350D.
@@ -107,12 +107,12 @@ export default function Home() {
                     alt={"Image hero 2"}
                 />
                 <div className="relative flex flex-row w-full mx-auto md:grid-cols-1">
-                    <div className="flex flex-col w-full p-4 bg-light h-[700px] ">
-                        <h2 className="flex items-center justify-center m-4 text-4xl font-semibold text-dark">
+                    <div className="flex flex-col w-full p-4 bg-light dark:bg-dark h-[700px] ">
+                        <h2 className="flex items-center justify-center m-4 text-4xl font-semibold text-dark dark:text-light">
                             Musique, Danse, Cirque
                         </h2>
 
-                        <div className="p-4 text-2xl text-center">
+                        <div className="p-4 text-2xl text-center dark:text-light">
                             <p>Des ami.e.s musicien.ne.s m'ont donné l'opportunité de les photographier lors de <span className="font-bold text-primary dark:text-lime-500">concerts</span>, de répétitions, de tournages de clips.</p>
                             <br />
                             <p>
@@ -130,8 +130,8 @@ export default function Home() {
                     </div>
 
                 </div>
-                <div className="relative flex flex-row w-full mx-auto bg-transparent h-[450px] md:flex-col">
-                    <div className="flex flex-col items-center content-center justify-center w-full bg-light ">
+                <div className="relative flex flex-row w-full mx-auto bg-transparent h-[450px] md:flex-col dark:text-light">
+                    <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark ">
                         <Image
                             className="hidden md:inline-block sm:inline-block"
                             src="/images/profile/717A1217.png"
@@ -155,9 +155,9 @@ export default function Home() {
                         </div>
 
                     </div>
-                    <div className="flex flex-col items-center content-center justify-center w-full bg-opacity-50 bg-light">
+                    <div className="flex flex-col items-center content-center justify-center w-full bg-opacity-50 bg-light ">
 
-                        <h2 className="w-full m-8 text-4xl font-semibold text-center text-dark">
+                        <h2 className="w-full m-8 text-4xl font-semibold text-center text-dark dark:text-primary">
                             Interessé par mon travail ?
                         </h2>
                         <ButtonsCardSecondary
