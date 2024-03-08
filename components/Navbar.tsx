@@ -75,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-10 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 border-primary">
+      <header className="fixed top-0 z-50 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 border-primary">
         <button
           type="button"
           className="flex-col items-center justify-center hidden lg:flex"
@@ -118,7 +118,7 @@ const Navbar = () => {
             <CustomLink className="mx-4" href="/photographie" title="Photos" />
             <CustomLink className="mx-4" href="/articles" title="Articles" />
           </nav>
-          <Logo className="flex flex-wrap items-center justify-center mt-8"/>
+          <Logo className="flex flex-wrap items-center justify-center mt-8" />
           <nav className="flex flex-wrap items-center justify-center lg:mt-2">
             <CustomLink className="mx-4" href="/projets-dev" title="Projets numériques" />
             <motion.a

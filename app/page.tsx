@@ -3,7 +3,6 @@
 import AnimatedText from "@/components/AnimatedText";
 
 import { ButtonsCardPrimary, ButtonsCardSecondary } from "@/components/ui/tailwindcss-buttons";
-import Layout from "components/Layout";
 import TransitionEffect from "components/TransitionEffect";
 import Image from "next/image";
 export const metadata = {
@@ -22,8 +21,8 @@ export default function Home() {
     return (
         <>
             <TransitionEffect />
-            <Layout className="container">
-                <div className="flex flex-row items-center gap-6 sm:flex-col md:flex-row max-w-8xl">
+            <div className="container z-50">
+                <div className="container flex flex-row items-center gap-6 sm:flex-col md:flex-row max-w-8xl">
                     <div className="w-1/3 sm:w-full md:w-full">
                         <AnimatedText
                             text="Immortaliser l'instant présent, savourer chaque moment."
@@ -34,12 +33,11 @@ export default function Home() {
                                 Toujours en quête de nouvelles perspectives à travers l'<span className="font-bold text-primary dark:text-lime-500">objectif</span> de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des <span className="font-bold text-primary dark:text-lime-500">projets uniques et inspirants</span>.
                             </h2>
                         </AnimatedText>
-                        <div className="flex flex-row items-center justify-center gap-2 mt-10 max-w-8 lg:flex-col xl:flex-col md:justify-start">
-                            <ButtonsCardPrimary text="Lire mes articles" />
-                            <ButtonsCardSecondary text="Regarder mes photos" />
+                        <div className="flex flex-row items-center justify-center gap-2 m-4 lg:flex-col xl:flex-col md:justify-start">
+                            <ButtonsCardPrimary text="Lire mes articles" href="/articles" />
+                            <ButtonsCardSecondary text="Regarder mes photos" href="/photographie" />
                         </div>
                     </div>
-
                     <div className="flex justify-center w-2/3 md:w-full sm:w-full md:justify-end">
                         <div className="flex flex-wrap items-center content-center justify-center h-48">
                             <Image
@@ -49,7 +47,6 @@ export default function Home() {
                                 height="256"
                                 alt={"Image hero 1"}
                             />
-
                             <Image
                                 className="inline-block p-8 mt-10 hover:scale-125"
                                 src="/images/profile/13.png"
@@ -68,7 +65,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </div>
         </>
     );
 }
