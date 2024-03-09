@@ -17,17 +17,35 @@ export const metadata = {
 
 const testimonials = [
     {
-        src: "/images/profile/717A1217.png",
-        alt: "Photo de Thomas Pedot",
+        src: "/images/camera-roll/1.webp",
+        alt: "Photo Camera Roll #1 de Thomas Pedot",
     },
     {
-        src: "/images/profile/717A0941.png",
-        alt: "717A0941"
+        src: "/images/camera-roll/2.webp",
+        alt: "Photo Camera Roll #2 de Thomas Pedot",
     },
     {
-        src: "/images/profile/717A1216.png",
-        alt: "717A1216"
+        src: "/images/camera-roll/3.webp",
+        alt: "Photo Camera Roll #3 de Thomas Pedot",
     },
+    {
+        src: "/images/camera-roll/4.webp",
+        alt: "Photo Camera Roll #4 de Thomas Pedot",
+    },
+    {
+        src: "/images/camera-roll/5.webp",
+        alt: "Photo Camera Roll #5 de Thomas Pedot",
+    },
+    {
+        src: "/images/camera-roll/6.webp",
+        alt: "Photo Camera Roll #6 de Thomas Pedot",
+    },
+    {
+        src: "/images/camera-roll/7.webp",
+        alt: "Photo Camera Roll #7 de Thomas Pedot",
+    }
+
+
 ];
 
 export default function Home() {
@@ -41,14 +59,14 @@ export default function Home() {
                 }}
             >
             </div >
-            <section className="z-10 pt-6 pb-6 bg-transparent lg:pl-6 top-10 dark:bg-gray-800 dark:text-gray-100">
+            <section className="z-10 pt-6 pb-6 bg-transparent top-10 dark:text-light">
                 <div className="grid items-center content-center grid-cols-2 mx-auto sm:grid-cols-1">
                     <AnimatedText
                         isSection
                         text="Immortaliser l'instant présent, savourer chaque moment."
-                        className="px-6 py-16 font-extrabold dark:text-gray-50" //mb-16 lg:!text-4xl md:!text-4xl !leading-tight sm:mb-8 sm:!text-3xl xs:!text-4xl"
+                        className="px-6 py-16 font-extrabold dark:text-light" //mb-16 lg:!text-4xl md:!text-4xl !leading-tight sm:mb-8 sm:!text-3xl xs:!text-4xl"
                     >
-                        <div className="w-full px-6 rounded-md dark:bg-gray-900">
+                        <div className="w-full px-6 rounded-md">
                             <h2 className="mt-4 mb-2 text-xl dark:text-light">
                                 Toujours en quête de nouvelles perspectives à travers l'<span className="font-bold text-primary dark:text-lime-500">objectif</span> de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des <span className="font-bold text-primary dark:text-lime-500">projets uniques et inspirants</span>.
                             </h2>
@@ -67,7 +85,7 @@ export default function Home() {
                 height="1024"
                 alt={"Image hero 2"}
             />
-            <section className="z-10 border-t-2 border-black relative flex flex-row w-full bg-transparent mx-auto md:grid-cols-1 h-[900px] md:flex-col">
+            <section className="z-10 border-t-2 border-black dark:border-primaryDark relative flex flex-row w-full bg-transparent mx-auto md:grid-cols-1 h-[900px] md:flex-col">
                 <div className="flex-col items-center content-center justify-center hidden w-full bg-light sm:inline-block md:inline-block">
                     <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary ">
                         Ma passion de la photographie
@@ -90,7 +108,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark dark:text-light">
-                    <h3 className="p-2 m-2 text-4xl font-semibold text-center text-dark dark:text-primary">
+                    <h3 className="p-2 m-2 text-4xl font-semibold text-center text-dark dark:text-light">
                         Découverte de la photographie
                     </h3>
                     <div className="p-2 m-2 text-xl">
@@ -118,14 +136,14 @@ export default function Home() {
 
             </section>
             <section
-                className="relative z-20 flex flex-col items-center justify-center object-center w-full mx-auto border-t-2 border-black bg-light dark:bg-dark h-[1000px] md:flex-col dark:text-light">
+                className="relative z-20 flex flex-col items-center justify-center object-center w-full mx-auto border-t-2 dark:border-primaryDark border-black bg-light dark:bg-dark h-[1000px] md:flex-col dark:text-light">
                 <div className="flex h-[1000px] items-center content-center w-full flex-col-1 bg-light dark:bg-dark
                     bg-[url('/images/profile/services-02-free-img.png')] bg-no-repeat bg-top
                     bg-contain
                     "
                 >
                     <div className="flex flex-col items-center object-center text-center">
-                        <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary">
+                        <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-light">
                             Musique, Danse, Cirque
                         </h2>
                         <div className="p-4 text-2xl text-center dark:text-light">
@@ -139,14 +157,16 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <InfiniteMovingCards
-                    items={testimonials}
-                    direction="right"
-                    speed="slow"
-                />
+                <div className="w-full">
+                    <InfiniteMovingCards
+                        items={testimonials}
+                        direction="right"
+                        speed="slow"
+                    />
+                </div>
             </section>
             <section className="relative z-20 flex flex-col w-full mx-auto bg-light dark:bg-dark dark:text-light">
-                <h2 className="w-full m-8 text-4xl font-semibold text-center text-dark dark:text-primary">
+                <h2 className="w-full m-8 text-4xl font-semibold text-center text-dark dark:text-light">
                     Interessé par mon travail ?
                 </h2>
                 <div className="m-2 text-2xl text-center">

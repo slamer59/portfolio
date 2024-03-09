@@ -69,35 +69,52 @@ export const InfiniteMovingCards = ({
         }
     };
     return (
-        <div
-            ref={containerRef}
-            className={cn(
-                "scroller relative z-20  max-w-7xl overflow-hidden",
-                className
-            )}
-        >
-            <ul
-                ref={scrollerRef}
+        <>
+
+            <div
+                ref={containerRef}
                 className={cn(
-                    " flex min-w-full shrink-0 gap-4 w-max flex-nowrap",
-                    start && "animate-scroll ",
-                    pauseOnHover && "hover:[animation-play-state:paused]"
+                    "scroller relative z-20 max-w-7xl overflow-hidden rounded-2xl bg-black dark:text-light",
+                    className
                 )}
             >
-                {items.map((item, idx) => (
-                    <li
-                        className="relative max-w-full rounded-2xl bg-light"
-                        key={item.name}
-                    >
-                        <Image
-                            src={item?.src || "/images/profile/717A0941.png"}
-                            alt={item?.alt || "placeholder"}
-                            width="300"
-                            height="450"
-                        />
-                    </li>
-                ))}
-            </ul>
-        </div>
+                <Image
+                    src={"/images/profile/roll.jpg"}
+                    alt={"placeholder"}
+                    width="10000"
+                    height="100"
+                />
+                <ul
+                    ref={scrollerRef}
+                    className={cn(
+                        " flex min-w-full shrink-0 gap-4 w-max flex-nowrap",
+                        start && "animate-scroll ",
+                        pauseOnHover && "hover:[animation-play-state:paused]"
+                    )}
+                >
+
+                    {items.map((item, idx) => (
+                        <li
+                            className="relative max-w-full rounded-2xl bg-light"
+                            key={item.alt}
+                        >
+                            <Image
+                                src={item?.src || "/images/profile/717A0941.png"}
+                                alt={item?.alt || "placeholder"}
+                                width="300"
+                                height="100"
+                            />
+                        </li>
+                    ))}
+                </ul>
+                <Image
+                    src={"/images/profile/roll.jpg"}
+                    alt={"placeholder"}
+                    width="10000"
+                    height="100"
+                />
+            </div>
+
+        </>
     );
 };
