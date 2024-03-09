@@ -29,12 +29,11 @@ const singleWord = {
   },
 };
 
-const AnimatedText = ({ text, className = "", children }: { text: string, className: string, children?: React.ReactNode }) => {
+const AnimatedText = ({ text, className = "", isSection = false, children }: { text: string, className: string, isSection: boolean, children?: React.ReactNode }) => {
   return (
-    <div className="flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden text-center sm:py-0">
+    <div className={`flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden sm:py-0 ${isSection ? 'text-left' : 'text-center'}`} >
       <motion.h1
-        className={`inline-block text-dark dark:text-light
-      text-8xl font-bold w-full capitalize  ${className} xl:text-6xl`}
+        className={`${className} inline-block text-dark dark:text-light font-bold w-full capitalize text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl 2xl:text-6xl`}
         variants={quote}
         initial="hidden"
         animate="visible"
@@ -52,7 +51,7 @@ const AnimatedText = ({ text, className = "", children }: { text: string, classN
         })}
       </motion.h1>
       {children}
-    </div>
+    </div >
   );
 };
 
