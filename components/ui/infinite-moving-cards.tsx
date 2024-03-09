@@ -114,7 +114,6 @@ export const InfiniteMovingCards = ({
                     height="100"
                 />
             </div>
-
         </>
     );
 };
