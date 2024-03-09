@@ -137,8 +137,10 @@ export default function Home() {
             </section>
             <section
                 className="relative z-20 flex flex-col items-center justify-center object-center w-full mx-auto border-t-2 dark:border-primaryDark border-black bg-light dark:bg-dark h-[1000px] md:flex-col dark:text-light">
-                <div className="flex h-[1000px] items-center content-center w-full flex-col-1 bg-light dark:bg-dark
-                    bg-[url('/images/profile/services-02-free-img.png')] bg-no-repeat bg-top
+                <div className="flex h-[1000px] items-center content-center w-screen flex-col-1 bg-light dark:bg-dark
+                    bg-[url('/images/profile/services-02-free-img.png')] 
+                    bg-no-repeat 
+                    bg-top
                     bg-contain
                     "
                 >
@@ -166,19 +168,21 @@ export default function Home() {
                 </div>
             </section>
             <section className="relative z-20 flex flex-col w-full mx-auto bg-light dark:bg-dark dark:text-light">
-                <h2 className="w-full m-8 text-4xl font-semibold text-center text-dark dark:text-light">
-                    Interessé par mon travail ?
-                </h2>
-                <div className="m-2 text-2xl text-center">
-                    <p>
-                        Vous souhaitez échanger avec moi pour un projet ?
-                    </p>
-                    <br />
-                    <p>
-                        Ouvert à la discussion, je serais très heureux d'échanger avec vous de vos projets.
-                    </p>
-                    <br />
-                    <p className="font-bold text-primary dark:text-lime-500">N'hésitez pas à me contacter !</p>
+                <div className="flex flex-col items-center object-center text-center">
+                    <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-light">
+                        Interessé par mon travail ?
+                    </h2>
+                    <div className="p-4 text-2xl text-center dark:text-light">
+                        <p>
+                            Vous souhaitez échanger avec moi pour un projet ?
+                        </p>
+                        <br />
+                        <p>
+                            Ouvert à la discussion, je serais très heureux d'échanger avec vous de vos projets.
+                        </p>
+                        <br />
+                        <p className="font-bold text-primary dark:text-lime-500">N'hésitez pas à me contacter !</p>
+                    </div>
                 </div>
             </section >
         </>
