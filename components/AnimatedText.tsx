@@ -29,7 +29,7 @@ const singleWord = {
   },
 };
 
-const AnimatedText = ({ text, className = "", isSection = false, children }: { text: string, className: string, isSection: boolean, children?: React.ReactNode }) => {
+const AnimatedText = ({ text, className = "", isSection = false, children }: { text: string, className: string, isSection?: boolean, children?: React.ReactNode }) => {
   return (
     <div className={`flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden sm:py-0 ${isSection ? 'text-left' : 'text-center'}`} >
       <motion.h1
