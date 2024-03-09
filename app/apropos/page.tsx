@@ -62,7 +62,7 @@ export default function About() {
       <TransitionEffect />
       <Layout className="flex flex-col items-center justify-center w-full dark:text-light">
         <AnimatedText
-          text="Créatif & passioné"
+          text="Créatif & passionné"
           className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8"
         />
 
