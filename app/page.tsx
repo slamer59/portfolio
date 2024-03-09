@@ -159,7 +159,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full">
+                <div className="container flex items-center content-center w-full">
                     <InfiniteMovingCards
                         items={testimonials}
                         direction="right"

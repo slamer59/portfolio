@@ -74,11 +74,12 @@ export const InfiniteMovingCards = ({
             <div
                 ref={containerRef}
                 className={cn(
-                    "scroller relative z-20 max-w-7xl overflow-hidden rounded-2xl bg-black dark:text-light",
+                    "scroller relative mx-2 z-20 overflow-hidden w-full rounded-2xl bg-black dark:text-light",
                     className
                 )}
             >
                 <Image
+                    className="w-full h-4"
                     src={"/images/profile/roll.jpg"}
                     alt={"placeholder"}
                     width="10000"
@@ -108,10 +109,11 @@ export const InfiniteMovingCards = ({
                     ))}
                 </ul>
                 <Image
+                    className="w-full h-4"
                     src={"/images/profile/roll.jpg"}
                     alt={"placeholder"}
                     width="10000"
-                    height="100"
+                    height="400"
                 />
             </div>
         </>
