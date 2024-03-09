@@ -75,7 +75,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-50 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 z-1 md:px-12 sm:px-8 border-primary">
+      <header className="fixed top-0 z-50 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 md:px-12 sm:px-8 border-primary">
         <button
           type="button"
           className="flex-col items-center justify-center hidden lg:flex"

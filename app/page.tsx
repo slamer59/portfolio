@@ -20,13 +20,13 @@ export default function Home() {
     return (
         <>
             <TransitionEffect />
-            <div className="fixed inset-y-0 right-0 items-end inline-block object-right w-1/2 col-span-1 bg-center bg-cover sm:hidden md:hidden"
+            <div className="fixed inset-y-0 right-0 z-10 items-end inline-block object-right w-1/2 col-span-1 bg-center bg-cover sm:hidden md:hidden"
                 style={{
                     backgroundImage: 'url("/images/profile/717A1222.png")'
                 }}
             >
             </div >
-            <section className="z-40 pt-6 pb-6 bg-transparent lg:pl-6 top-10 dark:bg-gray-800 dark:text-gray-100">
+            <section className="z-20 pt-6 pb-6 bg-transparent lg:pl-6 top-10 dark:bg-gray-800 dark:text-gray-100">
                 <div className="grid items-center content-center grid-cols-2 mx-auto sm:grid-cols-1">
                     <AnimatedText
                         isSection
@@ -104,68 +104,9 @@ export default function Home() {
                 height="1024"
                 alt={"Image hero 2"}
             />
-            <section className="border-t-2 border-black relative flex  flex-row w-full bg-transparent mx-auto md:grid-cols-1 h-[900px] md:flex-col">
-                {/* <div className="fixed inset-y-0 right-0 items-end inline-block object-right w-1/2 col-span-1 bg-center bg-cover sm:hidden md:hidden"
-                    style={{
-                        backgroundImage: 'url("/images/profile/717A1217.png")'
-                    }}
-                > */}
-                <div className="flex flex-col items-center content-center justify-center w-full bg-opacity-50 bg-center bg-no-repeat bg-cover bg-light"
-                    style={{ backgroundImage: `url('/images/profile/717A1179.png')` }}
-                >
-                    <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary">
-                        Ma passion de la photographie
-                    </h2>
-                    <Image
-                        className="hidden md:inline-block sm:inline-block"
-                        src="/images/profile/717A1217.png"
-                        width="512"
-                        height="512"
-                        alt={"Image hero 2"}
-                    />
-                </div>
-                {/* </div> */}
-                <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark dark:text-light">
-                    <div className="p-2 m-2 text-2xl">
-                        <p>
-                            J'ai découvert la photographie en 2011 grâce à mon frère qui m'a donné son appareil photo reflex Canon 350D.
-                        </p>
-                        <br />
-                        <p>
-                            Pour mon voyage au <span className="font-bold text-primary dark:text-lime-500">Mexique</span>, j'ai pu utiliser sans crainte cette appareil dans un des pays les plus beaux que j'ai pu visiter.
-                            C'est au retour de ce voyage que j'ai pris conscience de l'importance de capturer des moments de vie, des paysages, des <span className="font-bold text-primary dark:text-lime-500">émotions</span>.
-                        </p>
-                        <br />
-                        <p>
-                            Depuis, je n'ai jamais arrêté de photographier, de m'améliorer.
-                        </p>
-                    </div>
-                </div>
-
-            </section>
-
-            <section className="border-t-2  border-black relative flex flex-row  mx-auto md:grid-cols-1 h-[900px] md:flex-col w-full">
-                <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark dark:text-light">
-                    <div className="p-2 m-2 text-2xl">
-                        <p>
-                            J'ai découvert la photographie en 2011 grâce à mon frère qui m'a donné son appareil photo reflex Canon 350D.
-                        </p>
-                        <br />
-                        <p>
-                            Pour mon voyage au <span className="font-bold text-primary dark:text-lime-500">Mexique</span>, j'ai pu utiliser sans crainte cette appareil dans un des pays les plus beaux que j'ai pu visiter.
-                            C'est au retour de ce voyage que j'ai pris conscience de l'importance de capturer des moments de vie, des paysages, des <span className="font-bold text-primary dark:text-lime-500">émotions</span>.
-                        </p>
-                        <br />
-                        <p>
-                            Depuis, je n'ai jamais arrêté de photographier, de m'améliorer.
-                        </p>
-                    </div>
-                </div>
-                <div className="flex flex-col items-center content-center justify-center w-full bg-opacity-50 bg-center bg-no-repeat bg-cover bg-light"
-                    style={{ backgroundImage: `url('/images/profile/717A1179.png')` }}
-                >
-                    <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary"
-                    >
+            <section className="z-20 border-t-2 border-black relative flex flex-row w-full bg-transparent mx-auto md:grid-cols-1 h-[900px] md:flex-col">
+                <div className="flex-col items-center content-center justify-center hidden w-full bg-light sm:inline-block md:inline-block">
+                    <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-primary ">
                         Ma passion de la photographie
                     </h2>
                     <Image
@@ -176,6 +117,39 @@ export default function Home() {
                         alt={"Image hero 2"}
                     />
                 </div>
+                <div
+                    className="flex flex-col items-center content-center justify-center w-full bg-center bg-no-repeat bg-cover bg-light sm:hidden md:hidden"
+                    style={{ backgroundImage: `url('/images/profile/717A1179.png')` }}
+                >
+                    <h2 className="flex object-center m-4 text-4xl font-semibold text-center text-dark dark:text-primary">
+                        Ma passion de la photographie
+                    </h2>
+                </div>
+
+                <div className="flex flex-col items-center content-center justify-center w-full bg-light dark:bg-dark dark:text-light">
+                    <div className="p-2 m-2 text-2xl">
+                        <p>
+                            J'ai découvert la photographie en 2011 grâce à mon frère qui m'a donné son appareil photo reflex Canon 350D.
+                        </p>
+                        <br />
+                        <p>
+                            Pour mon voyage au <span className="font-bold text-primary dark:text-lime-500">Mexique</span>, j'ai pu utiliser sans crainte cette appareil dans un des pays les plus beaux que j'ai pu visiter.
+                            C'est au retour de ce voyage que j'ai pris conscience de l'importance de capturer des moments de vie, des paysages, des <span className="font-bold text-primary dark:text-lime-500">émotions</span>.
+                        </p>
+                        <br />
+                        <p>
+                            Depuis, je n'ai jamais arrêté de photographier, de m'améliorer.
+                        </p>
+                    </div>
+                    {/* <Image
+                        className="hidden md:inline-block sm:inline-block"
+                        src="/images/profile/717A1217.png"
+                        width="512"
+                        height="512"
+                        alt={"Image hero 2"}
+                    /> */}
+                </div>
+
             </section>
 
             {/* <div
