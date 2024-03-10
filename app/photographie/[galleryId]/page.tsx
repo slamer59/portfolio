@@ -67,7 +67,7 @@ export default async function ImageGalleryPage({
     <div className="container mt-8">
       <GalleryHeadLine date={galleryData.date} title={galleryData.title} />
       <article className="w-full max-w-6xl mx-auto mb-8 format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-        <div className="mt-8 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
+        <div className="mt-8 mb-8 prose prose-lg prose-blue dark:prose-invert prose-li:marker:text-primary dark:text-light prose-a:text-primary">
           <PortableText
             /* @ts-ignore */
             components={components}
