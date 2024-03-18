@@ -55,8 +55,8 @@ export default function About() {
   // Calcul du nombre total de projets photo
   const nbProjetsPhotos = anneesEcoulees * projetsParAnMin + Math.floor(Math.random() * 3) - 1;
 
-  const nbFaussesNotes = anneesEcoulees * morceaux + Math.floor(Math.random() * 30) - 1;
-
+  // const nbFaussesNotes = anneesEcoulees * morceaux + Math.floor(Math.random() * 30) - 1;
+  const nbLangues = 4;
   return (
     <>
       <TransitionEffect />
@@ -98,15 +98,6 @@ export default function About() {
           <div className="flex flex-col items-end justify-between col-span-2 xl:col-span-8 xl:flex-row xl:items-center md:order-3">
             <div className="flex flex-col items-end justify-center xl:items-center">
               <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
-                <AnimatedNumberFramerMotion value={nbFaussesNotes} />
-              </span>
-              <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
-                fausses notes par an
-              </h2>
-            </div>
-
-            <div className="flex flex-col items-end justify-center xl:items-center">
-              <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
                 <AnimatedNumberFramerMotion value={nbProjetsPhotos} />+
               </span>
               <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
@@ -121,6 +112,18 @@ export default function About() {
               <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                 Années d'expériences
               </h2>
+            </div>
+            <div className="flex flex-col items-end justify-center xl:items-center">
+              <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
+                <AnimatedNumberFramerMotion value={nbLangues} />
+              </span>
+              <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
+                {/* fausses notes par an */}
+                Langues parlées*
+              </h2>
+              <h3 className="text-xs font-medium text-dark/50 dark:text-light/50">
+                *Evaluation approximative
+              </h3>
             </div>
           </div>
         </div>

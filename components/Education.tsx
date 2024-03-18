@@ -41,7 +41,7 @@ const Education = () => {
   return (
     <div className="my-64">
       <h2 className="w-full mb-32 font-bold text-center text-8xl md:text-6xl xs:text-4xl md:mb-16">
-        Education
+        Parcours universitaire
       </h2>
 
       <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
