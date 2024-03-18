@@ -144,21 +144,24 @@ export default function Home() {
                     bg-contain
                     "
                 >
-                    <div className="flex flex-col items-center object-center text-center">
-                        <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-light">
-                            Musique, Danse, Cirque
-                        </h2>
-                        <div className="p-4 text-2xl text-center dark:text-light">
-                            <p>Des ami.e.s musicien.ne.s m'ont donné l'opportunité de les photographier lors de <span className="font-bold text-primary dark:text-lime-500">concerts</span>, de répétitions, de tournages de clips.
-                            </p>
-                            <br />
-                            <p>
-                                C'est avec le temps que mes premières opportunités s'offrent à moi.
-                            </p>
-                            <br />
-                        </div>
+                </div>
+                <div className="flex flex-col items-center object-center text-center">
+                    <h2 className="flex m-4 text-4xl font-semibold text-center text-dark dark:text-light">
+                        🎶 Musique
+                        💃 Danse
+                        🎪 Cirque
+                    </h2>
+                    <div className="p-4 text-2xl text-center dark:text-light">
+                        <p>Des ami.e.s musicien.ne.s m'ont donné l'opportunité de les photographier lors de <span className="font-bold text-primary dark:text-lime-500">concerts</span>, de répétitions, de tournages de clips.
+                        </p>
+                        <br />
+                        <p>
+                            C'est avec le temps que mes premières opportunités s'offrent à moi.
+                        </p>
+                        <br />
                     </div>
                 </div>
+
                 <div className="container flex items-center content-center w-full">
                     <InfiniteMovingCards
                         items={testimonials}
