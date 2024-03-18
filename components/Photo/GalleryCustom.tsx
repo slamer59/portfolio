@@ -93,7 +93,7 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                 key={i}
                                 src={props.images[i].src}
                                 alt={props.images[i].alt ?? ''}
-                                className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110"
+                                className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110 cursor-zoom-in"
                                 placeholder="blur"
                                 blurDataURL={props.images[i].lqip}
                                 /* @ts-ignore */

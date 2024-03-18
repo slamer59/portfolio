@@ -40,6 +40,11 @@ export default function Projects() {
             Cette idée, souvent attribuée à <span className="italic font-bold text-primary dark:text-lime-500">Albert Einstein</span>, souligne l'importance de la créativité et de l'innovation dans la recherche de nouvelles idées et de solutions aux problèmes.
             Bien que la connaissance soit essentielle pour comprendre le monde qui nous entoure, c'est l'imagination qui nous pousse à aller au-delà des limites actuelles et à envisager des possibilités nouvelles et inexplorées. L'<span className="font-bold text-primary dark:text-lime-500">imagination</span> nourrit la pensée créative et la capacité à voir les choses sous un angle différent, ce qui peut conduire à des <span className="font-bold text-primary dark:text-lime-500">découvertes</span> et des réalisations importantes.
           </h2>
+          <div className="mb-4 text-xl text-center dark:text-light">
+            Je vous ouvre les portes de mes explorations photographiques, cherchant à immortaliser des instants uniques et inspirants à travers le regard de mon appareil photo.
+            Dans ces images, l'essence de <span className="font-bold text-primary dark:text-lime-500">mes univers</span>, que j'espère riches en émotions et en créativité.
+            Chaque cliché tente de révéler des <span className="font-bold text-primary dark:text-lime-500">mondes variés</span> ancrés dans l'art, tels que la musique, la danse, le théâtre, la peinture, la sculpture, et l'architecture, trés souvent portés et incarnés par mes <span className="font-bold text-primary dark:text-lime-500">ami.e.s artistes</span>.
+          </div>
         </AnimatedText>
         <PhotoProjectLayout />
       </Layout>
