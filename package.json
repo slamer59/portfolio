@@ -24,7 +24,7 @@
     "eslint-config-next": "latest",
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.354.0",
-    "next": "latest",
+    "next": "canary",
     "next-sanity": "^7.0.17",
     "react": "latest",
     "react-dom": "latest",
