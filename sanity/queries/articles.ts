@@ -71,7 +71,8 @@ export async function getAllPhotoProjects() {
           "dimensions": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.dimensions,
           "lqip": *[_type == "gallery" && references(^._id)].images[0].asset->metadata.lqip
         }
-  }`;
+  } | order(publishedAt desc)
+  `;
 
   const data = await client.fetch(query);
   const filteredData = data.filter((article) => article.galleryRef.length != 0)
