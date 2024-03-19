@@ -49,7 +49,6 @@ export default async function PhotoProjectLayout() {
                         )
                     }
                 })}
-
             </div>
         </>
     );
