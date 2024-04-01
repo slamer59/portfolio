@@ -34,7 +34,7 @@ export const MovingImg = ({ title, img, link }) => {
         onMouseMove={handleMouse}
         onMouseLeave={handleMouseLeave}
       >
-        <h2 className="text-xl font-semibold capitalize hover:underline dark:text-light md:text-lg xs:text-base">
+        <h2 className="text-xl font-semibold hover:underline dark:text-light md:text-lg xs:text-base">
           {title}
         </h2>
         <FramerImage

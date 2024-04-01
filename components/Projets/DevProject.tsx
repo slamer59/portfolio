@@ -52,13 +52,13 @@ export const DevProject = ({ title, type, summary, date, img, link, github, tech
                 </>
                 }
                 <div className="flex flex-col justify-between w-full mt-4">
-                    <span className="text-lg font-medium capitalize text-primary dark:text-primaryDark xs:text-base">
+                    <span className="text-lg font-medium text-primary dark:text-primaryDark xs:text-base">
                         {type}
                     </span>
                     <h2 className="w-full my-2 text-3xl font-bold text-left lg:text-2xl ">
                         {title}
                     </h2>
-                    <p className="text-base font-light text-gray-500 capitalize dark:text-gray-400">
+                    <p className="text-base font-light text-gray-500 dark:text-gray-400">
                         <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
                             {new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                         </time>

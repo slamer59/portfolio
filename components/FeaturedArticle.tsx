@@ -37,7 +37,7 @@ export const FeaturedArticle = ({ img, title, time, summary, link }) => {
         href={link}
       // target={"_blank"}
       >
-        <h2 className="my-2 mt-4 text-2xl font-bold capitalize hover:underline xs:text-lg">
+        <h2 className="my-2 mt-4 text-2xl font-bold hover:underline xs:text-lg">
           {title}
         </h2>
       </Link>

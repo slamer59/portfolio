@@ -100,7 +100,7 @@ export default function About() {
               <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
                 <AnimatedNumberFramerMotion value={nbProjetsPhotos} />+
               </span>
-              <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
+              <h2 className="mb-4 text-xl font-medium text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                 sessions photos
               </h2>
             </div>
@@ -109,7 +109,7 @@ export default function About() {
               <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
                 <AnimatedNumberFramerMotion value={anneesExperience} />+
               </span>
-              <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
+              <h2 className="mb-4 text-xl font-medium text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                 Années d'expériences
               </h2>
             </div>
@@ -117,7 +117,7 @@ export default function About() {
               <span className="inline-block font-bold text-7xl md:text-6xl sm:text-5xl xs:text-4xl">
                 <AnimatedNumberFramerMotion value={nbLangues} />
               </span>
-              <h2 className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
+              <h2 className="mb-4 text-xl font-medium text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                 {/* fausses notes par an */}
                 Langues parlées*
               </h2>

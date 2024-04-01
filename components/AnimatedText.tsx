@@ -33,7 +33,7 @@ const AnimatedText = ({ text, className = "", isSection = false, children }: { t
   return (
     <div className={`flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden sm:py-0 ${isSection ? 'text-left' : 'text-center'}`} >
       <motion.h1
-        className={`${className} inline-block text-dark dark:text-light font-bold w-full capitalize text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl 2xl:text-6xl`}
+        className={`${className} inline-block text-dark dark:text-light font-bold w-full text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl 2xl:text-6xl`}
         variants={quote}
         initial="hidden"
         animate="visible"

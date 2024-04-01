@@ -22,7 +22,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="text-2xl font-bold capitalize sm:text-xl xs:text-lg">
+        <h3 className="text-2xl font-bold sm:text-xl xs:text-lg">
           {position}{" "}
           <a
             className="capitalize text-primary dark:text-primaryDark"
@@ -32,7 +32,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
             @{company}
           </a>
         </h3>
-        <span className="font-medium capitalize text-dark/75 dark:text-light/50 xs:text-sm">
+        <span className="font-medium text-dark/75 dark:text-light/50 xs:text-sm">
           {time} | {address}
         </span>
         <p className="w-full font-medium md:text-sm"> {work}</p>

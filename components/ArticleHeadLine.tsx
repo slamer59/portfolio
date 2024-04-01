@@ -19,7 +19,7 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                         <div>
                             <a href="#" rel="author" className="text-xl font-bold text-primary dark:text-white">{author.name}</a>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">{author.postion}</p>
-                            <p className="text-base font-light text-gray-500 capitalize dark:text-gray-400">
+                            <p className="text-base font-light text-gray-500 dark:text-gray-400">
                                 <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
                                     {new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                                 </time>
@@ -27,7 +27,7 @@ export default async function ArticleHead({ author, date, title }: { author: { n
                         </div>
                     </div>
                 </address>
-                <h1 className="inline-block text-dark dark:text-light font-bold w-full capitalize mb-4 !text-4xl !leading-tight lg:!text-3xl sm:!text-3xl xs:!text-xl xl:text-4xl sm:mb-2" contentEditable={false}>
+                <h1 className="inline-block text-dark dark:text-light font-bold w-full mb-4 !text-4xl !leading-tight lg:!text-3xl sm:!text-3xl xs:!text-xl xl:text-4xl sm:mb-2" contentEditable={false}>
                     {title}
                 </h1>
             </div>

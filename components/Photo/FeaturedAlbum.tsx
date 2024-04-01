@@ -51,7 +51,7 @@ export const FeaturedAlbumProject = ({ title, summary, date, img, link }) => {
                         <h2 className="w-full my-2 text-4xl font-bold text-left lg:text-3xl xs:text-2xl">
                             {title}
                         </h2>
-                        <p className="text-base font-light text-gray-500 capitalize dark:text-gray-400">
+                        <p className="text-base font-light text-gray-500 dark:text-gray-400">
                             <time dateTime={new Date(date).toISOString().split('T')[0]} title={new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}>
                                 {new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                             </time>
