@@ -88,7 +88,7 @@ export const PortableComponentsDefinitions = {
                 {props.children}
             </a>
         ),
-        strong: ({ children }) => <strong className="font-semibold text-primary dark:text-lime-500">{children}</strong>,
+        strong: ({ children }) => <strong className="font-semibold text-primary dark:text-light">{children}</strong>,
 
     }
 };

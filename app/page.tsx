@@ -68,7 +68,7 @@ export default function Home() {
                     >
                         <div className="w-full px-6 rounded-md">
                             <h2 className="mt-4 mb-2 text-xl dark:text-light">
-                                Toujours en quête de nouvelles perspectives à travers l'<span className="font-bold text-primary dark:text-lime-500">objectif</span> de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des <span className="font-bold text-primary dark:text-lime-500">projets uniques et inspirants</span>.
+                                Toujours en quête de nouvelles perspectives à travers l'<span className="font-bold text-primary dark:text-light">objectif</span> de mon appareil photo ou les lignes de code, je m'efforce de marier l'art et la technologie pour donner vie à des <span className="font-bold text-primary dark:text-light">projets uniques et inspirants</span>.
                             </h2>
                         </div>
                     </AnimatedText>
@@ -117,8 +117,8 @@ export default function Home() {
                         </p>
                         <br />
                         <p>
-                            Pour mon voyage au <span className="font-bold text-primary dark:text-lime-500">Mexique</span>, j'ai pu utiliser sans crainte cette appareil dans un des pays les plus beaux que j'ai pu visiter.
-                            C'est au retour de ce voyage que j'ai pris conscience de l'importance de capturer des moments de vie, des paysages, des <span className="font-bold text-primary dark:text-lime-500">émotions</span>.
+                            Pour mon voyage au <span className="font-bold text-primary dark:text-light">Mexique</span>, j'ai pu utiliser sans crainte cette appareil dans un des pays les plus beaux que j'ai pu visiter.
+                            C'est au retour de ce voyage que j'ai pris conscience de l'importance de capturer des moments de vie, des paysages, des <span className="font-bold text-primary dark:text-light">émotions</span>.
                         </p>
                         <br />
                         <p>
@@ -152,7 +152,7 @@ export default function Home() {
                         🎪 Cirque
                     </h2>
                     <div className="p-4 text-2xl text-center dark:text-light">
-                        <p>Des ami.e.s musicien.ne.s m'ont donné l'opportunité de les photographier lors de <span className="font-bold text-primary dark:text-lime-500">concerts</span>, de répétitions, de tournages de clips.
+                        <p>Des ami.e.s musicien.ne.s m'ont donné l'opportunité de les photographier lors de <span className="font-bold text-primary dark:text-light">concerts</span>, de répétitions, de tournages de clips.
                         </p>
                         <br />
                         <p>
@@ -184,7 +184,7 @@ export default function Home() {
                             Ouvert à la discussion, je serais très heureux d'échanger avec vous de vos projets.
                         </p>
                         <br />
-                        <p className="font-bold text-primary dark:text-lime-500">N'hésitez pas à me contacter !</p>
+                        <p className="font-bold text-primary dark:text-light">N'hésitez pas à me contacter !</p>
                     </div>
                 </div>
             </section >
