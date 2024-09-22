@@ -113,10 +113,6 @@ export default async function ImageGalleryPage({
               <div className="text-lg text-white">{galleryNextData.gallery.images[i].description}</div>
             </div>
           }
-          imageProps={(i) => ({
-            alt: images[i].alt,
-            title: images[i].title,
-          })}
         />
       </article>
     </div>
