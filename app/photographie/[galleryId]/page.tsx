@@ -41,7 +41,6 @@ export async function generateMetadata(
       type: "website",
       url: canonicalUrl, // Add the canonical URL here
       images: ogImages,
-      authors: galleryData.author ? [galleryData.author.name] : undefined,
     },
     twitter: {
       card: "summary_large_image",
