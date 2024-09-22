@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "unlighthouse": "npx unlighthouse --site https://thomas.pedot.cc --config-file unlighthouse.config.prod.ts",
+    "ts-check": "tsc --noEmit",
     "prepare": "husky"
   },
   "dependencies": {

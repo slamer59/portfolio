@@ -47,6 +47,11 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
     }
     const [sizes, width_left] = calculateImageSizes(props)
     const id = useId().replace(/:/g, '')
+    const getHotspotPosition = (image: any) => {
+        const x = image?.hotspot?.x ?? 0.5;
+        const y = image?.hotspot?.y ?? 0.5;
+        return `${x * 100}% ${y * 100}%`;
+    };
 
     return (
         <>
@@ -107,7 +112,7 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                 blurDataURL={props.images[i].lqip}
                                 style={{
                                     transform: "translate3d(0, 0, 0)",
-                                    objectPosition: `${props.images[i]?.hotspot?.x * 100 || 50}% ${props.images[i]?.hotspot?.y * 100 || 50}%`
+                                    objectPosition: getHotspotPosition(props.images[i])
                                 }}
                                 fill
                                 loader={imgLoader}
