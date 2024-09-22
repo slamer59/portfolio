@@ -17,15 +17,25 @@ const elementStyle = (aspectRatio: number, sizes: number[]) =>
         flexGrow: 1,
     } as Record<string, any>)
 
-export type GalleryProps = GalleryCalculationProps & {
-    widths: number[]
-    galleryId: string | number
-    overlay?: (index: number) => React.ReactNode
-    gap?: string
-    percentVw?: number
-    imgLoader?: ImageLoader
-}
+type ImageProps = {
+    aspect_ratio: number;
+    src: string;
+    lqip: string;
+    hotspot?: { x: number; y: number };
+    alt?: string;
+    title?: string;
+    nextImageProps?: any;
+};
 
+export type GalleryProps = GalleryCalculationProps & {
+    widths: number[];
+    galleryId: string | number;
+    overlay?: (index: number) => React.ReactNode;
+    gap?: string;
+    percentVw?: number;
+    imgLoader?: ImageLoader;
+    images: ImageProps[];
+};
 export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, imgLoader, galleryId, ...props }: GalleryProps) {
 
     if (widths.length + 1 != props.ratios.length) {
@@ -77,10 +87,6 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                             // key={image._ref}
                             href={`?photoId=${i}`}
                             as={`/photographie/${galleryId}?photoId=${i}`}
-                            // `}/p/${i}
-                            // ?photoId=${i}`}  //${image.asset._ref}`}
-                            // ref={image._ref === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-                            // ref={image.asset._ref}
                             shallow
                             className="relative block after:content group cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                             style={{
@@ -94,12 +100,15 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                             <Image
                                 key={i}
                                 src={props.images[i].src}
-                                alt={props.images[i].alt ?? ''}
+                                alt={props.images[i].alt || ''}
+                                title={props.images[i].title}
                                 className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110 cursor-zoom-in"
                                 placeholder="blur"
                                 blurDataURL={props.images[i].lqip}
-                                /* @ts-ignore */
-                                style={{ transform: "translate3d(0, 0, 0)", objectPosition: `${props.images[0]?.hotspot?.x * 100 || 100}% ${props.images[0]?.hotspot?.y * 100 || 100}%` }}
+                                style={{
+                                    transform: "translate3d(0, 0, 0)",
+                                    objectPosition: `${props.images[i]?.hotspot?.x * 100 || 50}% ${props.images[i]?.hotspot?.y * 100 || 50}%`
+                                }}
                                 fill
                                 loader={imgLoader}
                                 sizes={
@@ -108,8 +117,8 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                                         .join(', ') + `, ${(percentVw / 100) * sizes[sizes.length - 1][i]}vw`
                                 }
                                 {...(props.images[i].nextImageProps ?? {})}
-
                             />
+
 
                             {overlay && (
                                 <div

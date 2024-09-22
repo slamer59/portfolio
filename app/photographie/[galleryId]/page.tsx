@@ -5,7 +5,7 @@ import { urlFor } from '@/sanity/lib/client';
 import { getGalleryImageByIndex, getGalleryImages, getGalleryNextImages } from '@/sanity/queries/galleries';
 import { PortableText } from '@portabletext/react';
 import { Metadata, ResolvingMetadata } from "next";
-import { revalidatePage } from "portfolio.config";
+import { domain, revalidatePage } from "portfolio.config";
 import GalleryPage from "./GalleryPage";
 
 export const revalidate = revalidatePage; // revalidate at most 30 seconds
@@ -26,17 +26,38 @@ export async function generateMetadata(
     ? [urlFor(galleryImageData.image[0]).format("webp").url()]
     : galleryNextData.gallery.images.map((image) => urlFor(image).format("webp").url());
 
+  // Construct the canonical URL
+  const baseUrl = domain; // Replace with your actual base URL
+  const canonicalUrl = `${baseUrl}/photographie/${params.galleryId}`;
+
   return {
     title: galleryData.title,
     description: galleryData.description,
+    keywords: galleryData.keywords,
+    authors: galleryData.author ? [{ name: galleryData.author.name }] : undefined,
     openGraph: {
       title: galleryData.title,
       description: galleryData.description,
       type: "website",
-      images: ogImages
+      url: canonicalUrl, // Add the canonical URL here
+      images: ogImages,
+      authors: galleryData.author ? [galleryData.author.name] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: galleryData.title,
+      description: galleryData.description,
+      images: ogImages,
+      creator: galleryData.author ? galleryData.author.name : undefined,
+    },
+    alternates: {
+      canonical: canonicalUrl, // Add the canonical URL here
     },
   }
 }
+
+
+
 
 export default async function ImageGalleryPage({
   params,
@@ -67,6 +88,8 @@ export default async function ImageGalleryPage({
     src: urlFor(image).format("webp").url(),
     lqip: image.lqip,
     hotspot: image.hotspot,
+    alt: image.alt,
+    title: image.title,
   }));
 
   return (
@@ -91,6 +114,10 @@ export default async function ImageGalleryPage({
               <div className="text-lg text-white">{galleryNextData.gallery.images[i].description}</div>
             </div>
           }
+          imageProps={(i) => ({
+            alt: images[i].alt,
+            title: images[i].title,
+          })}
         />
       </article>
     </div>

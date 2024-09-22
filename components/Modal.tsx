@@ -41,8 +41,6 @@ export default function Modal({
       setDirection(-1);
     }
     setCurIndex(newVal);
-    console.log("newVal", newVal)
-    console.log("pathname", pathname)
     // Create a new URLSearchParams object
     const params = new URLSearchParams(searchParams.toString());
 

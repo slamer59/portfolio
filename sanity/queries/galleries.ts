@@ -8,6 +8,8 @@ export async function getGalleryImages(slug: string) {
               title,
               description,
               body,
+              keywords,
+              author->{name, image},
               "date": publishedAt,
               "gallery": *[_type == "gallery" && references(^._id)][0] {
                 images[]{
@@ -33,6 +35,8 @@ export async function getGalleryNextImages(slug: string) {
               "date": publishedAt,
               "gallery": *[_type == "gallery" && references(^._id)][0] {
                 images[]{
+                  alt,
+                  title,
                   "asset": asset,      
                   "aspect_ratio": asset->metadata.dimensions.aspectRatio,
                   "lqip": asset->metadata.lqip,
