@@ -26,6 +26,7 @@ export default function Carousel({
   }
 
   function changePhotoId(newVal: number) {
+    console.log("newVal", newVal)
     return newVal;
   }
 

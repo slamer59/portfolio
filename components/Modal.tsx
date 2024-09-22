@@ -3,7 +3,7 @@
 import type { ImageProps } from "@/lib/types";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
 import SharedModal from "./Photo/SharedModal";
@@ -22,7 +22,7 @@ export default function Modal({
   let overlayRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
   const pathname = usePathname()
-
+  const searchParams = useSearchParams()
   let index = Number(photoId);
 
   const [direction, setDirection] = useState(0);
@@ -41,8 +41,19 @@ export default function Modal({
       setDirection(-1);
     }
     setCurIndex(newVal);
-    router.push(pathname)
-    //`${pathname}?${createQueryString('photoId', `${newVal}`)}`)
+    console.log("newVal", newVal)
+    console.log("pathname", pathname)
+    // Create a new URLSearchParams object
+    const params = new URLSearchParams(searchParams.toString());
+
+    // Update the photoId parameter
+    params.set('photoId', newVal.toString());
+
+    // Create the new URL
+    const newUrl = `${pathname}?${params.toString()}`;
+
+    // Use router.push with the new URL
+    router.push(newUrl);
   }
 
   useKeypress("ArrowRight", () => {

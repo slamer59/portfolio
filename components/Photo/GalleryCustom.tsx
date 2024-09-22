@@ -75,8 +75,10 @@ export function GalleryCustom({ widths, gap = '5px', percentVw = 100, overlay, i
                     >
                         <Link
                             // key={image._ref}
-                            href={`/?photoId=${i}`}
-                            as={`/photographie/${galleryId}/p/${i}?photoId=${i}`}  //${image.asset._ref}`}
+                            href={`?photoId=${i}`}
+                            as={`/photographie/${galleryId}?photoId=${i}`}
+                            // `}/p/${i}
+                            // ?photoId=${i}`}  //${image.asset._ref}`}
                             // ref={image._ref === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
                             // ref={image.asset._ref}
                             shallow
