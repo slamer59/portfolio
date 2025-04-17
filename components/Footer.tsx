@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="flex items-center lg:py-2">
 
           <Link
-            href="https://devdreaming.com/about"
+            href="https://www.linkedin.com/in/thomaspedot/"
             target="_blank"
             className="underline underline-offset-2"
           >
