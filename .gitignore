@@ -28,9 +28,14 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# MCP configuration (contains API tokens)
+.mcp.json
+
 # vercel
 .vercel
 .unlighthouse/*
 lighthouse-prod/*
 bun.lockdb
 .next/*
+PERSONAL_NOTES/**/*
+.claude/**/*
