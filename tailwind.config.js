@@ -30,7 +30,7 @@ module.exports = {
 				dark: "#080A40",
 				light: "#D9D4BA",
 				primary: "#59082E", // Wine red - for frameworks
-				primaryDark: "#A63333",
+				primaryDark: "#FF8C00", // Orange - for dark mode links
 				secondary: "#1E5F74", // Teal blue - for CMS/databases
 				accent: "#8B5A00", // Amber brown - for languages
 			},
