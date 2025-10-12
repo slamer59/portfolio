@@ -11,13 +11,13 @@ export function StyledBlockquote({
 }: StyledBlockquoteProps) {
 	return (
 		<blockquote
-			className={`flex items-center justify-center mx-auto mt-10 mb-10 ml-2 mr-2 text-center py-8 px-6 rounded-lg bg-dark/5 dark:bg-light/10 border-l-4 border-dark/30 dark:border-light/30 shadow-sm ${className}`}
+			className={`flex items-center justify-center mx-auto mt-10 mb-10 ml-2 mr-2 text-center py-12 px-8 rounded-lg bg-dark/5 dark:bg-light/10 border-l-4 border-dark/30 dark:border-light/30 shadow-sm ${className}`}
 		>
 			<div className="relative z-10">
 				<p className="text-xl font-semibold text-primary dark:text-light">
 					<em className="relative">
 						<svg
-							className="absolute w-8 h-8 text-primary dark:text-light -top-8 -start-8 size-8"
+							className="absolute w-8 h-8 text-primary dark:text-light -top-10 -start-10 size-8"
 							width="16"
 							height="16"
 							viewBox="0 0 16 16"
