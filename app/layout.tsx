@@ -4,27 +4,28 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import ClientLayout from "./ClientLayout";
 
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Portfolio de Thomas PEDOT",
-    default: "Portfolio de Thomas PEDOT",
-  },
-  description: "Bienvenue sur mon portfolio, je suis Thomas PEDOT, photographe, docteur en énergétique et développeur de solutions logicels.",
-  metadataBase: new URL("https://thomas.pedot.com"),
+	title: {
+		template: "%s | Portfolio de Thomas PEDOT",
+		default: "Portfolio de Thomas PEDOT",
+	},
+	description:
+		"Bienvenue sur mon portfolio, je suis Thomas PEDOT, photographe, docteur en énergétique et développeur de solutions logicels.",
+	metadataBase: new URL("https://thomas.pedot.com"),
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="fr">
-      <body>
-        <Script id="theme-switcher" strategy="beforeInteractive">
-          {`
+	return (
+		<html lang="fr" suppressHydrationWarning>
+			<body>
+				<Script id="theme-switcher" strategy="beforeInteractive">
+					{`
  if (
   localStorage.getItem("theme") === "dark" ||
   (!("theme" in localStorage) &&
@@ -35,13 +36,11 @@ export default function RootLayout({
   document.documentElement.classList.remove("dark");
 }
   `}
-        </Script>
-        <ClientLayout>
-          {children}
-        </ClientLayout>
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
-  );
+				</Script>
+				<ClientLayout>{children}</ClientLayout>
+				<Analytics />
+				<SpeedInsights />
+			</body>
+		</html>
+	);
 }
