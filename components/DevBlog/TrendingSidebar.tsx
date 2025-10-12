@@ -82,9 +82,9 @@ export function TrendingSidebar({
 								transition={{ type: "spring", stiffness: 400, damping: 17 }}
 							>
 								<div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-									{project.image ? (
+									{project.image?.asset ? (
 										<Image
-											src={urlFor(project.image)
+											src={urlFor(project.image.asset)
 												.width(128)
 												.height(128)
 												.format("webp")

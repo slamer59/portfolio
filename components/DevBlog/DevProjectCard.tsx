@@ -36,7 +36,7 @@ function extractTechnologies(project: DevProject): string[] {
 
 // Function to get project image
 function getProjectImage(project: DevProject): string {
-	// Use Sanity urlFor() if mainImage exists
+	// Use Sanity urlFor() if image exists and has a valid asset
 	if (project.image?.asset) {
 		try {
 			return urlFor(project.image.asset)
