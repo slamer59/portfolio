@@ -3,32 +3,16 @@ import {
 	getArticlesSitemap,
 } from "@/sanity/queries/articles";
 import { unstable_noStore as noStore } from "next/cache";
+import { NextResponse } from "next/server";
 
 import { domain } from "portfolio.config";
 
-export default async function sitemap(): Promise<
-	{
-		url: string;
-		lastModified?: string | Date | undefined;
-		changeFrequency?:
-			| "yearly"
-			| "always"
-			| "hourly"
-			| "daily"
-			| "weekly"
-			| "monthly"
-			| "never"
-			| undefined;
-		priority?: number | undefined;
-	}[]
-> {
+export async function GET() {
 	noStore();
 
 	const allPhotoProjects = await getAllPhotoProjectsSitemap();
-
 	const articles = await getArticlesSitemap();
 
-	// Write list of URLs to sitemap.xml
 	const staticPages = [
 		{
 			url: `${domain}/`,
@@ -72,5 +56,25 @@ export default async function sitemap(): Promise<
 
 	const allPages = [...staticPages, ...listOfPages, ...listOfPhotoProjects];
 
-	return allPages;
+	// Generate XML sitemap
+	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages
+	.map(
+		(page) => `  <url>
+    <loc>${page.url}</loc>
+    <lastmod>${page.lastModified.toISOString()}</lastmod>
+    <changefreq>${page.changeFrequency}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`,
+	)
+	.join("\n")}
+</urlset>`;
+
+	return new NextResponse(sitemap, {
+		headers: {
+			"Content-Type": "application/xml",
+			"Cache-Control": "public, max-age=0, must-revalidate",
+		},
+	});
 }
