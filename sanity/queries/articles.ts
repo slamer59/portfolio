@@ -60,7 +60,7 @@ export async function getArticles() {
 
 export async function getAllPhotoProjects() {
 	const query = `
-    *[_type == "devProject" && defined(publishedAt)] {
+    *[_type == "article" && defined(publishedAt)] {
       "currentSlug": slug.current,
         title,
         featured,
@@ -97,7 +97,7 @@ export async function getArticlesSitemap() {
 
 export async function getAllPhotoProjectsSitemap() {
 	const query = `
-    *[_type == "devProject" && defined(publishedAt)] {
+    *[_type == "article" && defined(publishedAt)] {
       "currentSlug": slug.current,
         publishedAt,
         _updatedAt,
