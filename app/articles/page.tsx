@@ -2,20 +2,23 @@ import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import { getAllDevProjects } from "@/sanity/queries/devProjects";
 import Layout from "components/Layout";
-import { revalidatePage } from "portfolio.config";
 import { DevProjectsClient } from "./dev-projects-client";
 
-export const revalidate = revalidatePage;
+export const revalidate = 30;
 
 export const metadata = {
-	title: "Divers sujets pour diverses passions ! Explorons ensemble les technologies web, l'énergie et la photographie.",
-	description: "Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+	title:
+		"Divers sujets pour diverses passions ! Explorons ensemble les technologies web, l'énergie et la photographie.",
+	description:
+		"Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
 	openGraph: {
-		title: "Divers sujets pour diverses passions ! Explorons ensemble les technologies web, l'énergie et la photographie.",
-		description: "Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
+		title:
+			"Divers sujets pour diverses passions ! Explorons ensemble les technologies web, l'énergie et la photographie.",
+		description:
+			"Explorez une diversité de sujets qui captivent mon intérêt et nourrissent ma passion. Dans ce voyage à travers mes réflexions, vous découvrirez des articles traitant des dernières avancées en matière de technologies web, explorant les tendances émergentes et les innovations qui façonnent notre expérience en ligne. De plus, je partagerai avec vous mes réflexions sur l'énergie et son impact sur notre société, explorant les solutions durables et les défis actuels liés à cette ressource essentielle. Enfin, plongez dans l'univers de la photographie avec moi, où je partage mes expériences, conseils et inspirations pour capturer des moments uniques à travers l'objectif. Que ce soit dans le monde des technologies, de l'énergie ou de la photographie, je suis ravi de vous emmener dans cette aventure de découverte et d'exploration.",
 		type: "website",
 	},
-}
+};
 
 interface ProjectsPageProps {
 	searchParams: Promise<{ page?: string }>;
