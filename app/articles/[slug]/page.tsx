@@ -1,5 +1,6 @@
 import { AuthorProfile } from "@/components/AuthorProfile";
 import { PortableComponentsDefinitions as components } from "@/components/PortableComponentsDefinitions";
+import { RepoLink } from "@/components/RepoLink";
 import { urlFor } from "@/sanity/lib/client";
 import {
 	getDevProjectBySlug,
@@ -49,17 +50,17 @@ export async function generateMetadata(
 			images: [
 				...(data.mainImage
 					? [
-						{
-							url: urlFor(data.mainImage)
-								.width(800)
-								.height(600)
-								.format("webp")
-								.url(),
-							width: 800,
-							height: 600,
-							alt: `Image de l'article ${data.title}`,
-						},
-					]
+							{
+								url: urlFor(data.mainImage)
+									.width(800)
+									.height(600)
+									.format("webp")
+									.url(),
+								width: 800,
+								height: 600,
+								alt: `Image de l'article ${data.title}`,
+							},
+						]
 					: []),
 				...previousImages,
 			],
@@ -80,7 +81,7 @@ export default async function ArticlePage({ params }: Props) {
 			{/* Article Header with Author Profile */}
 			<header className="mb-8">
 				{/* Author Profile */}
-				{data.author && data.author.image && (
+				{data.author && data.author.image && data.publishedAt && (
 					<AuthorProfile
 						name={data.author.name}
 						title={data.author.postion}
