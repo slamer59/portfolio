@@ -5,6 +5,7 @@ import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { StyledBlockquote } from "./StyledBlockquote";
 
 export const PortableComponentsDefinitions: Partial<PortableTextReactComponents> =
 	{
@@ -30,7 +31,7 @@ export const PortableComponentsDefinitions: Partial<PortableTextReactComponents>
 			codeBlock: ({ value }) => {
 				const language = value.language || "javascript";
 				return (
-					<div className="my-8 rounded-xl overflow-hidden shadow-lg">
+					<div className="my-8 overflow-hidden shadow-lg rounded-xl">
 						<SyntaxHighlighter
 							language={language}
 							style={vscDarkPlus}
@@ -48,56 +49,102 @@ export const PortableComponentsDefinitions: Partial<PortableTextReactComponents>
 					</div>
 				);
 			},
+			table: ({ value }) => {
+				const { rows, caption } = value;
+				return (
+					<figure className="my-8 overflow-hidden rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_6px_-1px_rgba(255,255,255,0.15),0_2px_4px_-2px_rgba(255,255,255,0.1)]">
+						<table className="w-full border-collapse">
+							<tbody>
+								{rows?.map((row: any, rowIndex: number) => {
+									const RowTag = row.isHeader ? "thead" : "tbody";
+									const CellTag = row.isHeader ? "th" : "td";
+									const isLastRow = rowIndex === rows.length - 1;
+									return (
+										<tr
+											key={rowIndex}
+											className={
+												row.isHeader
+													? "bg-primary dark:bg-light/25"
+													: rowIndex % 2 === 0
+														? "bg-dark/5 dark:bg-light/5"
+														: ""
+											}
+										>
+											{row.cells?.map((cell: string, cellIndex: number) => (
+												<CellTag
+													key={cellIndex}
+													className={`px-4 py-3 text-left border-b ${
+														isLastRow
+															? "border-b-0"
+															: "border-b-dark/10 dark:border-b-light/10"
+													} ${
+														row.isHeader
+															? "font-semibold text-light"
+															: "text-dark dark:text-light"
+													}`}
+												>
+													{cell}
+												</CellTag>
+											))}
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
+						{caption && (
+							<figcaption className="mt-4 text-sm text-center text-dark/60 dark:text-light/60">
+								{caption}
+							</figcaption>
+						)}
+					</figure>
+				);
+			},
 		},
 		block: {
 			h1: ({ children }) => (
-				<h2 className="text-4xl font-bold mt-16 mb-6 text-dark dark:text-light">
+				<h1 className="mt-16 mb-6 text-4xl font-bold text-dark dark:text-light">
+					{children}
+				</h1>
+			),
+			h2: ({ children }) => (
+				<h2 className="mt-12 mb-5 text-3xl font-bold text-dark dark:text-light">
 					{children}
 				</h2>
 			),
-			h2: ({ children }) => (
-				<h3 className="text-3xl font-bold mt-12 mb-5 text-dark dark:text-light">
+			h3: ({ children }) => (
+				<h3 className="mt-10 mb-4 text-2xl font-semibold text-dark dark:text-light">
 					{children}
 				</h3>
 			),
-			h3: ({ children }) => (
-				<h4 className="text-2xl font-semibold mt-10 mb-4 text-dark dark:text-light">
+			h4: ({ children }) => (
+				<h4 className="mt-8 mb-3 text-xl font-semibold text-dark dark:text-light">
 					{children}
 				</h4>
 			),
-			h4: ({ children }) => (
-				<h5 className="text-xl font-semibold mt-8 mb-3 text-dark dark:text-light">
-					{children}
-				</h5>
-			),
 			normal: ({ children }) => (
-				<p className="text-lg leading-relaxed mb-6 text-dark dark:text-light">
+				<p className="mb-6 text-lg leading-relaxed text-dark dark:text-light">
 					{children}
 				</p>
 			),
 			blockquote: ({ children }) => (
-				<blockquote className="border-l-4 border-primary pl-6 my-8 italic text-lg text-dark/80 dark:text-light/80">
-					{children}
-				</blockquote>
+				<StyledBlockquote>{children}</StyledBlockquote>
 			),
 		},
 		list: {
 			bullet: ({ children }) => (
-				<ul className="my-6 ml-6 space-y-3 text-lg list-disc marker:text-primary text-dark dark:text-light">
+				<ul className="my-6 ml-6 space-y-3 text-lg list-disc marker:text-primary dark:marker:text-light text-dark dark:text-light">
 					{children}
 				</ul>
 			),
 			number: ({ children }) => (
-				<ol className="my-6 ml-6 space-y-3 text-lg list-decimal marker:text-primary text-dark dark:text-light">
+				<ol className="my-6 ml-6 space-y-3 text-lg list-decimal marker:text-primary dark:marker:text-light text-dark dark:text-light">
 					{children}
 				</ol>
 			),
 		},
 		marks: {
 			strong: ({ children }) => (
-				<strong className="font-semibold text-primary dark:text-light">
-					{children}
-				</strong>
+				<strong className="font-semibold">{children}</strong>
 			),
 			em: ({ children }) => <em className="italic">{children}</em>,
 			code: ({ children }) => (
@@ -109,8 +156,8 @@ export const PortableComponentsDefinitions: Partial<PortableTextReactComponents>
 				<a
 					href={value?.href}
 					target="_blank"
-					rel="noopener noreferrer"
-					className="text-primary underline hover:opacity-80 transition-opacity"
+					rel="noopener noreferrer nofollow"
+					className="font-medium transition-opacity text-primary hover:opacity-80"
 				>
 					{children}
 				</a>

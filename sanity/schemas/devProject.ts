@@ -38,6 +38,13 @@ export default defineType({
 			description: "Full project description with rich text",
 		}),
 		defineField({
+			name: "author",
+			title: "Author",
+			type: "reference",
+			to: { type: "author" },
+			description: "Project author",
+		}),
+		defineField({
 			name: "mainImage",
 			title: "Main Image",
 			type: "image",

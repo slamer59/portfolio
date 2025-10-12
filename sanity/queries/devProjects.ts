@@ -5,8 +5,8 @@ export interface DevProject {
 	title: string;
 	summary: string;
 	description?: any; // Portable Text content
-	mainImage?: {
-		asset: any;
+	mainImage?: any;
+	mainImageMeta?: {
 		dimensions: {
 			width: number;
 			height: number;
@@ -26,6 +26,11 @@ export interface DevProject {
 	_updatedAt?: string;
 	views?: number;
 	lastViewedAt?: string;
+	author?: {
+		name: string;
+		image: any;
+		postion: string;
+	};
 }
 
 /**
@@ -102,8 +107,8 @@ export async function getDevProjectBySlug(
       title,
       summary,
       description,
-      "mainImage": {
-        "asset": mainImage.asset,
+      mainImage,
+      "mainImageMeta": {
         "dimensions": mainImage.asset->metadata.dimensions,
         "lqip": mainImage.asset->metadata.lqip,
         "alt": mainImage.alt
@@ -116,7 +121,12 @@ export async function getDevProjectBySlug(
       published,
       keywords,
       type,
-      _updatedAt
+      _updatedAt,
+      author-> {
+        name,
+        image,
+        postion
+      }
     }[0]`;
 
 	const data = await client.fetch(query);

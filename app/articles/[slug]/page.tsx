@@ -1,14 +1,11 @@
-import { ViewTracker } from "@/components/DevBlog/ViewTracker";
+import { AuthorProfile } from "@/components/AuthorProfile";
 import { PortableComponentsDefinitions as components } from "@/components/PortableComponentsDefinitions";
-import { splitContentAtIntro } from "@/lib/contentUtils";
-import { getTechnologyClassName } from "@/lib/technologyColors";
 import { urlFor } from "@/sanity/lib/client";
 import {
 	getDevProjectBySlug,
 	getDevProjectsSitemap,
 } from "@/sanity/queries/devProjects";
 import { PortableText } from "@portabletext/react";
-import { ExternalLink, Eye, Github } from "lucide-react";
 import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,9 +20,9 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-	const projects = await getDevProjectsSitemap();
-	return projects.map((project) => ({
-		slug: project.currentSlug,
+	const articles = await getDevProjectsSitemap();
+	return articles.map((article) => ({
+		slug: article.currentSlug,
 	}));
 }
 
@@ -44,23 +41,23 @@ export async function generateMetadata(
 
 	return {
 		title: data.title,
-		description: data.summary,
+		description: data.summary || data.title,
 		openGraph: {
 			title: data.title,
-			description: data.summary,
+			description: data.summary || data.title,
 			type: "website",
 			images: [
 				...(data.mainImage
 					? [
 							{
-								url: urlFor(data.mainImage.asset)
+								url: urlFor(data.mainImage)
 									.width(800)
 									.height(600)
 									.format("webp")
 									.url(),
 								width: 800,
 								height: 600,
-								alt: `Image du projet ${data.title}`,
+								alt: `Image de l'article ${data.title}`,
 							},
 						]
 					: []),
@@ -70,7 +67,7 @@ export async function generateMetadata(
 	};
 }
 
-export default async function DevProjectPage({ params }: Props) {
+export default async function ArticlePage({ params }: Props) {
 	const resolvedParams = await params;
 	const data = await getDevProjectBySlug(resolvedParams.slug);
 
@@ -78,128 +75,101 @@ export default async function DevProjectPage({ params }: Props) {
 		notFound();
 	}
 
-	// Split content into intro and rest
-	const { intro: introBlocks, rest: restBlocks } = splitContentAtIntro(
-		data.description || [],
-	);
-
 	return (
-		<>
-			<ViewTracker slug={resolvedParams.slug} />
-			<article className="max-w-3xl px-6 py-12 mx-auto">
-				{/* Simple Hero */}
-				<header className="mb-12">
-					<h1 className="mb-4 text-5xl font-bold text-dark dark:text-light">
-						{data.title}
-					</h1>
-					<div className="flex gap-4 mb-6 text-sm opacity-70 text-dark dark:text-light">
-						{data.publishedAt && (
-							<>
-								<time>
-									{new Date(data.publishedAt).toLocaleDateString("fr-FR", {
-										year: "numeric",
-										month: "long",
-										day: "numeric",
-									})}
-								</time>
-								<span>•</span>
-							</>
-						)}
-						<span>{data.type || "Projet"}</span>
-						{data.views !== undefined && data.views > 0 && (
-							<>
-								<span>•</span>
-								<div className="flex items-center gap-1">
-									<Eye className="w-4 h-4" />
-									<span>{data.views.toLocaleString()} vues</span>
-								</div>
-							</>
-						)}
-					</div>
+		<article className="max-w-4xl px-6 py-12 mx-auto">
+			{/* Article Header with Author Profile */}
+			<header className="mb-8">
+				{/* Author Profile */}
+				{data.author && data.author.image && (
+					<AuthorProfile
+						name={data.author.name}
+						title={data.author.postion}
+						date={new Date(data.publishedAt).toLocaleDateString("fr-FR", {
+							weekday: "long",
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})}
+						imageSrc={urlFor(data.author.image)
+							.size(2 * 64, 2 * 64)
+							.format("webp")
+							.url()}
+						imageAlt={data.author.name}
+					/>
+				)}
 
-					{/* Technologies */}
+				{/* Title */}
+				<h1 className="mb-6 text-4xl font-bold leading-tight text-dark dark:text-light lg:text-5xl">
+					{data.title}
+				</h1>
+
+				{/* Metadata: Tags and Views */}
+				<div className="flex flex-wrap items-center gap-4 mb-6">
+					{/* Technologies/Tags */}
 					{data.technologies && data.technologies.length > 0 && (
 						<div className="flex flex-wrap gap-2">
 							{data.technologies.map((tech) => (
 								<Link
 									key={tech}
 									href={`/articles?tech=${encodeURIComponent(tech)}`}
-									className={`px-3 py-1 text-xs border rounded-full transition-all hover:scale-105 hover:shadow-md ${getTechnologyClassName(tech)}`}
-									title={`Voir tous les projets avec ${tech}`}
+									className="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-light/20 dark:text-light hover:bg-primary/20 dark:hover:bg-light/30 transition-colors"
 								>
 									{tech}
 								</Link>
 							))}
 						</div>
 					)}
-				</header>
 
-				{/* Content with automatic link insertion */}
-				<div className="prose prose-xl dark:prose-invert max-w-none">
-					{/* Intro Content */}
-					{introBlocks.length > 0 && (
-						<PortableText components={components} value={introBlocks} />
-					)}
-
-					{/* Project Info Card - Image + Links */}
-					{(data.mainImage || data.github || data.link) && (
-						<aside className="my-12 overflow-hidden border rounded-xl border-dark/10 dark:border-light/20 bg-dark/5 dark:bg-light/5">
-							{/* Image at top */}
-							{data.mainImage && (
-								<Image
-									src={urlFor(data.mainImage.asset)
-										.width(1200)
-										.height(600)
-										.format("webp")
-										.url()}
-									width={1200}
-									height={600}
-									alt={data.mainImage.alt || "Image du projet"}
-									className="w-full"
-									placeholder="blur"
-									blurDataURL={data.mainImage.lqip}
-									priority
+					{/* View Count */}
+					{data.views !== undefined && data.views > 0 && (
+						<span className="flex items-center gap-1 text-sm text-dark/60 dark:text-light/60">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								stroke="currentColor"
+								className="w-5 h-5"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
 								/>
-							)}
-
-							{/* Links below image */}
-							{(data.github || data.link) && (
-								<div className="p-6">
-									<div className="flex flex-row items-center justify-center gap-4 sm:flex-row">
-										{data.github && (
-											<Link
-												href={data.github}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="inline-flex items-center gap-2 px-6 py-3 font-medium transition-opacity rounded-lg bg-dark dark:bg-light text-light dark:text-dark hover:opacity-90"
-											>
-												<Github className="w-5 h-5" />
-												Voir sur GitHub
-											</Link>
-										)}
-										{data.link && (
-											<Link
-												href={data.link}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="inline-flex items-center gap-2 px-6 py-3 font-medium transition-opacity rounded-lg bg-primary text-light hover:opacity-90"
-											>
-												<ExternalLink className="w-5 h-5" />
-												Voir le projet
-											</Link>
-										)}
-									</div>
-								</div>
-							)}
-						</aside>
-					)}
-
-					{/* Rest of Content */}
-					{restBlocks.length > 0 && (
-						<PortableText components={components} value={restBlocks} />
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+								/>
+							</svg>
+							{data.views} {data.views === 1 ? "vue" : "vues"}
+						</span>
 					)}
 				</div>
-			</article>
-		</>
+			</header>
+
+			{/* Main Image */}
+			{data.mainImage && (
+				<Image
+					src={urlFor(data.mainImage)
+						.width(1200)
+						.height(400)
+						.format("webp")
+						.url()}
+					width={1200}
+					height={400}
+					alt="Title Image"
+					priority
+					className="w-full mx-auto mb-8 border rounded-lg"
+					placeholder="blur"
+					blurDataURL={data.mainImageMeta?.lqip}
+				/>
+			)}
+
+			{/* Article Content */}
+			<div className="mt-8 prose prose-lg dark:prose-invert max-w-none prose-li:marker:text-primary prose-a:text-primary">
+				<PortableText components={components} value={data.description} />
+			</div>
+		</article>
 	);
 }

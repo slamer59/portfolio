@@ -1,13 +1,14 @@
 import { client } from "@/sanity/lib/client";
 
 export async function getArticleData(slug: string) {
-  const query = `
-    *[_type == "article" && slug.current == '${slug}' && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && slug.current == '${slug}' && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
-          body,
-          "mainImage":{
-            "asset": mainImage.asset,      
+          summary,
+          description,
+          mainImage,
+          "mainImageMeta": {
             "dimensions": mainImage.asset->metadata.dimensions,
             "lqip": mainImage.asset->metadata.lqip
           },
@@ -16,35 +17,35 @@ export async function getArticleData(slug: string) {
             name,
             image,
             postion,
-          }          
+          }
       }[0]`;
 
-  const data = await client.fetch(query);
-  return data;
+	const data = await client.fetch(query);
+	return data;
 }
 
 export async function getFeaturedArticles() {
-  const query = `
-    *[_type == "article" && featured == true && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && featured == true && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
-          body,
+          description,
           "mainImage":{
-            "asset": mainImage.asset,      
+            "asset": mainImage.asset,
             "dimensions": mainImage.asset->metadata.dimensions,
             "lqip": mainImage.asset->metadata.lqip
           },
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
       }`;
 
-  const data = await client.fetch(query);
-  const filteredData = data.filter((article) => article.galleryRef.length == 0)
-  return filteredData
+	const data = await client.fetch(query);
+	const filteredData = data.filter((article) => article.galleryRef.length == 0);
+	return filteredData;
 }
 
 export async function getArticles() {
-  const query = `
-    *[_type == "article" && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && defined(publishedAt)] {
         "currentSlug": slug.current,
           title,
           mainImage,
@@ -52,14 +53,14 @@ export async function getArticles() {
           publishedAt
       }`;
 
-  const data = await client.fetch(query);
-  const filteredData = data.filter((article) => article.galleryRef.length == 0)
-  return filteredData
+	const data = await client.fetch(query);
+	const filteredData = data.filter((article) => article.galleryRef.length == 0);
+	return filteredData;
 }
 
 export async function getAllPhotoProjects() {
-  const query = `
-    *[_type == "article" && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && defined(publishedAt)] {
       "currentSlug": slug.current,
         title,
         featured,
@@ -74,28 +75,14 @@ export async function getAllPhotoProjects() {
   } | order(publishedAt desc)
   `;
 
-  const data = await client.fetch(query);
-  const filteredData = data.filter((article) => article.galleryRef.length != 0)
-  return filteredData
+	const data = await client.fetch(query);
+	const filteredData = data.filter((article) => article.galleryRef.length != 0);
+	return filteredData;
 }
 
-// export async function getFeaturedArticlesSitemap() {
-//   const query = `
-//     *[_type == "article" && featured == true] {
-//         "currentSlug": slug.current,
-//         publisedAt,
-//           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
-//       }`;
-
-//   const data = await client.fetch(query);
-//   const filteredData = data.filter((article) => article.galleryRef.length == 0)
-//   return filteredData
-// }
-
-
 export async function getArticlesSitemap() {
-  const query = `
-    *[_type == "article" && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && defined(publishedAt)] {
         "currentSlug": slug.current,
           "galleryRef": *[_type == "gallery" && references(^._id)]._id,
           publishedAt,
@@ -103,14 +90,14 @@ export async function getArticlesSitemap() {
 
       }`;
 
-  const data = await client.fetch(query);
-  const filteredData = data.filter((article) => article.galleryRef.length == 0)
-  return filteredData
+	const data = await client.fetch(query);
+	const filteredData = data.filter((article) => article.galleryRef.length == 0);
+	return filteredData;
 }
 
 export async function getAllPhotoProjectsSitemap() {
-  const query = `
-    *[_type == "article" && defined(publishedAt)] {
+	const query = `
+    *[_type == "devProject" && defined(publishedAt)] {
       "currentSlug": slug.current,
         publishedAt,
         _updatedAt,
@@ -122,11 +109,7 @@ export async function getAllPhotoProjectsSitemap() {
         }
   }`;
 
-  const data = await client.fetch(query);
-  const filteredData = data.filter((article) => article.galleryRef.length != 0)
-  return filteredData
+	const data = await client.fetch(query);
+	const filteredData = data.filter((article) => article.galleryRef.length != 0);
+	return filteredData;
 }
-
-
-
-

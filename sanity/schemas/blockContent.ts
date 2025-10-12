@@ -113,5 +113,53 @@ export default defineType({
 				},
 			],
 		}),
+		defineArrayMember({
+			type: "object",
+			name: "table",
+			title: "Table",
+			fields: [
+				{
+					name: "rows",
+					title: "Table Rows",
+					type: "array",
+					of: [
+						{
+							type: "object",
+							fields: [
+								{
+									name: "cells",
+									title: "Cells",
+									type: "array",
+									of: [{ type: "string" }],
+								},
+								{
+									name: "isHeader",
+									title: "Is Header Row",
+									type: "boolean",
+									initialValue: false,
+								},
+							],
+						},
+					],
+				},
+				{
+					name: "caption",
+					title: "Table Caption",
+					type: "string",
+				},
+			],
+			preview: {
+				select: {
+					rows: "rows",
+					caption: "caption",
+				},
+				prepare({ rows, caption }) {
+					return {
+						title: caption || "Table",
+						subtitle: `${rows?.length || 0} rows`,
+					};
+				},
+			},
+		}),
 	],
 });
