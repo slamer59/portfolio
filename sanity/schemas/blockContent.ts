@@ -115,6 +115,61 @@ export default defineType({
 		}),
 		defineArrayMember({
 			type: "object",
+			name: "repoLink",
+			title: "Repository Link",
+			fields: [
+				{
+					name: "url",
+					title: "Repository URL",
+					type: "url",
+					validation: (Rule) =>
+						Rule.required().uri({
+							scheme: ["http", "https"],
+						}),
+				},
+				{
+					name: "platform",
+					title: "Platform",
+					type: "string",
+					options: {
+						list: [
+							{ title: "GitHub", value: "github" },
+							{ title: "GitLab", value: "gitlab" },
+						],
+					},
+					description: "Auto-detected from URL if not specified",
+				},
+				{
+					name: "text",
+					title: "Link Text",
+					type: "string",
+					description:
+						'Optional custom text (default: "Voir sur GitHub/GitLab")',
+				},
+			],
+			preview: {
+				select: {
+					url: "url",
+					text: "text",
+					platform: "platform",
+				},
+				prepare({ url, text, platform }) {
+					const detectedPlatform =
+						platform ||
+						(url?.includes("github.com")
+							? "GitHub"
+							: url?.includes("gitlab.com")
+								? "GitLab"
+								: "Repository");
+					return {
+						title: text || `${detectedPlatform} Link`,
+						subtitle: url,
+					};
+				},
+			},
+		}),
+		defineArrayMember({
+			type: "object",
 			name: "table",
 			title: "Table",
 			fields: [

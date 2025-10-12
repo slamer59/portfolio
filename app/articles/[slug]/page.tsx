@@ -49,17 +49,17 @@ export async function generateMetadata(
 			images: [
 				...(data.mainImage
 					? [
-							{
-								url: urlFor(data.mainImage)
-									.width(800)
-									.height(600)
-									.format("webp")
-									.url(),
-								width: 800,
-								height: 600,
-								alt: `Image de l'article ${data.title}`,
-							},
-						]
+						{
+							url: urlFor(data.mainImage)
+								.width(800)
+								.height(600)
+								.format("webp")
+								.url(),
+							width: 800,
+							height: 600,
+							alt: `Image de l'article ${data.title}`,
+						},
+					]
 					: []),
 				...previousImages,
 			],
@@ -112,7 +112,7 @@ export default async function ArticlePage({ params }: Props) {
 								<Link
 									key={tech}
 									href={`/articles?tech=${encodeURIComponent(tech)}`}
-									className="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-light/20 dark:text-light hover:bg-primary/20 dark:hover:bg-light/30 transition-colors"
+									className="px-3 py-1 text-sm font-medium transition-colors rounded-full bg-primary/10 text-primary dark:bg-light/20 dark:text-light hover:bg-primary/20 dark:hover:bg-light/30"
 								>
 									{tech}
 								</Link>
