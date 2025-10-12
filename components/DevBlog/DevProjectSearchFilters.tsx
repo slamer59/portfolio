@@ -68,31 +68,31 @@ export function DevProjectSearchFilters({
 			{/* Search Bar */}
 			<div className="relative max-w-2xl mx-auto">
 				<div className="relative">
-					<Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-dark/40 dark:text-muted-foreground" />
+					<Search className="absolute w-5 h-5 transform -translate-y-1/2 left-4 top-1/2 text-dark/40 dark:text-white/40" />
 					<input
 						type="text"
 						placeholder="Rechercher des projets..."
 						value={searchQuery}
 						onChange={(e) => handleSearchChange(e.target.value)}
-						className="w-full pl-12 pr-4 py-4 bg-dark/5 dark:bg-white/5 backdrop-blur-lg border border-dark/10 dark:border-white/10 rounded-2xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-dark dark:text-foreground placeholder:text-dark/40 dark:placeholder:text-muted-foreground shadow-sm"
+						className="w-full py-4 pl-12 pr-4 transition-all duration-300 border shadow-sm bg-dark/5 dark:bg-white/10 backdrop-blur-lg border-dark/10 dark:border-white/30 rounded-2xl focus:border-primary/50 dark:focus:border-primaryDark/50 focus:ring-2 focus:ring-primary/20 dark:focus:ring-primaryDark/20 text-dark dark:text-white placeholder:text-dark/40 dark:placeholder:text-white/50"
 					/>
 				</div>
 			</div>
 
 			{/* Filter Toggle & Results Count */}
-			<div className="flex items-center justify-between flex-wrap gap-4">
+			<div className="flex flex-wrap items-center justify-between gap-4">
 				<div className="flex items-center gap-4">
 					<Button
 						variant="outline"
 						onClick={() => setIsFilterOpen(!isFilterOpen)}
-						className="flex items-center gap-2 bg-dark/5 dark:bg-white/5 backdrop-blur-lg border-dark/10 dark:border-white/10 hover:border-dark/20 dark:hover:border-white/20 shadow-sm"
+						className="flex items-center gap-2 shadow-sm bg-dark/5 dark:bg-white/10 backdrop-blur-lg border-dark/10 dark:border-white/30 hover:border-dark/20 dark:hover:border-primaryDark/50 text-dark dark:text-white"
 					>
 						<Filter className="w-4 h-4" />
 						<span>Filtres</span>
 						{activeFilters.length > 0 && (
 							<Badge
 								variant="secondary"
-								className="ml-1 bg-primary/20 text-primary"
+								className="ml-1 bg-primary/20 text-primary dark:bg-primaryDark/20 dark:text-primaryDark"
 							>
 								{activeFilters.length}
 							</Badge>
@@ -103,7 +103,7 @@ export function DevProjectSearchFilters({
 						<Button
 							variant="ghost"
 							onClick={clearFilters}
-							className="flex items-center gap-2 text-dark/60 dark:text-muted-foreground hover:text-dark dark:hover:text-foreground"
+							className="flex items-center gap-2 text-dark/60 dark:text-white/70 hover:text-dark dark:hover:text-primaryDark hover:bg-dark/5 dark:hover:bg-primaryDark/10"
 						>
 							<X className="w-4 h-4" />
 							<span>Tout effacer</span>
@@ -111,8 +111,10 @@ export function DevProjectSearchFilters({
 					)}
 				</div>
 
-				<div className="text-sm font-medium text-dark/70 dark:text-muted-foreground">
-					<span className="text-primary font-semibold">{filteredProjects}</span>{" "}
+				<div className="text-sm font-medium text-dark/70 dark:text-white/70">
+					<span className="font-semibold text-primary dark:text-primaryDark">
+						{filteredProjects}
+					</span>{" "}
 					sur {totalProjects} projets
 				</div>
 			</div>
@@ -144,9 +146,9 @@ export function DevProjectSearchFilters({
 					initial={{ opacity: 0, height: 0 }}
 					animate={{ opacity: 1, height: "auto" }}
 					exit={{ opacity: 0, height: 0 }}
-					className="p-6 bg-dark/5 dark:bg-white/5 backdrop-blur-lg border border-dark/10 dark:border-white/10 rounded-2xl shadow-sm"
+					className="p-6 border shadow-sm bg-dark/5 dark:bg-white/5 backdrop-blur-lg border-dark/10 dark:border-white/10 rounded-2xl"
 				>
-					<h3 className="text-lg font-semibold mb-4 text-dark dark:text-foreground">
+					<h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
 						Filtrer par technologie
 					</h3>
 					<div className="flex flex-wrap gap-3">
@@ -157,7 +159,7 @@ export function DevProjectSearchFilters({
 								className={`px-3 py-1 text-xs border rounded-full transition-all hover:scale-105 hover:shadow-md cursor-pointer ${
 									activeFilters.includes(filter)
 										? getTechnologyClassName(filter)
-										: "bg-white dark:bg-dark/50 text-dark dark:text-light border-dark/20 dark:border-light/20 hover:border-primary/50"
+										: "bg-white dark:bg-white/10 text-dark dark:text-white border-dark/20 dark:border-white/30 hover:border-primary/50 dark:hover:border-primaryDark/50"
 								}`}
 								onClick={() => handleFilterToggle(filter)}
 							>

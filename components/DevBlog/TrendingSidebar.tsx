@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import type { DevProject } from "@/lib/devProject";
+import { urlFor } from "@/sanity/lib/client";
 import { motion } from "framer-motion";
 import { Clock, Eye, Star, TrendingUp } from "lucide-react";
 import Image from "next/image";
@@ -81,13 +82,23 @@ export function TrendingSidebar({
 								transition={{ type: "spring", stiffness: 400, damping: 17 }}
 							>
 								<div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-									<Image
-										src="/images/profile.jpg"
-										alt={project.title}
-										fill
-										className="object-cover"
-										sizes="64px"
-									/>
+									{project.mainImage ? (
+										<Image
+											src={urlFor(project.mainImage)
+												.width(128)
+												.height(128)
+												.format("webp")
+												.url()}
+											alt={project.title}
+											fill
+											className="object-cover"
+											sizes="64px"
+										/>
+									) : (
+										<div className="w-full h-full bg-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+											{project.title.substring(0, 2).toUpperCase()}
+										</div>
+									)}
 								</div>
 
 								<div className="flex-1 min-w-0 space-y-1">

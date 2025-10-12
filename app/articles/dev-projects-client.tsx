@@ -108,9 +108,9 @@ export function DevProjectsClient({
 				</div>
 
 				{/* Main Content Area */}
-				<div className="grid grid-cols-1 gap-12 xl:grid-cols-4">
+				<div className="grid grid-cols-1 gap-12 min-lg:grid-cols-4">
 					{/* Main Projects */}
-					<div className="xl:col-span-3">
+					<div className="min-lg:col-span-3">
 						{/* Featured Projects */}
 						{featuredProjects.length > 0 && (
 							<section className="mb-16">
@@ -185,7 +185,7 @@ export function DevProjectsClient({
 									<div className="flex-1 h-1 rounded-full bg-gradient-to-r from-primary/50 to-transparent" />
 								</h2>
 
-								<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+								<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 									{paginatedProjects.map((project, index) => (
 										<DevProjectCard
 											key={project.slug}
@@ -277,7 +277,7 @@ export function DevProjectsClient({
 					</div>
 
 					{/* Sidebar */}
-					<div className="xl:col-span-1">
+					<div className="min-lg:col-span-1">
 						<div className="sticky top-8">
 							<TrendingSidebar
 								projects={projects}

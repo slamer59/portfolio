@@ -32,7 +32,7 @@ module.exports = {
 				primary: "#59082E", // Wine red - for frameworks
 				primaryDark: "#FF8C00", // Orange - for dark mode links
 				secondary: "#1E5F74", // Teal blue - for CMS/databases
-				accent: "#8B5A00", // Amber brown - for languages
+				accent: "#1E5F74", // Amber brown - for languages
 			},
 			animation: {
 				"spin-slow": "spin 8s linear infinite",
@@ -99,6 +99,10 @@ module.exports = {
 
 			xs: { max: "479px" },
 			// => @media (max-width: 479px) { ... }
+
+			// Min-width breakpoints for grid layout
+			"min-lg": { min: "1024px" },
+			"min-xl": { min: "1280px" },
 		},
 	},
 	plugins: [
