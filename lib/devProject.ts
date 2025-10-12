@@ -33,6 +33,8 @@ export interface DevProject {
 		image?: string;
 		position?: string;
 	};
+	views?: number; // View count from Sanity
+	lastViewedAt?: string; // Last viewed timestamp from Sanity
 }
 
 // Trending post type (extends DevProject with analytics)

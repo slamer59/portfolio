@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Enhanced prose for dev project pages */
+.prose-reading {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.prose-reading p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-reading li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Code inline styling */
+.prose-reading code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* Better link hover */
+.prose-reading a:hover {
+  opacity: 0.8;
+}

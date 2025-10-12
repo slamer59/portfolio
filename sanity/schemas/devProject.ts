@@ -125,6 +125,21 @@ export default defineType({
 				],
 			},
 		}),
+		defineField({
+			name: "views",
+			title: "View Count",
+			type: "number",
+			description: "Number of times this project has been viewed",
+			initialValue: 0,
+			readOnly: true,
+		}),
+		defineField({
+			name: "lastViewedAt",
+			title: "Last Viewed At",
+			type: "datetime",
+			description: "When the project was last viewed",
+			readOnly: true,
+		}),
 	],
 
 	preview: {

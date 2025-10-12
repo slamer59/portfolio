@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 
 interface DevProjectsClientProps {
 	projects: DevProject[];
-	searchParams?: { page?: string };
+	searchParams?: { page?: string; tech?: string };
 }
 
 export function DevProjectsClient({
@@ -18,7 +18,13 @@ export function DevProjectsClient({
 	searchParams,
 }: DevProjectsClientProps) {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [activeFilters, setActiveFilters] = useState<string[]>([]);
+	// Initialize activeFilters with tech param from URL if present
+	const [activeFilters, setActiveFilters] = useState<string[]>(() => {
+		if (searchParams?.tech) {
+			return [decodeURIComponent(searchParams.tech)];
+		}
+		return [];
+	});
 
 	// Filter projects based on search and filters
 	const filteredProjects = useMemo(() => {
@@ -63,6 +69,15 @@ export function DevProjectsClient({
 		(project) => !project.featured,
 	);
 
+	// Extract all unique technologies from all projects
+	const allTechnologies = useMemo(() => {
+		const techs = new Set<string>();
+		projects.forEach((project) => {
+			project.technologies?.forEach((tech) => techs.add(tech));
+		});
+		return Array.from(techs);
+	}, [projects]);
+
 	// Pagination
 	const currentPage = Number(searchParams?.page) || 1;
 	const projectsPerPage = 9;
@@ -75,9 +90,9 @@ export function DevProjectsClient({
 	return (
 		<div className="min-h-screen dark:bg-dark">
 			{/* Hero Section */}
-			<h1 className="container px-4 mb-6 text-5xl font-bold text-center md:text-6xl lg:text-7xl text-dark dark:text-light">
+			<h2 className="container px-4 mb-6 text-5xl font-bold text-center md:text-6xl lg:text-7xl text-dark dark:text-light">
 				Projets de Développement
-			</h1>
+			</h2>
 
 			<div className="container px-4 py-16 mx-auto">
 				{/* Search and Filters */}
@@ -87,6 +102,8 @@ export function DevProjectsClient({
 						onFilterChange={setActiveFilters}
 						totalProjects={projects.length}
 						filteredProjects={filteredProjects.length}
+						allTechnologies={allTechnologies}
+						initialFilters={activeFilters}
 					/>
 				</div>
 
@@ -183,11 +200,12 @@ export function DevProjectsClient({
 								{totalPages > 1 && (
 									<div className="flex items-center justify-center gap-4 mt-16">
 										<Link
-											href={`/projets-dev?page=${Math.max(currentPage - 1, 1)}`}
-											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${currentPage === 1
-												? "pointer-events-none opacity-50"
-												: ""
-												}`}
+											href={`/articles?page=${Math.max(currentPage - 1, 1)}`}
+											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
+												currentPage === 1
+													? "pointer-events-none opacity-50"
+													: ""
+											}`}
 										>
 											<ArrowLeftIcon className="w-4 h-4" />
 										</Link>
@@ -210,11 +228,12 @@ export function DevProjectsClient({
 													return (
 														<Link
 															key={page}
-															href={`/projets-dev?page=${page}`}
-															className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${currentPage === page
-																? "bg-primary text-light"
-																: "bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 hover:border-primary/50 text-dark dark:text-light"
-																}`}
+															href={`/articles?page=${page}`}
+															className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+																currentPage === page
+																	? "bg-primary text-light"
+																	: "bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 hover:border-primary/50 text-dark dark:text-light"
+															}`}
 														>
 															{page}
 														</Link>
@@ -224,11 +243,12 @@ export function DevProjectsClient({
 										</div>
 
 										<Link
-											href={`/projets-dev?page=${Math.min(currentPage + 1, totalPages)}`}
-											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${currentPage === totalPages
-												? "pointer-events-none opacity-50"
-												: ""
-												}`}
+											href={`/articles?page=${Math.min(currentPage + 1, totalPages)}`}
+											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
+												currentPage === totalPages
+													? "pointer-events-none opacity-50"
+													: ""
+											}`}
 										>
 											<ArrowRightIcon className="w-4 h-4" />
 										</Link>

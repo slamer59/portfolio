@@ -1,0 +1,34 @@
+{
+  "title": "Portfolio Website avec Next.js",
+  "slug": "portfolio-nextjs",
+  "summary": "Un site portfolio moderne construit avec Next.js, TypeScript, et Tailwind CSS. Intégration complète avec Sanity CMS pour la gestion de contenu.",
+  "description": [
+    {
+      "style": "normal",
+      "text": "Ce projet est un site portfolio personnel qui démontre mes compétences en développement web moderne."
+    },
+    {
+      "style": "h2",
+      "text": "Caractéristiques Principales"
+    },
+    {
+      "style": "normal",
+      "text": "- Design responsive et moderne\n- Intégration CMS avec Sanity\n- Optimisation des performances\n- SEO optimisé"
+    },
+    {
+      "style": "h2",
+      "text": "Défis Techniques"
+    },
+    {
+      "style": "normal",
+      "text": "L'un des principaux défis était d'intégrer un système de gestion de contenu flexible tout en maintenant d'excellentes performances."
+    }
+  ],
+  "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Sanity CMS"],
+  "keywords": ["web", "frontend", "fullstack", "cms"],
+  "github": "https://github.com/votreusername/portfolio",
+  "link": "https://votreportfolio.com",
+  "type": "Application Web",
+  "featured": true,
+  "published": true
+}

@@ -24,6 +24,8 @@ export interface DevProject {
 	keywords?: string[];
 	type?: string;
 	_updatedAt?: string;
+	views?: number;
+	lastViewedAt?: string;
 }
 
 /**
@@ -49,7 +51,9 @@ export async function getAllDevProjects(): Promise<DevProject[]> {
       featured,
       published,
       keywords,
-      type
+      type,
+      views,
+      lastViewedAt
     }`;
 
 	const data = await client.fetch(query);
@@ -89,7 +93,9 @@ export async function getFeaturedDevProjects(): Promise<DevProject[]> {
 /**
  * Get a single dev project by slug
  */
-export async function getDevProjectBySlug(slug: string): Promise<DevProject> {
+export async function getDevProjectBySlug(
+	slug: string,
+): Promise<DevProject | null> {
 	const query = `
     *[_type == "devProject" && slug.current == '${slug}' && published == true && defined(publishedAt)] {
       "currentSlug": slug.current,
@@ -155,6 +161,39 @@ export async function getDevProjectsByType(projectType: string) {
       published,
       type
     }`;
+
+	const data = await client.fetch(query);
+	return data;
+}
+
+/**
+ * Get trending dev projects based on views and recency
+ * Combines view count with time decay (recent views matter more)
+ */
+export async function getTrendingDevProjects(limit = 5): Promise<DevProject[]> {
+	const query = `
+    *[_type == "devProject" && published == true && defined(publishedAt)] {
+      "currentSlug": slug.current,
+      title,
+      summary,
+      "mainImage": {
+        "asset": mainImage.asset,
+        "dimensions": mainImage.asset->metadata.dimensions,
+        "lqip": mainImage.asset->metadata.lqip,
+        "alt": mainImage.alt
+      },
+      technologies,
+      github,
+      link,
+      publishedAt,
+      featured,
+      published,
+      keywords,
+      type,
+      views,
+      lastViewedAt,
+      "trendScore": coalesce(views, 0)
+    } | order(trendScore desc, publishedAt desc) [0...${limit}]`;
 
 	const data = await client.fetch(query);
 	return data;

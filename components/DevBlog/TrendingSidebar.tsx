@@ -14,12 +14,16 @@ interface TrendingSidebarProps {
 	activeFilters?: string[];
 }
 
-// Mock trending data - in a real app this would come from analytics
+// Get top projects by view count
 const getTrendingProjects = (projects: DevProject[]) => {
-	return projects.slice(0, 5).map((project, index) => ({
+	// Sort by views (descending) and take top 5
+	const sorted = [...projects]
+		.sort((a, b) => (b.views || 0) - (a.views || 0))
+		.slice(0, 5);
+
+	return sorted.map((project, index) => ({
 		...project,
-		views: Math.floor(Math.random() * 5000) + 1000,
-		trending: index < 3,
+		trending: index < 3, // Top 3 are marked as trending
 	}));
 };
 
@@ -61,7 +65,7 @@ export function TrendingSidebar({
 			<motion.div
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0 }}
-				className="p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl"
+				className="p-6 bg-dark/5 dark:bg-white/5 backdrop-blur-lg border border-dark/10 dark:border-white/10 rounded-2xl shadow-sm"
 			>
 				<div className="flex items-center gap-2 mb-6">
 					<TrendingUp className="w-5 h-5 text-primary" />
@@ -70,9 +74,9 @@ export function TrendingSidebar({
 
 				<div className="space-y-4">
 					{trendingProjects.map((project, index) => (
-						<Link key={project.slug} href={`/projets-dev/${project.slug}`}>
+						<Link key={project.slug} href={`/articles/${project.slug}`}>
 							<motion.div
-								className="flex gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group cursor-pointer"
+								className="flex gap-3 p-3 rounded-lg hover:bg-dark/5 dark:hover:bg-white/5 transition-colors group cursor-pointer"
 								whileHover={{ x: 5 }}
 								transition={{ type: "spring", stiffness: 400, damping: 17 }}
 							>
@@ -107,10 +111,15 @@ export function TrendingSidebar({
 									</h4>
 
 									<div className="flex items-center gap-3 text-xs text-muted-foreground">
-										<div className="flex items-center gap-1">
-											<Eye className="w-3 h-3" />
-											<span>{project.views?.toLocaleString()}</span>
-										</div>
+										{project.views !== undefined && project.views > 0 && (
+											<>
+												<div className="flex items-center gap-1">
+													<Eye className="w-3 h-3" />
+													<span>{project.views.toLocaleString()}</span>
+												</div>
+												<span>•</span>
+											</>
+										)}
 										<div className="flex items-center gap-1">
 											<Clock className="w-3 h-3" />
 											<span>
@@ -133,7 +142,7 @@ export function TrendingSidebar({
 				initial={{ opacity: 0, x: 20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.1 }}
-				className="p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl"
+				className="p-6 bg-dark/5 dark:bg-white/5 backdrop-blur-lg border border-dark/10 dark:border-white/10 rounded-2xl shadow-sm"
 			>
 				<div className="flex items-center gap-2 mb-6">
 					<Star className="w-5 h-5 text-primary" />
@@ -151,7 +160,7 @@ export function TrendingSidebar({
 								className={`flex items-center justify-between p-3 rounded-lg transition-colors cursor-pointer group ${
 									isActive
 										? "bg-primary/20 border border-primary/30"
-										: "hover:bg-white/5"
+										: "hover:bg-dark/5 dark:hover:bg-white/5"
 								}`}
 								whileHover={{ scale: 1.02 }}
 								whileTap={{ scale: 0.98 }}

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import type { DevProject } from "@/lib/devProject";
+import { getTechnologyClassName } from "@/lib/technologyColors";
 import { urlFor } from "@/sanity/lib/client";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ExternalLink, Github } from "lucide-react";
@@ -51,38 +52,6 @@ function getProjectImage(project: DevProject): string {
 	return "/images/profile.jpg";
 }
 
-// Function to get technology color
-function getTechnologyColor(tech: string): string {
-	const colors: Record<string, string> = {
-		react: "bg-blue-600 text-white border-blue-600 shadow-md",
-		nextjs: "bg-black text-white border-black shadow-md",
-		"next.js": "bg-black text-white border-black shadow-md",
-		typescript: "bg-blue-700 text-white border-blue-700 shadow-md",
-		javascript: "bg-yellow-500 text-black border-yellow-500 shadow-md",
-		node: "bg-green-600 text-white border-green-600 shadow-md",
-		nodejs: "bg-green-600 text-white border-green-600 shadow-md",
-		python: "bg-blue-500 text-white border-blue-500 shadow-md",
-		vue: "bg-emerald-600 text-white border-emerald-600 shadow-md",
-		angular: "bg-red-600 text-white border-red-600 shadow-md",
-		tailwind: "bg-cyan-500 text-white border-cyan-500 shadow-md",
-		css: "bg-blue-400 text-white border-blue-400 shadow-md",
-		docker: "bg-blue-600 text-white border-blue-600 shadow-md",
-		kubernetes: "bg-blue-700 text-white border-blue-700 shadow-md",
-		aws: "bg-orange-500 text-white border-orange-500 shadow-md",
-		graphql: "bg-pink-600 text-white border-pink-600 shadow-md",
-		mongodb: "bg-green-700 text-white border-green-700 shadow-md",
-		postgresql: "bg-blue-800 text-white border-blue-800 shadow-md",
-	};
-
-	const lowerTech = tech.toLowerCase();
-	for (const [key, value] of Object.entries(colors)) {
-		if (lowerTech.includes(key.toLowerCase())) {
-			return value;
-		}
-	}
-	return "bg-gray-600 text-white border-gray-600 shadow-md";
-}
-
 export function DevProjectCard({
 	project,
 	variant = "regular",
@@ -113,7 +82,7 @@ export function DevProjectCard({
 			whileHover={{ y: -5 }}
 			className="group"
 		>
-			<Link href={`/projets-dev/${project.slug}`} className="block h-full">
+			<Link href={`/articles/${project.slug}`} className="block h-full">
 				<div
 					className={`${cardVariants[variant]} overflow-hidden rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10`}
 				>
@@ -138,26 +107,34 @@ export function DevProjectCard({
 						{/* Project Links Overlay */}
 						<div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 							{project.github && (
-								<a
-									href={project.github}
-									target="_blank"
-									rel="noopener noreferrer"
+								<button
+									type="button"
+									onClick={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+										window.open(
+											project.github,
+											"_blank",
+											"noopener,noreferrer",
+										);
+									}}
 									className="p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
-									onClick={(e) => e.stopPropagation()}
 								>
 									<Github className="w-4 h-4 text-white" />
-								</a>
+								</button>
 							)}
 							{project.link && (
-								<a
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
+								<button
+									type="button"
+									onClick={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+										window.open(project.link, "_blank", "noopener,noreferrer");
+									}}
 									className="p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
-									onClick={(e) => e.stopPropagation()}
 								>
 									<ExternalLink className="w-4 h-4 text-white" />
-								</a>
+								</button>
 							)}
 						</div>
 					</div>
@@ -189,7 +166,7 @@ export function DevProjectCard({
 									<Badge
 										key={tech}
 										variant="secondary"
-										className={`text-xs font-semibold px-2 py-1 rounded-full ${getTechnologyColor(tech)} border`}
+										className={`text-xs font-semibold px-2 py-1 rounded-full border ${getTechnologyClassName(tech)}`}
 									>
 										{tech}
 									</Badge>

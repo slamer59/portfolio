@@ -4,211 +4,208 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useThemeSwitch } from "./Hooks/useThemeSwitch";
 import {
-  // DribbbleIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  MoonIcon,
-  SunIcon,
+	// DribbbleIcon,
+	GithubIcon,
+	InstagramIcon,
+	LinkedInIcon,
+	MoonIcon,
+	SunIcon,
 } from "./Icons";
 import Logo from "./Logo";
 
 const CustomLink = ({ href, title, className = "" }) => {
-  const pathname = usePathname();
+	const pathname = usePathname();
 
-  return (
-    <Link
-      href={href}
-      className={`${className}  rounded relative group lg:text-light lg:dark:text-dark`}
-    >
-      {title}
-      <span
-        className={`
+	return (
+		<Link
+			href={href}
+			className={`${className}  rounded relative group lg:text-light lg:dark:text-dark`}
+		>
+			{title}
+			<span
+				className={`
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
               ${pathname === href ? "w-full" : " w-0"
-          } lg:bg-light lg:dark:bg-dark
+					} lg:bg-light lg:dark:bg-dark
               `}
-      >
-        &nbsp;
-      </span>
-    </Link>
-  );
+			>
+				&nbsp;
+			</span>
+		</Link>
+	);
 };
 
 const CustomMobileLink = ({ href, title, className = "", toggle }) => {
-  const pathname = usePathname();
-  const router = useRouter();
+	const pathname = usePathname();
+	const router = useRouter();
 
-  const handleClick = () => {
-    toggle();
-    router.push(href);
-  };
+	const handleClick = () => {
+		toggle();
+		router.push(href);
+	};
 
-  return (
-    <button
-      className={`${className}  rounded relative group lg:text-light lg:dark:text-dark`}
-      onClick={handleClick}
-    >
-      {title}
-      <span
-        className={`
+	return (
+		<button
+			className={`${className}  rounded relative group lg:text-light lg:dark:text-dark`}
+			onClick={handleClick}
+		>
+			{title}
+			<span
+				className={`
               inline-block h-[1px]  bg-dark absolute left-0 -bottom-0.5 
               group-hover:w-full transition-[width] ease duration-300 dark:bg-light
               ${pathname === href ? "w-full" : " w-0"
-          } lg:bg-light lg:dark:bg-dark
+					} lg:bg-light lg:dark:bg-dark
               `}
-      >
-        &nbsp;
-      </span>
-    </button>
-  );
+			>
+				&nbsp;
+			</span>
+		</button>
+	);
 };
 
 const Navbar = () => {
-  const [mode, setMode] = useThemeSwitch();
-  const [isOpen, setIsOpen] = useState(false);
+	const [mode, setMode] = useThemeSwitch();
+	const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+	const handleClick = () => {
+		setIsOpen(!isOpen);
+	};
 
-  return (
-    <header className="fixed top-0 z-30 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 md:px-12 sm:px-8 border-primary">
-      <button
-        type="button"
-        className="flex-col items-center justify-center hidden lg:flex"
-        aria-controls="mobile-menu"
-        aria-expanded={isOpen}
-        onClick={handleClick}
-      >
-        <span className="sr-only">Open main menu</span>
-        <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-            }`}
-        ></span>
-        <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "opacity-0" : "opacity-100"
-            } my-0.5`}
-        ></span>
-        <span
-          className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-            }`}
-        ></span>
-      </button>
-      <button
-        /* @ts-ignore */
-        onClick={() => setMode(mode === "light" ? "dark" : "light")}
-        className={`w-6 h-6 ease ml-3 lg:flex items-center justify-center rounded-full p-1 hidden 
+	return (
+		<header className="fixed top-0 z-30 flex items-center justify-between w-full h-20 p-10 px-32 py-6 font-medium border-b bg-light dark:bg-primary dark:text-light lg:px-16 md:px-12 sm:px-8 border-primary">
+			<button
+				type="button"
+				className="flex-col items-center justify-center hidden lg:flex"
+				aria-controls="mobile-menu"
+				aria-expanded={isOpen}
+				onClick={handleClick}
+			>
+				<span className="sr-only">Open main menu</span>
+				<span
+					className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+						}`}
+				></span>
+				<span
+					className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "opacity-0" : "opacity-100"
+						} my-0.5`}
+				></span>
+				<span
+					className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+						}`}
+				></span>
+			</button>
+			<button
+				/* @ts-ignore */
+				onClick={() => setMode(mode === "light" ? "dark" : "light")}
+				className={`w-6 h-6 ease ml-3 lg:flex items-center justify-center rounded-full p-1 hidden 
             ${mode === "light" ? "bg-dark  text-light" : "bg-light  text-dark"}
             `}
-        aria-label="theme-switcher"
-      >
-        {mode === "light" ? (
-          <SunIcon className={"fill-dark"} />
-        ) : (
-          <MoonIcon className={"fill-dark"} />
-        )}
-      </button>
-      <div className="flex items-center justify-center w-full h-2 mt-2 lg:hidden">
-        <nav className="flex items-center justify-center ">
-          <CustomLink className="mx-4" href="/" title="Accueil" />
-          <CustomLink className="mx-4" href="/apropos" title="A propos" />
-          <CustomLink className="mx-4" href="/photographie" title="Photos" />
-          <CustomLink className="mx-4" href="/articles" title="Articles" />
-        </nav>
-        <Logo className="flex flex-wrap items-center justify-center mt-8" />
-        <nav className="flex flex-wrap items-center justify-center lg:mt-2">
-          <CustomLink className="mx-4" href="/projets-dev" title="Projets numériques" />
-          <motion.a
-            target={"https://github.com/slamer59"}
-            className="w-6 mx-3"
-            href="https://github.com/slamer59"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Voici mon profile github"
-          >
-            <GithubIcon className={" "} />
-          </motion.a>
-          <motion.a
-            target={"https://linkedin.com/in/thomaspedot/"}
-            className="w-6 mx-3"
-            href="https://linkedin.com/in/thomaspedot/"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Voici mon profile linkedin"
-          >
-            <LinkedInIcon className={" "} />
-          </motion.a>
-          <motion.a
-            target={"https://www.instagram.com/teepeetlse"}
-            className="w-6 mx-3 rounded-full bg-light"
-            href="https://www.instagram.com/teepeetlse"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Voici mon profile Instagram"
-          >
-            <InstagramIcon className={" "} />
-          </motion.a>
-          <button
-            /* @ts-ignore */
-            onClick={() => setMode(mode === "light" ? "dark" : "light")}
-            className={`w-6 h-6 ease ml-3 flex items-center justify-center rounded-full p-1  
+				aria-label="theme-switcher"
+			>
+				{mode === "light" ? (
+					<SunIcon className={"fill-dark"} />
+				) : (
+					<MoonIcon className={"fill-dark"} />
+				)}
+			</button>
+			<div className="flex items-center justify-center w-full h-2 mt-2 lg:hidden">
+				<nav className="flex items-center justify-center ">
+					<CustomLink className="mx-4" href="/" title="Accueil" />
+					<CustomLink className="mx-4" href="/apropos" title="A propos" />
+					<CustomLink className="mx-4" href="/photographie" title="Photos" />
+				</nav>
+				<Logo className="flex flex-wrap items-center justify-center mt-8" />
+				<nav className="flex flex-wrap items-center justify-center lg:mt-2">
+					<CustomLink
+						className="mx-4"
+						href="/articles"
+						title="Projets"
+					/>
+					<motion.a
+						target={"https://github.com/slamer59"}
+						className="w-6 mx-3"
+						href="https://github.com/slamer59"
+						whileHover={{ y: -2 }}
+						whileTap={{ scale: 0.9 }}
+						aria-label="Voici mon profile github"
+					>
+						<GithubIcon className={" "} />
+					</motion.a>
+					<motion.a
+						target={"https://linkedin.com/in/thomaspedot/"}
+						className="w-6 mx-3"
+						href="https://linkedin.com/in/thomaspedot/"
+						whileHover={{ y: -2 }}
+						whileTap={{ scale: 0.9 }}
+						aria-label="Voici mon profile linkedin"
+					>
+						<LinkedInIcon className={" "} />
+					</motion.a>
+					<motion.a
+						target={"https://www.instagram.com/teepeetlse"}
+						className="w-6 mx-3 rounded-full bg-light"
+						href="https://www.instagram.com/teepeetlse"
+						whileHover={{ y: -2 }}
+						whileTap={{ scale: 0.9 }}
+						aria-label="Voici mon profile Instagram"
+					>
+						<InstagramIcon className={" "} />
+					</motion.a>
+					<button
+						/* @ts-ignore */
+						onClick={() => setMode(mode === "light" ? "dark" : "light")}
+						className={`w-6 h-6 ease ml-3 flex items-center justify-center rounded-full p-1  
             ${mode === "light" ? "bg-dark  text-light" : "bg-light  text-dark"}
             `}
-            aria-label="theme-switcher"
-          >
-            {mode === "light" ? (
-              <SunIcon className={"fill-dark"} />
-            ) : (
-              <MoonIcon className={"fill-dark"} />
-            )}
-          </button>
-        </nav>
-      </div>
-      {isOpen ? (
-        <motion.div
-          className="min-w-[70vw] sm:min-w-[90vw] flex justify-between items-center flex-col fixed top-1/2 left-1/2 -translate-x-1/2
+						aria-label="theme-switcher"
+					>
+						{mode === "light" ? (
+							<SunIcon className={"fill-dark"} />
+						) : (
+							<MoonIcon className={"fill-dark"} />
+						)}
+					</button>
+				</nav>
+			</div>
+			{isOpen ? (
+				<motion.div
+					className="min-w-[70vw] sm:min-w-[90vw] flex justify-between items-center flex-col fixed top-1/2 left-1/2 -translate-x-1/2
       -translate-y-1/2
       py-32 bg-dark/90 dark:bg-light/75 rounded-lg z-50 backdrop-blur-md
       "
-          initial={{ scale: 0, x: "-50%", y: "-50%", opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-        >
-          <nav className="flex flex-col items-center justify-center">
-            <CustomMobileLink
-              toggle={handleClick}
-              className="mr-4 lg:m-0 lg:my-2"
-              href="/"
-              title="Accueil"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              className="mx-4 lg:m-0 lg:my-2"
-              href="/apropos"
-              title="A propos"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              className="mx-4 lg:m-0 lg:my-2"
-              href="/photographie"
-              title="Photos"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              className="mx-4 lg:m-0 lg:my-2"
-              href="/projets-dev"
-              title="Projets numériques"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              className="ml-4 lg:m-0 lg:my-2"
-              href="/articles"
-              title="Articles"
-            />
-          </nav>
-          <nav className="flex items-center justify-center mt-2 ">
-            {/* <motion.a
+					initial={{ scale: 0, x: "-50%", y: "-50%", opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+				>
+					<nav className="flex flex-col items-center justify-center">
+						<CustomMobileLink
+							toggle={handleClick}
+							className="mr-4 lg:m-0 lg:my-2"
+							href="/"
+							title="Accueil"
+						/>
+						<CustomMobileLink
+							toggle={handleClick}
+							className="mx-4 lg:m-0 lg:my-2"
+							href="/apropos"
+							title="A propos"
+						/>
+						<CustomMobileLink
+							toggle={handleClick}
+							className="mx-4 lg:m-0 lg:my-2"
+							href="/photographie"
+							title="Photos"
+						/>
+						<CustomMobileLink
+							toggle={handleClick}
+							className="ml-4 lg:m-0 lg:my-2"
+							href="/articles"
+							title="Projets"
+						/>
+					</nav>
+					<nav className="flex items-center justify-center mt-2 ">
+						{/* <motion.a
           // target={"_blank"}
           className="w-6 m-1 mr-3 sm:mx-1"
           href="#"
@@ -218,57 +215,55 @@ const Navbar = () => {
         >
           <TwitterIcon />
         </motion.a> */}
-            <motion.a
-              target={"https://github.com/slamer59"}
-              className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
-              href="https://github.com/slamer59"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Voici mon profile github"
-            >
-              <GithubIcon className={" "} />
-            </motion.a>
-            <motion.a
-              target={"https://linkedin.com/in/thomaspedot/"}
-              className="w-6 m-1 mx-3 sm:mx-1"
-              href="https://linkedin.com/in/thomaspedot/"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Voici mon profile linkedin"
-            >
-              <LinkedInIcon className={" "} />
-            </motion.a>
-            <motion.a
-              target={"https://www.instagram.com/teepeetlse"}
-              className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
-              href="https://www.instagram.com/teepeetlse"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Voici mon profile Instagram"
-            >
-              <InstagramIcon className={" "} />
-            </motion.a>
-            <button
-              /* @ts-ignore */
-              onClick={() => setMode(mode === "light" ? "dark" : "light")}
-              className={`w-6 h-6 ease m-1 ml-3 sm:mx-1 flex items-center justify-center rounded-full p-1  
+						<motion.a
+							target={"https://github.com/slamer59"}
+							className="w-6 m-1 mx-3 rounded-full bg-light dark:bg-dark sm:mx-1"
+							href="https://github.com/slamer59"
+							whileHover={{ y: -2 }}
+							whileTap={{ scale: 0.9 }}
+							aria-label="Voici mon profile github"
+						>
+							<GithubIcon className={" "} />
+						</motion.a>
+						<motion.a
+							target={"https://linkedin.com/in/thomaspedot/"}
+							className="w-6 m-1 mx-3 sm:mx-1"
+							href="https://linkedin.com/in/thomaspedot/"
+							whileHover={{ y: -2 }}
+							whileTap={{ scale: 0.9 }}
+							aria-label="Voici mon profile linkedin"
+						>
+							<LinkedInIcon className={" "} />
+						</motion.a>
+						<motion.a
+							target={"https://www.instagram.com/teepeetlse"}
+							className="w-6 m-1 mx-3 rounded-full bg-light sm:mx-1"
+							href="https://www.instagram.com/teepeetlse"
+							whileHover={{ y: -2 }}
+							whileTap={{ scale: 0.9 }}
+							aria-label="Voici mon profile Instagram"
+						>
+							<InstagramIcon className={" "} />
+						</motion.a>
+						<button
+							/* @ts-ignore */
+							onClick={() => setMode(mode === "light" ? "dark" : "light")}
+							className={`w-6 h-6 ease m-1 ml-3 sm:mx-1 flex items-center justify-center rounded-full p-1  
             ${mode === "light" ? "bg-dark  text-light" : "bg-light  text-dark"}
             `}
-              aria-label="theme-switcher"
-            >
-              {mode === "light" ? (
-                <SunIcon className={"fill-dark"} />
-              ) : (
-                <MoonIcon className={"fill-dark"} />
-              )}
-            </button>
-          </nav>
-        </motion.div>
-      ) : null}
-
-
-    </header>
-  );
+							aria-label="theme-switcher"
+						>
+							{mode === "light" ? (
+								<SunIcon className={"fill-dark"} />
+							) : (
+								<MoonIcon className={"fill-dark"} />
+							)}
+						</button>
+					</nav>
+				</motion.div>
+			) : null}
+		</header>
+	);
 };
 
 export default Navbar;
