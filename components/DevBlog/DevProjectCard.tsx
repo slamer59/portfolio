@@ -35,7 +35,7 @@ function extractTechnologies(project: DevProject): string[] {
 }
 
 // Function to get project image
-function getProjectImage(project: DevProject): string {
+function getProjectImage(project: DevProject): string | null {
 	// Use Sanity urlFor() if image exists and has a valid asset
 	if (project.image?.asset) {
 		try {
@@ -48,8 +48,8 @@ function getProjectImage(project: DevProject): string {
 			console.error("Error generating image URL:", error);
 		}
 	}
-	// Fallback to default image
-	return "/images/profile.jpg";
+	// Return null if no valid image
+	return null;
 }
 
 export function DevProjectCard({
@@ -90,19 +90,29 @@ export function DevProjectCard({
 					<div
 						className={`relative ${imageVariants[variant]} w-full overflow-hidden`}
 					>
-						<Image
-							src={projectImage}
-							alt={project.title}
-							fill
-							className="object-cover transition-transform duration-500 group-hover:scale-110"
-							priority={priority}
-							sizes={
-								variant === "featured"
-									? "(min-width: 768px) 50vw, 100vw"
-									: "(min-width: 768px) 33vw, 100vw"
-							}
-						/>
-						<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+						{projectImage ? (
+							<>
+								<Image
+									src={projectImage}
+									alt={project.title}
+									fill
+									className="object-cover transition-transform duration-500 group-hover:scale-110"
+									priority={priority}
+									sizes={
+										variant === "featured"
+											? "(min-width: 768px) 50vw, 100vw"
+											: "(min-width: 768px) 33vw, 100vw"
+									}
+								/>
+								<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+							</>
+						) : (
+							<div className="w-full h-full bg-primary/20 flex items-center justify-center">
+								<span className="text-6xl font-bold text-primary">
+									{project.title.substring(0, 2).toUpperCase()}
+								</span>
+							</div>
+						)}
 
 						{/* Project Links Overlay */}
 						<div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
