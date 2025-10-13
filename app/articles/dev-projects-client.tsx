@@ -72,9 +72,13 @@ export function DevProjectsClient({
 	// Extract all unique technologies from all projects
 	const allTechnologies = useMemo(() => {
 		const techs = new Set<string>();
-		projects.forEach((project) => {
-			project.technologies?.forEach((tech) => techs.add(tech));
-		});
+		for (const project of projects) {
+			if (project.technologies) {
+				for (const tech of project.technologies) {
+					techs.add(tech);
+				}
+			}
+		}
 		return Array.from(techs);
 	}, [projects]);
 
@@ -88,202 +92,210 @@ export function DevProjectsClient({
 	);
 
 	return (
-		<div className="min-h-screen dark:bg-dark">
-			{/* Hero Section */}
-			<h2 className="container px-4 mb-6 text-5xl font-bold text-center md:text-6xl lg:text-7xl text-dark dark:text-light">
-				Projets de Développement
-			</h2>
+		<div className="min-h-screen overflow-x-hidden dark:bg-dark">
+			<div className="container px-4 mx-auto max-w-[100vw]">
+				{/* Hero Section */}
+				<h2 className="mb-6 pt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center break-words text-dark dark:text-light">
+					Projets de Développement
+				</h2>
 
-			<div className="container px-4 py-16 mx-auto">
-				{/* Search and Filters */}
-				<div className="mb-16">
-					<DevProjectSearchFilters
-						onSearch={setSearchQuery}
-						onFilterChange={setActiveFilters}
-						totalProjects={projects.length}
-						filteredProjects={filteredProjects.length}
-						allTechnologies={allTechnologies}
-						initialFilters={activeFilters}
-					/>
-				</div>
-
-				{/* Main Content Area */}
-				<div className="grid grid-cols-1 gap-12 min-lg:grid-cols-4">
-					{/* Main Projects */}
-					<div className="min-lg:col-span-3">
-						{/* Featured Projects */}
-						{featuredProjects.length > 0 && (
-							<section className="mb-16">
-								<h2 className="flex items-center gap-3 mb-8 text-3xl font-bold md:text-4xl text-dark dark:text-light">
-									<span>Projets Mis en Avant</span>
-									<div className="flex-1 h-1 rounded-full bg-gradient-to-r from-primary/50 to-transparent" />
-								</h2>
-
-								{/* Magazine-style asymmetric grid */}
-								<div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-6">
-									{featuredProjects.map((project, index) => {
-										if (index === 0) {
-											// Hero featured project
-											return (
-												<div
-													key={project.slug}
-													className="md:col-span-4 md:row-span-2"
-												>
-													<DevProjectCard
-														project={project}
-														variant="featured"
-														priority={true}
-														index={index}
-													/>
-												</div>
-											);
-										}
-										if (index === 1) {
-											// Secondary featured
-											return (
-												<div key={project.slug} className="md:col-span-2">
-													<DevProjectCard
-														project={project}
-														variant="regular"
-														index={index}
-													/>
-												</div>
-											);
-										}
-										if (index === 2) {
-											// Third featured
-											return (
-												<div key={project.slug} className="md:col-span-2">
-													<DevProjectCard
-														project={project}
-														variant="regular"
-														index={index}
-													/>
-												</div>
-											);
-										}
-										// Additional featured projects in regular grid
-										return (
-											<div key={project.slug} className="md:col-span-2">
-												<DevProjectCard
-													project={project}
-													variant="compact"
-													index={index}
-												/>
-											</div>
-										);
-									})}
-								</div>
-							</section>
-						)}
-
-						{/* Latest Projects */}
-						{regularProjects.length > 0 && (
-							<section>
-								<h2 className="flex items-center gap-3 mb-8 text-3xl font-bold md:text-4xl text-dark dark:text-light">
-									<span>Derniers Projets</span>
-									<div className="flex-1 h-1 rounded-full bg-gradient-to-r from-primary/50 to-transparent" />
-								</h2>
-
-								<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-									{paginatedProjects.map((project, index) => (
-										<DevProjectCard
-											key={project.slug}
-											project={project}
-											variant="regular"
-											index={index}
-										/>
-									))}
-								</div>
-
-								{/* Enhanced Pagination */}
-								{totalPages > 1 && (
-									<div className="flex items-center justify-center gap-4 mt-16">
-										<Link
-											href={`/articles?page=${Math.max(currentPage - 1, 1)}`}
-											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
-												currentPage === 1
-													? "pointer-events-none opacity-50"
-													: ""
-											}`}
-										>
-											<ArrowLeftIcon className="w-4 h-4" />
-										</Link>
-
-										<div className="flex gap-2">
-											{Array.from(
-												{ length: Math.min(5, totalPages) },
-												(_, i) => {
-													let page: number;
-													if (totalPages <= 5) {
-														page = i + 1;
-													} else if (currentPage <= 3) {
-														page = i + 1;
-													} else if (currentPage >= totalPages - 2) {
-														page = totalPages - 4 + i;
-													} else {
-														page = currentPage - 2 + i;
-													}
-
-													return (
-														<Link
-															key={page}
-															href={`/articles?page=${page}`}
-															className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-																currentPage === page
-																	? "bg-primary text-light"
-																	: "bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 hover:border-primary/50 text-dark dark:text-light"
-															}`}
-														>
-															{page}
-														</Link>
-													);
-												},
-											)}
-										</div>
-
-										<Link
-											href={`/articles?page=${Math.min(currentPage + 1, totalPages)}`}
-											className={`px-4 py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
-												currentPage === totalPages
-													? "pointer-events-none opacity-50"
-													: ""
-											}`}
-										>
-											<ArrowRightIcon className="w-4 h-4" />
-										</Link>
-									</div>
-								)}
-							</section>
-						)}
-
-						{/* No Results State */}
-						{filteredProjects.length === 0 && (
-							<div className="py-16 text-center">
-								<div className="max-w-md mx-auto">
-									<div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-light dark:bg-dark/50">
-										<span className="text-4xl">💻</span>
-									</div>
-									<h3 className="mb-2 text-xl font-semibold text-dark dark:text-light">
-										Aucun projet trouvé
-									</h3>
-									<p className="text-dark/70 dark:text-light/70">
-										Essayez d'ajuster vos critères de recherche ou d'effacer les
-										filtres.
-									</p>
-								</div>
-							</div>
-						)}
+				<div className="py-6 sm:py-8 md:py-12 lg:py-16">
+					{/* Search and Filters */}
+					<div className="mb-16">
+						<DevProjectSearchFilters
+							onSearch={setSearchQuery}
+							onFilterChange={setActiveFilters}
+							totalProjects={projects.length}
+							filteredProjects={filteredProjects.length}
+							allTechnologies={allTechnologies}
+							initialFilters={activeFilters}
+						/>
 					</div>
 
-					{/* Sidebar */}
-					<div className="min-lg:col-span-1">
-						<div className="sticky top-8">
-							<TrendingSidebar
-								projects={projects}
-								onFilterChange={setActiveFilters}
-								activeFilters={activeFilters}
-							/>
+					{/* Main Content Area */}
+					<div className="grid grid-cols-1 gap-6 sm:gap-8 lg:gap-12 min-lg:grid-cols-4 w-full overflow-hidden">
+						{/* Main Projects */}
+						<div className="min-lg:col-span-3 min-w-0 overflow-hidden">
+							{/* Featured Projects */}
+							{featuredProjects.length > 0 && (
+								<section className="mb-16">
+									<h2 className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold break-words text-dark dark:text-light">
+										<span className="flex-shrink-0">Projets Mis en Avant</span>
+										<div className="hidden sm:block flex-1 h-1 rounded-full bg-gradient-to-r from-primary/50 to-transparent" />
+									</h2>
+
+									{/* Magazine-style asymmetric grid */}
+									<div className="grid grid-cols-1 gap-4 sm:gap-6 mb-8 min-lg:grid-cols-6 w-full overflow-hidden">
+										{featuredProjects.map((project, index) => {
+											if (index === 0) {
+												// Hero featured project
+												return (
+													<div
+														key={project.slug}
+														className="min-lg:col-span-4 min-lg:row-span-2 h-full"
+													>
+														<DevProjectCard
+															project={project}
+															variant="featured"
+															priority={true}
+															index={index}
+														/>
+													</div>
+												);
+											}
+											if (index === 1) {
+												// Secondary featured
+												return (
+													<div key={project.slug} className="min-lg:col-span-2">
+														<DevProjectCard
+															project={project}
+															variant="regular"
+															index={index}
+														/>
+													</div>
+												);
+											}
+											if (index === 2) {
+												// Third featured
+												return (
+													<div key={project.slug} className="min-lg:col-span-2">
+														<DevProjectCard
+															project={project}
+															variant="regular"
+															index={index}
+														/>
+													</div>
+												);
+											}
+											// Additional featured projects in regular grid
+											return (
+												<div key={project.slug} className="min-lg:col-span-6">
+													<DevProjectCard
+														project={project}
+														variant="compact"
+														index={index}
+													/>
+												</div>
+											);
+										})}
+									</div>
+								</section>
+							)}
+
+							{/* Latest Projects */}
+							{regularProjects.length > 0 && (
+								<section>
+									<h2 className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold break-words text-dark dark:text-light">
+										<span className="flex-shrink-0">Derniers Projets</span>
+										<div className="hidden sm:block flex-1 h-1 rounded-full bg-gradient-to-r from-primary/50 to-transparent" />
+									</h2>
+
+									<div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 min-lg:grid-cols-2 w-full overflow-hidden">
+										{paginatedProjects.map((project, index) => (
+											<DevProjectCard
+												key={project.slug}
+												project={project}
+												variant="regular"
+												index={index}
+											/>
+										))}
+									</div>
+
+									{/* Enhanced Pagination */}
+									{totalPages > 1 && (
+										<div className="flex items-center justify-center gap-4 mt-16">
+											<Link
+												href={`/articles?page=${Math.max(currentPage - 1, 1)}`}
+												className={`px-5 py-2.5 sm:px-4 sm:py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
+													currentPage === 1
+														? "pointer-events-none opacity-50"
+														: ""
+												}`}
+											>
+												<ArrowLeftIcon className="w-4 h-4" />
+											</Link>
+
+											{/* Mobile: Simple Page X of Y */}
+											<div className="sm:hidden px-5 py-2.5 text-sm font-medium text-dark dark:text-light">
+												Page {currentPage} of {totalPages}
+											</div>
+
+											{/* Desktop: Page number buttons */}
+											<div className="hidden sm:flex gap-2">
+												{Array.from(
+													{ length: Math.min(5, totalPages) },
+													(_, i) => {
+														let page: number;
+														if (totalPages <= 5) {
+															page = i + 1;
+														} else if (currentPage <= 3) {
+															page = i + 1;
+														} else if (currentPage >= totalPages - 2) {
+															page = totalPages - 4 + i;
+														} else {
+															page = currentPage - 2 + i;
+														}
+
+														return (
+															<Link
+																key={page}
+																href={`/articles?page=${page}`}
+																className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+																	currentPage === page
+																		? "bg-primary text-light"
+																		: "bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 hover:border-primary/50 text-dark dark:text-light"
+																}`}
+															>
+																{page}
+															</Link>
+														);
+													},
+												)}
+											</div>
+
+											<Link
+												href={`/articles?page=${Math.min(currentPage + 1, totalPages)}`}
+												className={`px-5 py-2.5 sm:px-4 sm:py-2 text-sm font-medium bg-light dark:bg-dark/50 backdrop-blur-lg border border-dark/10 dark:border-light/10 rounded-lg hover:border-primary/50 transition-all ${
+													currentPage === totalPages
+														? "pointer-events-none opacity-50"
+														: ""
+												}`}
+											>
+												<ArrowRightIcon className="w-4 h-4" />
+											</Link>
+										</div>
+									)}
+								</section>
+							)}
+
+							{/* No Results State */}
+							{filteredProjects.length === 0 && (
+								<div className="py-16 text-center">
+									<div className="max-w-md mx-auto">
+										<div className="flex items-center justify-center w-24 h-24 mx-auto mb-6 rounded-full bg-light dark:bg-dark/50">
+											<span className="text-4xl">💻</span>
+										</div>
+										<h3 className="mb-2 text-xl font-semibold text-dark dark:text-light">
+											Aucun projet trouvé
+										</h3>
+										<p className="text-dark/70 dark:text-light/70">
+											Essayez d'ajuster vos critères de recherche ou d'effacer
+											les filtres.
+										</p>
+									</div>
+								</div>
+							)}
+						</div>
+
+						{/* Sidebar */}
+						<div className="min-lg:col-span-1 w-full">
+							<div className="min-lg:sticky min-lg:top-8">
+								<TrendingSidebar
+									projects={projects}
+									onFilterChange={setActiveFilters}
+									activeFilters={activeFilters}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

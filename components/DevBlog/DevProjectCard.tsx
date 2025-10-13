@@ -64,14 +64,14 @@ export function DevProjectCard({
 
 	const cardVariants = {
 		regular: "h-full",
-		featured: "h-full md:h-[500px]",
+		featured: "h-full",
 		compact: "h-[300px]",
 	};
 
 	const imageVariants = {
-		regular: "h-48",
-		featured: "h-64 md:h-80",
-		compact: "h-32",
+		regular: "h-32 sm:h-40 md:h-48",
+		featured: "h-40 sm:h-48 md:h-64 lg:h-80",
+		compact: "h-24 sm:h-28 md:h-32",
 	};
 
 	return (
@@ -128,7 +128,7 @@ export function DevProjectCard({
 											"noopener,noreferrer",
 										);
 									}}
-									className="p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
+									className="p-3 sm:p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
 								>
 									<Github className="w-4 h-4 text-white" />
 								</button>
@@ -141,7 +141,7 @@ export function DevProjectCard({
 										e.stopPropagation();
 										window.open(project.link, "_blank", "noopener,noreferrer");
 									}}
-									className="p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
+									className="p-3 sm:p-2 bg-black/50 backdrop-blur-sm rounded-full hover:bg-black/70 transition-colors"
 								>
 									<ExternalLink className="w-4 h-4 text-white" />
 								</button>
@@ -150,10 +150,10 @@ export function DevProjectCard({
 					</div>
 
 					{/* Content Section */}
-					<div className="p-6 space-y-4">
+					<div className="p-4 sm:p-5 md:p-6 space-y-4">
 						{/* Meta Information */}
 						<div className="flex items-center justify-between flex-wrap gap-2 text-sm text-muted-foreground">
-							<div className="flex items-center gap-4">
+							<div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
 								<div className="flex items-center gap-1">
 									<Calendar className="w-4 h-4" />
 									<span>
@@ -176,7 +176,7 @@ export function DevProjectCard({
 									<Badge
 										key={tech}
 										variant="secondary"
-										className={`text-xs font-semibold px-2 py-1 rounded-full border ${getTechnologyClassName(tech)}`}
+										className={`text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-full border ${getTechnologyClassName(tech)}`}
 									>
 										{tech}
 									</Badge>
@@ -188,10 +188,10 @@ export function DevProjectCard({
 						<h3
 							className={`font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-tight ${
 								variant === "featured"
-									? "text-2xl"
+									? "text-xl sm:text-2xl"
 									: variant === "compact"
-										? "text-lg"
-										: "text-xl"
+										? "text-lg sm:text-lg"
+										: "text-lg sm:text-xl"
 							}`}
 						>
 							{project.title}

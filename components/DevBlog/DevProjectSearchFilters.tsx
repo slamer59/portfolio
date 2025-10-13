@@ -74,13 +74,13 @@ export function DevProjectSearchFilters({
 						placeholder="Rechercher des projets..."
 						value={searchQuery}
 						onChange={(e) => handleSearchChange(e.target.value)}
-						className="w-full py-4 pl-12 pr-4 transition-all duration-300 border shadow-sm bg-dark/5 dark:bg-white/10 backdrop-blur-lg border-dark/10 dark:border-white/30 rounded-2xl focus:border-primary/50 dark:focus:border-primaryDark/50 focus:ring-2 focus:ring-primary/20 dark:focus:ring-primaryDark/20 text-dark dark:text-white placeholder:text-dark/40 dark:placeholder:text-white/50"
+						className="w-full py-3 sm:py-4 pl-10 sm:pl-12 pr-4 transition-all duration-300 border shadow-sm bg-dark/5 dark:bg-white/10 backdrop-blur-lg border-dark/10 dark:border-white/30 rounded-2xl focus:border-primary/50 dark:focus:border-primaryDark/50 focus:ring-2 focus:ring-primary/20 dark:focus:ring-primaryDark/20 text-dark dark:text-white placeholder:text-dark/40 dark:placeholder:text-white/50"
 					/>
 				</div>
 			</div>
 
 			{/* Filter Toggle & Results Count */}
-			<div className="flex flex-wrap items-center justify-between gap-4">
+			<div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-between gap-2 sm:gap-3 md:gap-4">
 				<div className="flex items-center gap-4">
 					<Button
 						variant="outline"
@@ -111,7 +111,7 @@ export function DevProjectSearchFilters({
 					)}
 				</div>
 
-				<div className="text-sm font-medium text-dark/70 dark:text-white/70">
+				<div className="text-xs sm:text-sm font-medium text-dark/70 dark:text-white/70">
 					<span className="font-semibold text-primary dark:text-primaryDark">
 						{filteredProjects}
 					</span>{" "}
@@ -124,13 +124,13 @@ export function DevProjectSearchFilters({
 				<motion.div
 					initial={{ opacity: 0, height: 0 }}
 					animate={{ opacity: 1, height: "auto" }}
-					className="flex flex-wrap gap-2"
+					className="flex flex-wrap gap-1.5 sm:gap-2"
 				>
 					{activeFilters.map((filter) => (
 						<button
 							key={filter}
 							type="button"
-							className={`flex items-center gap-1 px-3 py-1 text-xs border rounded-full transition-all hover:scale-105 hover:shadow-md cursor-pointer ${getTechnologyClassName(filter)}`}
+							className={`flex items-center gap-1 px-2 py-1 text-[10px] sm:text-xs sm:px-3 border rounded-full transition-all hover:scale-105 hover:shadow-md cursor-pointer ${getTechnologyClassName(filter)}`}
 							onClick={() => handleFilterToggle(filter)}
 						>
 							<span>{filter}</span>
@@ -146,17 +146,17 @@ export function DevProjectSearchFilters({
 					initial={{ opacity: 0, height: 0 }}
 					animate={{ opacity: 1, height: "auto" }}
 					exit={{ opacity: 0, height: 0 }}
-					className="p-6 border shadow-sm bg-dark/5 dark:bg-white/5 backdrop-blur-lg border-dark/10 dark:border-white/10 rounded-2xl"
+					className="p-4 sm:p-5 md:p-6 border shadow-sm bg-dark/5 dark:bg-white/5 backdrop-blur-lg border-dark/10 dark:border-white/10 rounded-2xl"
 				>
 					<h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
 						Filtrer par technologie
 					</h3>
-					<div className="flex flex-wrap gap-3">
+					<div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
 						{availableFilters.map((filter) => (
 							<button
 								key={filter}
 								type="button"
-								className={`px-3 py-1 text-xs border rounded-full transition-all hover:scale-105 hover:shadow-md cursor-pointer ${
+								className={`px-2.5 py-1 text-[10px] sm:text-xs sm:px-3 border rounded-full transition-all hover:scale-105 hover:shadow-md cursor-pointer ${
 									activeFilters.includes(filter)
 										? getTechnologyClassName(filter)
 										: "bg-white dark:bg-white/10 text-dark dark:text-white border-dark/20 dark:border-white/30 hover:border-primary/50 dark:hover:border-primaryDark/50"
