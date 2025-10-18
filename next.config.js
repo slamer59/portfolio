@@ -21,15 +21,6 @@ const nextConfig = {
 	experimental: {
 		// ppr: true,
 	},
-	async redirects() {
-		return [
-			{
-				source: "/sitemap.xml",
-				destination: "/sitemaps/sitemap.xml",
-				permanent: true, // 301 redirect
-			},
-		];
-	},
 };
 
 module.exports = nextConfig;
