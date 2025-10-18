@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
 				disallow: ["/studio/*"],
 			},
 		],
-		sitemap: `${domain}/sitemaps/sitemap.xml`,
+		sitemap: `${domain}/sitemap.xml`,
 	};
 }
