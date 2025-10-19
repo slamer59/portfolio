@@ -1,9 +1,7 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import type { DevProject } from "@/lib/devProject";
-import { getTechnologyClassName } from "@/lib/technologyColors";
-import { urlFor } from "@/sanity/lib/client";
+import { StaticTechBadge } from "@/components/TechBadge";
+import type { DevProject } from "@/lib/devProjects";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
@@ -36,17 +34,9 @@ function extractTechnologies(project: DevProject): string[] {
 
 // Function to get project image
 function getProjectImage(project: DevProject): string | null {
-	// Use Sanity urlFor() if image exists and has a valid asset
-	if (project.image?.asset) {
-		try {
-			return urlFor(project.image.asset)
-				.width(800)
-				.height(600)
-				.format("webp")
-				.url();
-		} catch (error) {
-			console.error("Error generating image URL:", error);
-		}
+	// Use local image path directly
+	if (project.image) {
+		return project.image;
 	}
 	// Return null if no valid image
 	return null;
@@ -107,10 +97,12 @@ export function DevProjectCard({
 								<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 							</>
 						) : (
-							<div className="w-full h-full bg-primary/20 flex items-center justify-center">
-								<span className="text-6xl font-bold text-primary">
-									{project.title.substring(0, 2).toUpperCase()}
-								</span>
+							<div className="w-full h-full bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 dark:from-primary/30 dark:via-primary/20 dark:to-primary/10 flex items-center justify-center">
+								<div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-primary/20 dark:bg-primary/30 border-4 border-primary/30 dark:border-primary/40 flex items-center justify-center backdrop-blur-sm shadow-lg transition-transform duration-300 group-hover:scale-110">
+									<span className="text-4xl sm:text-5xl font-bold text-dark dark:text-light tracking-wider">
+										{project.title.substring(0, 2).toUpperCase()}
+									</span>
+								</div>
 							</div>
 						)}
 
@@ -173,13 +165,12 @@ export function DevProjectCard({
 							{/* Technologies on the right */}
 							<div className="flex flex-wrap gap-2">
 								{technologies.slice(0, 2).map((tech) => (
-									<Badge
+									<StaticTechBadge
 										key={tech}
-										variant="secondary"
-										className={`text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-full border ${getTechnologyClassName(tech)}`}
-									>
-										{tech}
-									</Badge>
+										technology={tech}
+										variant="compact"
+										showIcon={true}
+									/>
 								))}
 							</div>
 						</div>
@@ -209,25 +200,10 @@ export function DevProjectCard({
 						{/* Author Section (if available) */}
 						{project.author && (
 							<div className="flex items-center gap-3 pt-2">
-								{project.author.image && (
-									<div className="relative w-8 h-8 rounded-full overflow-hidden bg-primary/10">
-										<Image
-											src={project.author.image}
-											alt={project.author.name}
-											fill
-											className="object-cover"
-										/>
-									</div>
-								)}
 								<div className="flex-1 min-w-0">
 									<span className="text-sm font-medium text-foreground truncate block">
-										{project.author.name}
+										{project.author}
 									</span>
-									{project.author.position && (
-										<span className="text-xs text-muted-foreground truncate block">
-											{project.author.position}
-										</span>
-									)}
 								</div>
 							</div>
 						)}

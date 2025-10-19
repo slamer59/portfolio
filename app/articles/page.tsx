@@ -1,6 +1,6 @@
 import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
-import { getAllDevProjects } from "@/sanity/queries/devProjects";
+import { getAllDevProjects } from "@/lib/devProjects";
 import Layout from "components/Layout";
 import { DevProjectsClient } from "./dev-projects-client";
 
@@ -28,24 +28,8 @@ export default async function Projects({ searchParams }: ProjectsPageProps) {
 	const projects = await getAllDevProjects();
 	const params = await searchParams;
 
-	// Transform Sanity data to match DevProject type expected by client
-	const transformedProjects = projects.map((project) => ({
-		slug: project.currentSlug,
-		title: project.title,
-		summary: project.summary,
-		description: project.description,
-		image: project.mainImage,
-		technologies: project.technologies || [],
-		github: project.github,
-		link: project.link,
-		date: project.publishedAt || "",
-		featured: project.featured ?? false,
-		published: project.published ?? true,
-		keywords: project.keywords || [],
-		type: project.type,
-		views: project.views,
-		lastViewedAt: project.lastViewedAt,
-	}));
+	// Projects are already in the correct format from MDX files
+	// No transformation needed, just use them directly
 
 	return (
 		<>
@@ -81,10 +65,7 @@ export default async function Projects({ searchParams }: ProjectsPageProps) {
 						mon travail au sein de la communauté GitHub et au-delà.
 					</div>
 				</AnimatedText>
-				<DevProjectsClient
-					projects={transformedProjects}
-					searchParams={params}
-				/>
+				<DevProjectsClient projects={projects} searchParams={params} />
 			</Layout>
 		</>
 	);

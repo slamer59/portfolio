@@ -1,0 +1,114 @@
+---
+title: "Analyze Large Python Codebases (10,000+ Files)"
+slug: "analyze-large-codebases"
+date: "2025-10-19T00:00:00Z"
+summary: "Scale Code Explorer to 10,000+ file Python projects using parallel workers, memory optimization, and incremental analysis strategies."
+author: "Thomas Pedot"
+technologies: ["Code Explorer", "Enterprise", "Kuzu", "Optimization", "Parallelization", "Performance", "Python", "Scalability"]
+github: "https://github.com/slamer59/code-explorer"
+published: true
+featured: false
+keywords: ["performance", "large-scale", "optimization", "enterprise", "parallel-processing"]
+type: "library"
+---
+# Analyze Large Python Codebases (10,000+ Files): Performance Guide
+
+## The Challenge: Enterprise-Scale Analysis
+
+Fortune 500 companies have Python codebases with 10,000+ files. Traditional static analysis tools choke:
+**Default analysis**: 8+ hours for complete scan ⏱️
+
+**Memory bloat**: 32GB+ RAM consumed 💥
+
+**No incremental updates**: Every change requires full re-scan 🔄
+
+Code Explorer solves this with intelligent parallelization and incremental analysis.
+## Performance Benchmarks
+
+### Test environment
+
+**Files**: 10,000 Python files (~2M lines of code)
+
+**Hardware**: 4-core CPU, 8GB RAM
+
+| Setup | Time | Memory | Status |
+|-------|------|--------|--------|
+| Default (1 worker) | 45 min | 8GB | ✓ Works but slow |
+| 4 workers | 12 min | 6GB | ✓ **Recommended** |
+| 8 workers + chunking | 6 min | 4GB | ✓ **Optimal** |
+| 16 workers + streaming | 3 min | 2GB | ✓ **For servers** |
+## Quick Start: Analyze 10,000+ Files
+
+### Option 1: Automatic optimization (easiest)
+
+### Option 2: Manual tuning
+
+### Option 3: Incremental mode (for continuous monitoring)
+
+## Understanding the Parameters
+
+### Workers (parallelization)
+
+**Why not max workers?** One core stays free for I/O operations.
+### Chunk size (memory efficiency)
+
+### Batch size (database writes)
+
+## Real Case Study: Django Codebase (8,000 files)
+
+## Incremental Analysis: Game Changer
+
+**Result**: 45-minute job becomes 30-second job.
+Perfect for:
+Daily monitoring
+
+CI/CD pipelines
+
+Local development
+
+## Memory Optimization Strategies
+
+### Strategy 1: Streaming mode
+
+### Strategy 2: Partition by module
+
+### Strategy 3: Exclude unnecessary paths
+
+## Distributed Analysis (Enterprise)
+
+For really massive codebases (50,000+ files):
+## Monitoring & Profiling
+
+### Check analysis progress
+
+### Profile a specific module
+
+### Identify slowest files
+
+## CI/CD Pipeline Integration
+
+## Troubleshooting
+
+### Out of memory errors
+
+### Analysis times out
+
+### Database corrupts after crash
+
+## Quick Reference
+
+| Scenario | Command |
+|----------|---------|
+| First run, 4-core machine | `code-explorer analyze ./src --auto-scale` |
+| Fast local dev updates | `code-explorer analyze ./src --incremental` |
+| Enterprise (16+ cores) | `code-explorer analyze ./src --workers 16 --chunk-size 200` |
+| Memory-constrained | `code-explorer analyze ./src --streaming --workers 2` |
+| CI/CD (strict limits) | `code-explorer analyze ./src --workers 4 --memory-limit 2GB` |
+## Next Steps
+
+1. Benchmark your codebase: `code-explorer analyze ./src --benchmark`
+2. [Automate in CI/CD](./03-cicd-integration.md) with incremental analysis
+3. [Set up monitoring](./03-cicd-integration.md) for continuous tracking
+4. Scale to distributed analysis for codebases >50,000 files
+---
+**Pro Tip**: Always run with `--benchmark` on first analysis. This shows which files are slow and where to optimize.

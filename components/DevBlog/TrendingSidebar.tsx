@@ -1,8 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import type { DevProject } from "@/lib/devProject";
-import { urlFor } from "@/sanity/lib/client";
+import type { DevProject } from "@/lib/devProjects";
 import { motion } from "framer-motion";
 import { Clock, Eye, Star, TrendingUp } from "lucide-react";
 import Image from "next/image";
@@ -82,13 +81,9 @@ export function TrendingSidebar({
 								transition={{ type: "spring", stiffness: 400, damping: 17 }}
 							>
 								<div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-									{project.image?.asset ? (
+									{project.image ? (
 										<Image
-											src={urlFor(project.image.asset)
-												.width(128)
-												.height(128)
-												.format("webp")
-												.url()}
+											src={project.image}
 											alt={project.title}
 											fill
 											className="object-cover"

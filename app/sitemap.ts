@@ -1,7 +1,5 @@
-import {
-	getAllPhotoProjectsSitemap,
-	getArticlesSitemap,
-} from "@/sanity/queries/articles";
+import { getAllPhotoProjectsSitemap } from "@/sanity/queries/articles";
+import { getDevProjectsSitemap } from "@/lib/devProjects";
 import type { MetadataRoute } from "next";
 import { domain } from "portfolio.config";
 
@@ -9,13 +7,17 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const allPhotoProjects = await getAllPhotoProjectsSitemap();
-	const articles = await getArticlesSitemap();
+	const devProjects = getDevProjectsSitemap();
 
 	// Get the most recent update from content
-	const latestArticleDate =
-		articles.length > 0
+	const latestDevProjectDate =
+		devProjects.length > 0
 			? new Date(
-					Math.max(...articles.map((a) => new Date(a._updatedAt).getTime())),
+					Math.max(
+						...devProjects.map((p) =>
+							new Date(p.updatedAt || p.date).getTime(),
+						),
+					),
 				)
 			: new Date();
 	const latestPhotoDate =
@@ -27,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				)
 			: new Date();
 	const latestContentDate = new Date(
-		Math.max(latestArticleDate.getTime(), latestPhotoDate.getTime()),
+		Math.max(latestDevProjectDate.getTime(), latestPhotoDate.getTime()),
 	);
 
 	const staticPages: MetadataRoute.Sitemap = [
@@ -45,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 		{
 			url: `${domain}/articles`,
-			lastModified: latestArticleDate,
+			lastModified: latestDevProjectDate,
 			changeFrequency: "weekly",
 			priority: 0.5,
 		},
@@ -57,9 +59,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 	];
 
-	const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
-		url: `${domain}/articles/${article.currentSlug}`,
-		lastModified: new Date(article._updatedAt),
+	const devProjectPages: MetadataRoute.Sitemap = devProjects.map((project) => ({
+		url: `${domain}/articles/${project.slug}`,
+		lastModified: new Date(project.updatedAt || project.date),
 		changeFrequency: "monthly" as const,
 		priority: 0.8,
 	}));
@@ -73,5 +75,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}),
 	);
 
-	return [...staticPages, ...articlePages, ...photoProjectPages];
+	return [...staticPages, ...devProjectPages, ...photoProjectPages];
 }

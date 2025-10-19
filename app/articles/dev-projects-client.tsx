@@ -3,7 +3,7 @@
 import { DevProjectCard } from "@/components/DevBlog/DevProjectCard";
 import { DevProjectSearchFilters } from "@/components/DevBlog/DevProjectSearchFilters";
 import { TrendingSidebar } from "@/components/DevBlog/TrendingSidebar";
-import type { DevProject } from "@/lib/devProject";
+import type { DevProject } from "@/lib/devProjects";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";

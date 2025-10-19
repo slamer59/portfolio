@@ -1,0 +1,186 @@
+---
+title: "Building This Portfolio: Next.js 14 + Sanity CMS Architecture"
+slug: "building-portfolio-nextjs14-sanitycms"
+date: "2025-10-12T15:23:27.448Z"
+summary: "Architecture complète de ce portfolio développeur : Next.js 14 App Router, Sanity CMS, TypeScript, optimisations performance (94/100 Lighthouse). Code source et lessons learned d'un CTO."
+author: "Thomas Pedot"
+technologies: ["Nextjs", "Sanity CMS", "Typescript", "Tailwindcss"]
+github: "https://github.com/slamer59/portfolio.git"
+link: "https://thomas.pedot.cc/"
+published: true
+featured: false
+keywords: ["nextjs portfolio sanity cms", "build portfolio with nextjs 14", "nextjs app router tutorial", "sanity cms nextjs integration", "developer portfolio typescript"]
+type: "web-app"
+---
+# **Pourquoi cette Stack ? 5 Raisons**
+
+Nous avons vu quelques applications web récente.
+En 2024, j'ai reconstruit mon portfolio, en 3 jours :
+- **Performance** : Score Lighthouse > 90 (objectif : 94/100 atteint)
+- **SEO** : Stratégie *first-class* (métadonnées dynamiques, balises optimisées)
+- **Developer Experience** : TypeScript, Server Components, et outils modernes
+- **Gestion de Contenu** : Flexibilité et structure avec un Headless CMS
+- **Scalabilité** : Architecture modulaire pour évoluer sans réécrire
+[Voir mon portfolio](https://github.com/slamer59/portfolio)
+
+## Technologies Utilisées
+
+Ce projet utilise une stack moderne : <TechBadge technology="Next.js" /> <TechBadge technology="TypeScript" /> <TechBadge technology="Sanity CMS" variant="compact" /> <TechBadge technology="Tailwind CSS" variant="compact" />
+
+
+# **Pourquoi ces Choix ?**
+
+## **Next.js 14 – Le Cœur de l'Application**
+
+L'**App Router** de <TechBadge technology="Next.js" variant="minimal" /> révolutionne l'expérience utilisateur grâce à ses **Server Components**, qui réduisent le poids du JavaScript côté client et améliorent les temps de chargement.
+> Bon la raison principale était mon envie de le faire en très peu de temps et que je connaissais bien nextjs.
+
+Le **streaming** et **Suspense** permettent un rendu progressif, offrant une interface réactive même lors du chargement de données asynchrones. L'optimisation native des **images**, **polices** et **scripts** (via le compilateur Rust de Next.js) garantit des performances optimales sans configuration complexe.
+L'intégration de <TechBadge technology="TypeScript" variant="minimal" /> renforce la sécurité du code et simplifie la maintenance, tandis que les **API Routes** facilitent la connexion avec des services externes comme Sanity CMS, sans sacrifier la simplicité.
+## **Sanity CMS – La Puissance du Headless**
+
+Sanity se distingue par son approche **TypeScript-first** : les schémas de contenu bénéficient d’une **validation en temps réel** et d’une autocomplétion dans l’éditeur, éliminant les erreurs de structure. Son langage de requête **GROQ** permet d’extraire précisément les données nécessaires, limitant ainsi la surcharge réseau. 
+> Aujourd'hui, après un an d'utilisation, je trouve que Sanity est correcte mais s'intègre mal à l'écosystemè. Pour faire un blog, j'utilise principalement du markdown. Si le Portable Document Format semble bien au départ, il n'est pas très... portable vu que c'est du json ! Qui n'est pas un document pour nous les humains...
+
+Le système de **Rich Text** supporte nativement les blocs de code, les images, et les médias enrichis, idéal pour un portfolio technique. Enfin, son **pipeline d’images** automatise le redimensionnement, la compression et la conversion de formats (WebP, AVIF), pour des visuels légers et adaptés à tous les écrans.
+# **Structure du Projet : Une Organisation Claire**
+
+```bash
+portfolio/
+├── app/                      # Next.js 14 App Router
+│   ├── page.tsx             # Homepage
+│   ├── articles/
+│   │   ├── page.tsx         # Articles list
+│   │   └── [slug]/
+│   │       └── page.tsx     # Article detail
+│   └── layout.tsx           # Root layout
+├── components/
+│   ├── Projets/             # Project components
+│   └── Layout/              # Page layouts
+├── sanity/
+│   ├── schemas/             # CMS schemas
+│   │   ├── article.ts
+│   │   └── devProject.ts
+│   └── queries/             # GROQ queries
+└── package.json
+```
+
+## **Implémentation Technique : Le Code en Pratique**
+
+### **Server Components – Performance par Défaut**
+
+```javascript
+// app/articles/page.tsx
+export default async function ArticlesPage() {
+  const articles = await getAllArticles();
+
+  return (
+    <Suspense fallback={<ArticlesSkeleton />}>
+      <ArticlesList articles={articles} />
+    </Suspense>
+  );
+}
+```
+
+→ **Avantage** : Réduction des requêtes client et chargement progressif.
+### **Schémas Sanity – Contenu Typé et Validé**
+
+```javascript
+// sanity/schemas/devProject.ts
+export default defineType({
+  name: "devProject",
+  title: "Dev Project",
+  type: "document",
+  fields: [
+    defineField({
+      name: "title",
+      type: "string",
+      validation: Rule => Rule.required()
+    }),
+    defineField({
+      name: "technologies",
+      type: "array",
+      of: [{ type: "string" }]
+    })
+  ]
+});
+```
+
+→ **Pourquoi ?** : Un CMS qui parle le même langage que votre code.
+### **Optimisation des Images – Chaque Ko Compte**
+
+```javascript
+// components/GalleryImage.tsx
+export function GalleryImage({ image }: Props) {
+  return (
+    <Image
+      src={urlFor(image).width(800).url()}
+      alt={image.alt}
+      width={800}
+      height={600}
+      loading="lazy"
+      placeholder="blur"
+      sizes="(max-width: 768px) 100vw, 800px"
+    />
+  );
+}
+```
+
+→ **Résultat** : Images légères, chargement différé, et *placeholder* pour éviter le *CLS*.
+### **SEO Dynamique – Métadonnées Générées à la Volée**
+
+```javascript
+// app/articles/[slug]/page.tsx
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const article = await getArticle(params.slug);
+
+  return {
+    title: `${article.title} - Thomas Pedot`,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      images: [article.mainImage]
+    }
+  };
+}
+```
+
+→ **Impact** : Meilleure indexation et partage sur les réseaux sociaux.
+## **Performance : 94/100 sur Lighthouse**
+
+| Métrique | Résultat | Technique Utilisée |
+| --- | --- | --- |
+| First Contentful Paint | 1.4s | Server Components (HTML généré côté serveur) + CDN |
+| Largest Contentful Paint | 2.1s | Images optimisées (lazy loading + sizes) + Code Splitting |
+| Cumulative Layout Shift | 0.02 | Balises HTML avec width, height, et aspect-ratio |
+| Total Blocking Time | 150ms | JS minimal dans le HTML initial (Server Components) + defer/async pour les scripts tiers |
+
+*Core Web Vitals (Mobile) – Optimisations HTML et Frontend*
+
+**Techniques clés déployées** :
+- **Next.js Image** : Compression et format moderne (WebP/AVIF)
+- **Lazy Loading** : Composants et images chargés à la demande
+- **GROQ Optimisé** : Requêtes ciblées pour limiter la taille des payloads
+
+# **Retours d’Expérience : Ce Qui a (Vraiment) Fonctionné**
+
+## **Points Forts**
+
+- **App Router** : Simplifie la gestion des données et du cache.
+- **Optimisation automatique** : Next.js gère 80% des bonnes pratiques.
+
+## **Défis à Anticiper**
+
+- **Migration vers App Router** : Certains plugins/composants ne sont pas encore compatibles.
+- **Sanity + TypeScript** : Une DX inégalée pour les développeurs. -> Je préfère MDX maintenant. 
+- **Dark Mode SSR** : Nécessite une gestion fine des cookies et du contexte.
+- **Courbe d’apprentissage GROQ** : Syntaxe puissante mais spécifique.
+
+# **Une Architecture Réplicable**
+
+Ce portfolio prouve qu’avec **Next.js 14**, **Sanity CMS**, et une approche méthodique, on peut allier : 
+- **Performance** (94/100 Lighthouse)
+- **Flexibilité** (contenu géré via CMS)
+- **Maintenabilité** (TypeScript, composants modulaires)
+
+**PS** : Le code source est open-source

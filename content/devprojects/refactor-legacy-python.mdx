@@ -1,0 +1,78 @@
+---
+title: "How to Safely Refactor Legacy Python Code"
+slug: "refactor-legacy-python"
+date: "2025-10-19T00:00:00Z"
+summary: "A 5-step guide to safely refactor Python legacy code using graph-based impact analysis to identify dependencies before changes."
+author: "Thomas Pedot"
+technologies: ["Code Explorer", "Code Quality", "Dependency Analysis", "Graph Database", "Kuzu", "Python", "Refactoring", "Static Analysis"]
+github: "https://github.com/slamer59/code-explorer"
+published: true
+featured: false
+keywords: ["refactoring", "legacy-code", "impact-analysis", "dependency-tracking"]
+type: "library"
+---
+# How to Safely Refactor Legacy Python Code: Step-by-Step Guide
+
+## The Problem: Refactoring Without Breaking Everything
+
+You've inherited a Python codebase with tangled dependencies. One wrong change cascades into failures across the entire application. Traditional refactoring is risky—you're flying blind without knowing what depends on what.
+This is where most developers fail:
+*Change a utility function, break 12 different modules*
+
+*Rename a class, cascade through 50+ callers*
+
+*Delete what you think is unused code, production crashes*
+
+<ViewRepository url="https://github.com/slamer59/code-explorer" />
+
+## The Solution: Graph-Based Impact Analysis
+
+Code Explorer builds a persistent dependency graph of your entire codebase, mapping every function call, class relationship, and import. Before refactoring, you can **see exactly what will break** and make informed decisions.
+## 5-Step Safe Refactoring Process
+
+### Step 1: Build Your Dependency Graph
+
+This creates a complete map of your codebase in seconds, not hours.
+### Step 2: Identify Refactoring Targets
+
+These are your refactoring candidates—functions causing the most coupling.
+### Step 3: Analyze Impact Before Changes
+
+This is the critical step. You now know the exact blast radius.
+### Step 4: Visualize the Impact Scope
+
+Visual confirmation beats guesswork every time.
+### Step 5: Refactor Incrementally
+
+*Make changes to the target function*
+*Run tests on all impacted modules (from Step 3)*
+*Use incremental re-analysis for fast feedback:*
+```bash
+code-explorer analyze ./src  # Only re-analyzes changed files
+
+```
+
+## Real Example: Refactoring `process_data()`
+
+Now you know exactly what to test after refactoring.
+## Key Benefits
+
+- **Zero Surprises **: Know every affected function before changing code
+- **10-100x Faster Re-analysis**: Incremental updates track only modified files
+- **Visual Confidence**: Mermaid diagrams show complete impact scope
+- **CI/CD Ready**: Integrate into pipelines for automated safety checks
+
+## Common Pitfalls
+
+1. Refactoring without impact analysis → Testing hell
+2. Changing multiple functions at once → Can't isolate breakage
+3. Forgetting downstream dependencies → Production surprises
+4. Not updating documentation → Team confusion
+## Next Steps
+
+1. Run `code-explorer analyze ./src` on your project
+2. Use `code-explorer stats` to find high-impact functions
+3. Follow this 5-step process for your first refactoring
+4. [Integrate into CI/CD](./03cicd-integration.md) for ongoing safety
+5. [Debug data flow issues](./02-debug-data-flow.md) with graph queries
+**Pro Tip**: After refactoring, run `code-explorer analyze --refresh` to verify your changes actually simplified dependencies. Track metrics over time to measure improvement.

@@ -1,0 +1,94 @@
+---
+title: "CI/CD Integration - Automated Dependency Tracking"
+slug: "cicd-integration-dependency-tracking"
+date: "2025-10-19T00:00:00Z"
+summary: "Integrate Code Explorer into GitHub Actions, Jenkins, GitLab CI to automatically track Python code complexity and enforce quality thresholds."
+author: "Thomas Pedot"
+technologies: ["Automation", "CI/CD", "Code Explorer", "GitHub Actions", "GitLab CI", "Jenkins", "Kuzu", "Python"]
+github: "https://github.com/slamer59/code-explorer"
+published: true
+featured: false
+keywords: ["ci-cd", "automation", "github-actions", "complexity-gates"]
+type: "cli"
+---
+# CI/CD Integration: Automated Dependency Tracking for Python Projects
+
+## Why Dependency Analysis Belongs in CI/CD
+
+Traditional CI/CD checks code quality. Dependency analysis checks **architectural quality**.
+**Without it:**
+Developers accidentally create circular imports
+
+Complexity metrics quietly double
+
+Technical debt goes unnoticed until it's critical
+
+Refactoring regressions ship to production
+
+**With it:**
+Every PR shows dependency impact upfront
+
+Complexity regressions are caught immediately
+
+Team maintains architectural standards
+
+Deployments are safer
+
+## GitHub Actions Setup (5 minutes)
+
+### Step 1: Create Workflow File
+
+### Step 2: Create Threshold Checker
+
+### Step 3: Add PR Comment Bot (Optional)
+
+## Advanced: Track Metrics Over Time
+
+## Integration Options
+
+### Jenkins
+
+### GitLab CI
+
+## What to Monitor
+
+✅ **Most-called functions** (complexity hotspots)
+✅ **Total function call edges** (coupling metric)
+✅ **Orphaned functions** (dead code detection)
+✅ **Import relationships** (module coupling)
+## Best Practices
+
+1. **Run on every PR**: Catch complexity early
+2. **Set realistic thresholds**: Based on your codebase baseline
+3. **Track trends**: Monitor metrics over time
+4. **Cache database**: Reuse `.code-explorer/graph.db` for faster runs
+5. **Incremental analysis**: Only re-analyze changed files
+## Performance Optimization
+
+## Monitoring & Alerting
+
+### Track metrics over time
+
+### Slack notifications
+
+## Real-World Example: PR Comment
+
+**What developers see on every PR:**
+## Best Practices
+
+✅ **DO**: Start with monitoring (no failures), then enforce
+✅ **DO**: Allow threshold overrides with PR approval
+✅ **DO**: Review thresholds quarterly
+✅ **DO**: Integrate with incident tracking
+❌ **DON'T**: Set thresholds too strict initially
+❌ **DON'T**: Block all PRs without override option
+❌ **DON'T**: Ignore architectural regressions
+## Next Steps
+
+1. Choose your CI/CD platform (GitHub/Jenkins/GitLab)
+2. [Set thresholds based on your codebase](./04-analyze-large-codebases.md)
+3. Run analysis locally first: `code-explorer analyze ./src`
+4. [Find and fix](./05-find-circular-dependencies.md) existing issues before enabling gates
+5. Enable blocking gates after baseline established
+---
+**Pro Tip**: Start with warnings only. After 2 weeks, move to blocking gates. This prevents initial PR chaos while establishing new standards.

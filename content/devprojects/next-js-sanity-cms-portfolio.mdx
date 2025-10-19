@@ -1,0 +1,33 @@
+---
+title: "Pourquoi Next.js et Sanity CMS pour mon portfolio ?"
+slug: "next-js-sanity-cms-portfolio"
+date: "2025-10-12T10:00:00Z"
+summary: "Découvrez pourquoi j'ai choisi Next.js 14 et Sanity CMS pour mon portfolio : performance, SEO et gestion de contenu flexible pour un score Lighthouse de 94/100."
+author: "Thomas Pedot"
+technologies: ["Next.js", "Sanity CMS", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel", "GROQ", "React Server Components"]
+github: "https://github.com/slamer59/portfolio"
+link: "https://thomas.pedot.cc"
+image: "/images/devprojects/next-js-sanity-cms-portfolio.png"
+published: true
+featured: false
+keywords: ["nextjs portfolio", "sanity cms portfolio", "developer portfolio nextjs"]
+type: "web-app"
+---
+En 2024, j’ai refondu mon portfolio avec des exigences claires : **performance maximale** (LCP < 2.5s), **SEO optimisé**, gestion de contenu flexible et architecture évolutive. Après avoir travaillé comme CTO chez Jokosun et développé des plateformes complexes avec Dagster et Kubernetes, j’ai opté pour **Next.js 14 (App Router)** et **Sanity CMS**.
+Cet article détaille :
+- **Pourquoi Next.js 14** (Server Components, Image Optimization, TypeScript natif) et **Sanity CMS** (GROQ, Portable Text, Real-Time Collaboration) ? Mon choix s’est basé sur la performance, la flexibilité du CMS, et l’expérience développeur. Next.js 14 apporte des Server Components par défaut, une optimisation d’images native, et un typage TypeScript strict. Sanity offre un studio embarqué, des requêtes GROQ puissantes, et une gestion d’images avancée (hotspot, blurhash, LQIP).
+- **L’architecture technique** :  
+- Server/Client Components pour séparer le rendu statique et l’interactivité.
+- Requêtes GROQ optimisées pour éviter le sur-fetching.
+- Déploiement sur Vercel avec ISR (Incremental Static Regeneration) pour des mises à jour instantanées.
+- Structure de dossiers claire : /app pour Next.js, /sanity pour les schémas et requêtes.
+- **Les résultats concrets** : 
+- Score Lighthouse de **94/100** en production.
+- Gestion de **13 galeries photo** et d’un blog technique sans impact sur les performances.
+- Un CMS accessible depuis n’importe où, même depuis mon téléphone lors de vernissages photo.
+- **Les leçons apprises** : 
+- La courbe d’apprentissage de l’App Router de Next.js 14.
+- L’importance des tests automatisés (à ajouter en priorité).
+- L’optimisation des images avec next/image et les metadata Sanity (blurhash, LQIP).
+
+**Idéal pour les développeurs** qui veulent un portfolio performant, SEO-friendly, et facile à maintenir. Ce projet est une vitrine de mon expertise en **Modern Web Development**, avec un focus sur l’équilibre entre performance, DX (Developer Experience), et évolutivité.

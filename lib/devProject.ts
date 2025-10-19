@@ -1,24 +1,14 @@
-// Type definition for Dev Projects based on Sanity schema
+// Type definition for Dev Projects using MDX
 export interface DevProject {
 	slug: string;
 	title: string;
-	date: string; // publishedAt from Sanity
-	description?: unknown; // Portable Text content
+	date: string; // publishedAt date
+	content?: string; // MDX content string
 	summary: string; // Summary for card display
 	technologies?: string[]; // Array of technology names
 	github?: string;
 	link?: string;
-	image?: {
-		// Sanity image structure
-		asset: unknown;
-		dimensions: {
-			width: number;
-			height: number;
-			aspectRatio: number;
-		};
-		lqip: string;
-		alt?: string;
-	};
+	image?: string; // Local image path (e.g., /images/devprojects/project.jpg)
 	published?: boolean;
 	featured: boolean;
 	keywords?: string[]; // For search/filter
@@ -28,13 +18,9 @@ export interface DevProject {
 		title: string;
 		slug: string;
 	}>;
-	author?: {
-		name: string;
-		image?: string;
-		position?: string;
-	};
-	views?: number; // View count from Sanity
-	lastViewedAt?: string; // Last viewed timestamp from Sanity
+	author?: string; // Author name (simplified from Sanity object)
+	views?: number; // View count (optional, not tracked in MDX)
+	lastViewedAt?: string; // Last viewed timestamp (optional, not tracked in MDX)
 }
 
 // Trending post type (extends DevProject with analytics)

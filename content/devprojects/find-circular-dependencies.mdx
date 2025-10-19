@@ -1,0 +1,120 @@
+---
+title: "Find and Fix Circular Dependencies"
+slug: "find-circular-dependencies"
+date: "2025-10-19T00:00:00Z"
+summary: "Detect and eliminate circular imports and circular function dependencies in Python using graph database queries and architectural patterns."
+author: "Thomas Pedot"
+technologies: ["Architecture", "Code Explorer", "Graph Database", "Graph Queries", "Kuzu", "Python", "Software Architecture"]
+github: "https://github.com/slamer59/code-explorer"
+published: true
+featured: false
+keywords: ["circular-dependencies", "architecture", "graph-queries", "dependency-inversion"]
+type: "library"
+---
+# Find and Fix Circular Dependencies: Complete Guide
+
+## The Problem: Circular Dependencies Hell
+
+You've seen it: Module A imports Module B, which imports Module C, which imports back to Module A. Your code compiles until something gets refactored, then everything breaks.
+**Classic scenarios:**
+**Symptoms you have circular dependencies:**
+Bizarre `ImportError` or `AttributeError` on startup
+
+Functions that work locally but fail in production
+
+Impossible to untangle refactoring chains
+
+Tests fail with weird timing issues
+
+IDE can't resolve imports properly
+
+## The Root Cause
+
+Python doesn't truly support circular imports. When Module A imports Module B mid-execution, and Module B tries to import Module A, Python returns a partially-initialized module object. This breaks everything downstream.
+**Why they happen:**
+1. **Tight coupling**: Functions in A need data from B, and vice versa
+2. **God objects**: One module doing too much, needed by many
+3. **Bidirectional relationships**: Observer pattern, callbacks, event handlers
+4. **Poor architecture**: No clear dependency direction
+## Solution: Find and Break Cycles
+
+### Step 1: Detect All Cycles
+
+### Step 2: Visualize the Cycle
+
+### Step 3: Break the Cycle (5 Patterns)
+
+#### Pattern 1: Extract Shared Code
+**Problem:**
+**Solution:**
+Both modules now depend on the shared layer, not each other.
+#### Pattern 2: Dependency Injection
+**Problem:**
+**Solution:**
+#### Pattern 3: Lazy Import (Temporary Fix)
+**Problem:**
+**Temporary Solution:**
+⚠️ **Note**: This masks the real problem. Use Pattern 1 or 2 instead.
+#### Pattern 4: Invert Dependencies
+**Problem:**
+**Solution (Dependency Inversion):**
+#### Pattern 5: Use Protocols/Interfaces
+**Problem:**
+**Solution (Python 3.8+):**
+## Real-World Case Study: Django Project
+
+**Initial state - 3 circular imports:**
+**Fix 1: Extract signals to separate module**
+**Fix 2: Invert views → services dependency**
+**Result: Zero cycles! All dependencies flow downward.**
+## Detection Commands
+
+## Prevent New Cycles
+
+### Add to CI/CD
+
+### Pre-commit hook
+
+## Best Practices
+
+✅ **DO**:
+Run `code-explorer cycles` on every PR
+
+Break cycles immediately when detected
+
+Use dependency injection as default pattern
+
+Keep modules single-purpose
+
+Establish clear layer boundaries
+
+❌ **DON'T**:
+Use lazy imports as permanent solution
+
+Ignore cycles hoping they'll resolve themselves
+
+Create "god objects" needed everywhere
+
+Mix abstraction levels in same module
+
+Use global state (makes cycles harder to break)
+
+## Common Circular Dependency Patterns
+
+| Pattern | How It Happens | Fix |
+|---------|---|---|
+| **Model ↔ Validator** | Validators import models | Extract to `validators/base.py` |
+| **Service ↔ Cache** | Services cache, cache needs services | Inject cache dependency |
+| **View ↔ Signals** | Views trigger signals, signals update models views use | Decouple signals to own module |
+| **Config ↔ Models** | Config imports models, models read config | Use environment variables |
+| **Logger ↔ Everything** | Everything imports logger, logger needs everything | Singleton logger instance |
+## Next Steps
+
+1. Run `code-explorer cycles ./src` on your codebase
+2. Identify the longest cycles first (harder to break)
+3. Apply one of the 5 patterns above
+4. Verify with `code-explorer cycles ./src` (should be zero)
+5. [Add to CI/CD](./03-cicd-integration.md) to prevent regressions
+6. [Refactor safely](./01-refactor-legacy-python.md) knowing dependencies are clean
+---
+**Pro Tip**: After breaking all cycles, run `code-explorer analyze ./src --refresh` to generate a clean dependency graph. This becomes your architectural baseline for preventing future cycles.
