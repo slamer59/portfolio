@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    links:
+      run: bun run scripts/check-broken-links.ts
+    lint:
+      glob: '*.{js,ts,jsx,tsx}'
+      run: bun run lint --file {staged_files}
+    typecheck:
+      glob: '*.{ts,tsx}'
+      run: bun run ts-check
