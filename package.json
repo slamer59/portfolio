@@ -9,6 +9,7 @@
     "lint": "next lint",
     "unlighthouse": "npx unlighthouse --site https://thomas.pedot.cc --config-file unlighthouse.config.prod.ts",
     "ts-check": "tsc --noEmit",
+    "check:links": "bun run scripts/check-broken-links.ts",
     "prepare": "husky"
   },
   "dependencies": {

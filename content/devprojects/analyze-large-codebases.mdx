@@ -16,7 +16,8 @@ type: "library"
 ## The Challenge: Enterprise-Scale Analysis
 
 Fortune 500 companies have Python codebases with 10,000+ files. Traditional static analysis tools choke:
-**Default analysis**: 8+ hours for complete scan ⏱️
+
+**Default analysis**: Hours for complete scan ⏱️
 
 **Memory bloat**: 32GB+ RAM consumed 💥
 
@@ -107,8 +108,8 @@ For really massive codebases (50,000+ files):
 ## Next Steps
 
 1. Benchmark your codebase: `code-explorer analyze ./src --benchmark`
-2. [Automate in CI/CD](./03-cicd-integration.md) with incremental analysis
-3. [Set up monitoring](./03-cicd-integration.md) for continuous tracking
+2. [Automate in CI/CD](/articles/cicd-integration-dependency-tracking) with incremental analysis
+3. [Set up monitoring](/articles/cicd-integration-dependency-tracking) for continuous tracking
 4. Scale to distributed analysis for codebases >50,000 files
 ---
 **Pro Tip**: Always run with `--benchmark` on first analysis. This shows which files are slow and where to optimize.

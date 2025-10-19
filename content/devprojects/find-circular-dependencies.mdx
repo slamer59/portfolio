@@ -114,7 +114,7 @@ Use global state (makes cycles harder to break)
 2. Identify the longest cycles first (harder to break)
 3. Apply one of the 5 patterns above
 4. Verify with `code-explorer cycles ./src` (should be zero)
-5. [Add to CI/CD](./03-cicd-integration.md) to prevent regressions
-6. [Refactor safely](./01-refactor-legacy-python.md) knowing dependencies are clean
+5. [Add to CI/CD](/articles/cicd-integration-dependency-tracking) to prevent regressions
+6. [Refactor safely](/articles/refactor-legacy-python) knowing dependencies are clean
 ---
 **Pro Tip**: After breaking all cycles, run `code-explorer analyze ./src --refresh` to generate a clean dependency graph. This becomes your architectural baseline for preventing future cycles.
