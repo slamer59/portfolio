@@ -3,7 +3,7 @@
 import { motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export const FramerImage = motion.create(Image);
 
@@ -11,8 +11,10 @@ export const MovingImg = ({ title, img, link }) => {
 	const x = useMotionValue(0);
 	const y = useMotionValue(0);
 	const imgRef = useRef(null);
+	const [imageError, setImageError] = useState(false);
 
 	function handleMouse(event) {
+		if (imageError || !img) return;
 		/* @ts-ignore */
 		imgRef.current.style.display = "inline-block";
 		x.set(event.pageX);
@@ -20,11 +22,24 @@ export const MovingImg = ({ title, img, link }) => {
 	}
 
 	function handleMouseLeave(event) {
+		if (imageError || !img) return;
 		/* @ts-ignore */
 		imgRef.current.style.display = "none";
 		x.set(0);
 		y.set(0);
 	}
+
+	// Don't render image if img is missing or has error
+	if (!img || imageError) {
+		return (
+			<Link href={link} className="relative">
+				<h2 className="text-xl font-semibold hover:underline dark:text-light md:text-lg xs:text-base">
+					{title}
+				</h2>
+			</Link>
+		);
+	}
+
 	return (
 		<>
 			<Link
@@ -53,6 +68,7 @@ export const MovingImg = ({ title, img, link }) => {
               33vw"
 					width={300}
 					height={300}
+					onError={() => setImageError(true)}
 				/>
 			</Link>
 		</>

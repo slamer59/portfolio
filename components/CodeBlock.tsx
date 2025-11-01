@@ -165,7 +165,7 @@ export function CodeBlock({ children, className, inline }: CodeBlockProps) {
 	);
 }
 
-// Pre component that extracts code content and passes to CodeBlock
+// Pre component that extracts code content and passes to CodeBlock or Mermaid
 export function Pre({ children, ...props }: ComponentProps<"pre">) {
 	// Extract code element and its props
 	if (
@@ -176,6 +176,16 @@ export function Pre({ children, ...props }: ComponentProps<"pre">) {
 		const codeElement = children as {
 			props: { children: string; className?: string };
 		};
+
+		const language = getLanguageFromClassName(codeElement.props.className);
+
+		// Render Mermaid diagrams
+		if (language === "mermaid") {
+			// Dynamic import of Mermaid component
+			const Mermaid = require("./Mermaid").Mermaid;
+			return <Mermaid chart={codeElement.props.children} />;
+		}
+
 		return (
 			<CodeBlock className={codeElement.props.className}>
 				{codeElement.props.children}

@@ -5,7 +5,6 @@ date: "2025-03-20T10:00:00.000Z"
 summary: "Build scalable multi-tenant GitOps with ArgoCD and Dagster. Automate Kubernetes deployments, reduce deploy time from 2h to 5min with zero-downtime."
 author: "Thomas Pedot"
 technologies: ["ArgoCD", "Kubernetes", "Helm", "GitOps", "Git"]
-image: "/images/devprojects/argocd-gitops.png"
 published: true
 featured: true
 keywords: ["gitops architecture", "argocd multi-tenant", "kubernetes deployment", "dagster infrastructure", "continuous deployment"]
@@ -16,6 +15,45 @@ pillarTitle: "Kubernetes Production & DevOps: Helm, GitOps, ArgoCD"
 ---
 
 > 📚 Part of the [Cloud Native & DevOps Expertise](/articles/cloud-native-devops-expertise) series
+
+## GitOps Multi-Tenant Architecture Overview
+
+```mermaid
+graph LR
+    subgraph "Developer Experience"
+        DEV[👨‍💻 Developer]
+    end
+
+    subgraph "Git Repositories"
+        GIT1[📁 tenant-configs]
+        GIT2[📦 helm-charts]
+        GIT3[⚙️ argocd-apps]
+    end
+
+    subgraph "ArgoCD Control Plane"
+        ARGO[🔄 ArgoCD<br/>ApplicationSet]
+        SYNC[🔁 Auto Sync]
+    end
+
+    subgraph "Kubernetes Cluster"
+        NS1[📦 Namespace: team-analytics<br/>Dagster + PostgreSQL]
+        NS2[📦 Namespace: team-ml<br/>Dagster + PostgreSQL]
+        NS3[📦 Namespace: team-data<br/>Dagster + PostgreSQL]
+    end
+
+    DEV -->|git push| GIT1
+    GIT1 -->|watches| ARGO
+    GIT2 -->|references| ARGO
+    GIT3 -->|defines| ARGO
+
+    ARGO -->|generates| SYNC
+    SYNC -->|deploys| NS1
+    SYNC -->|deploys| NS2
+    SYNC -->|deploys| NS3
+
+```
+
+**Architecture GitOps Multi-Tenant:** 1 git push → ArgoCD détecte → Déploie automatiquement 3 tenants isolés en 5 minutes
 
 ## GitOps : Au-Delà du Buzzword
 
@@ -40,28 +78,41 @@ Comment déployer et gérer plusieurs environnements de données (tenants) avec 
 
 ### Structure des Repositories
 
-```
-1. argocd-apps/              # ApplicationSets et Apps ArgoCD
-   ├── applicationset.yaml
-   └── apps/
-       ├── dagster-tenant-1.yaml
-       ├── dagster-tenant-2.yaml
-       └── ...
+```mermaid
+graph TB
+    subgraph "1. argocd-apps (Config Repo)"
+        A1[applicationset.yaml]
+        A2[apps/dagster-tenant-1.yaml]
+        A3[apps/dagster-tenant-2.yaml]
+    end
 
-2. helm-charts/              # Charts Helm customs
-   ├── dagster/
-   │   ├── Chart.yaml
-   │   ├── values.yaml
-   │   └── templates/
-   └── monitoring/
+    subgraph "2. helm-charts (Charts Repo)"
+        B1[dagster/Chart.yaml]
+        B2[dagster/values.yaml]
+        B3[dagster/templates/]
+        B4[monitoring/]
+    end
 
-3. tenant-configs/           # Configurations par tenant
-   ├── team-analytics/
-   │   └── values.yaml
-   ├── team-ml/
-   │   └── values.yaml
-   └── ...
+    subgraph "3. tenant-configs (Values Repo)"
+        C1[team-analytics/values.yaml]
+        C2[team-ml/values.yaml]
+        C3[team-data/values.yaml]
+    end
+
+    A1 -->|watches| C1
+    A1 -->|watches| C2
+    A1 -->|watches| C3
+    A2 -->|references| B1
+    A2 -->|overrides with| C1
+    A3 -->|references| B1
+    A3 -->|overrides with| C2
+
 ```
+
+**3 repositories découplés:**
+1. **argocd-apps/** - ApplicationSets et Applications ArgoCD
+2. **helm-charts/** - Charts Helm réutilisables
+3. **tenant-configs/** - Configurations spécifiques par équipe
 
 ### ApplicationSet Multi-Tenant
 
@@ -102,16 +153,70 @@ spec:
 
 ## Isolation Multi-Tenant
 
-### Namespace Kubernetes
+### Architecture d'Isolation
+
+```mermaid
+graph TB
+    subgraph "Kubernetes Cluster"
+        subgraph "Namespace: dagster-team-analytics"
+            A1[Dagster Webserver]
+            A2[Dagster Daemon]
+            A3[PostgreSQL]
+            A4["ResourceQuota<br/>CPU: 10 cores<br/>Memory: 40Gi"]
+            A5["NetworkPolicy<br/>Isolated"]
+        end
+
+        subgraph "Namespace: dagster-team-ml"
+            B1[Dagster Webserver]
+            B2[Dagster Daemon]
+            B3[PostgreSQL]
+            B4["ResourceQuota<br/>CPU: 20 cores<br/>Memory: 80Gi"]
+            B5["NetworkPolicy<br/>Isolated"]
+        end
+
+        subgraph "Namespace: dagster-team-data"
+            C1[Dagster Webserver]
+            C2[Dagster Daemon]
+            C3[PostgreSQL]
+            C4["ResourceQuota<br/>CPU: 15 cores<br/>Memory: 60Gi"]
+            C5["NetworkPolicy<br/>Isolated"]
+        end
+
+        subgraph "Shared Services"
+            D1[Monitoring Stack]
+            D2[ArgoCD]
+        end
+    end
+
+    A5 -.->|blocked| B1
+    A5 -.->|blocked| C1
+    B5 -.->|blocked| C1
+
+    A1 -->|allowed| D1
+    B1 -->|allowed| D1
+    C1 -->|allowed| D1
+
+    D2 -->|manages| A1
+    D2 -->|manages| B1
+    D2 -->|manages| C1
+
+```
+
+**3 niveaux d'isolation:**
+1. **Namespace Kubernetes** - Isolation logique
+2. **ResourceQuota** - Limites CPU/Memory par tenant
+3. **NetworkPolicy** - Isolation réseau stricte
+
+### Configuration Kubernetes
 
 ```yaml
 # Namespace dédié
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dagster-team-sales
+  name: dagster-team-analytics
   labels:
-    tenant: team-sales
+    tenant: team-analytics
 
 ---
 # Resource Quotas
@@ -119,7 +224,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: tenant-quota
-  namespace: dagster-team-sales
+  namespace: dagster-team-analytics
 spec:
   hard:
     requests.cpu: "10"
@@ -127,12 +232,12 @@ spec:
     persistentvolumeclaims: "10"
 
 ---
-# Network Policy
+# Network Policy (isolation stricte)
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: tenant-isolation
-  namespace: dagster-team-sales
+  namespace: dagster-team-analytics
 spec:
   podSelector: {}
   policyTypes:
@@ -140,17 +245,41 @@ spec:
     - Egress
   ingress:
     - from:
-      - podSelector: {}  # Autoriser au sein du namespace
+      - podSelector: {}  # Autoriser uniquement au sein du namespace
   egress:
     - to:
-      - podSelector: {}  # Autoriser au sein du namespace
-    - to:  # Autoriser PostgreSQL
+      - podSelector: {}
+    - to:  # Autoriser accès PostgreSQL partagé
       - namespaceSelector:
           matchLabels:
             name: databases
 ```
 
 ## Workflow Développeur
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant Git as Git Repository
+    participant ArgoCD as ArgoCD
+    participant K8s as Kubernetes Cluster
+
+    Dev->>Git: 1. git push (new tenant config)
+    Note over Dev,Git: tenant-configs/team-sales/values.yaml
+
+    Git-->>ArgoCD: 2. Webhook notification (< 5s)
+    ArgoCD->>Git: 3. Pull latest config
+    ArgoCD->>ArgoCD: 4. Detect changes (ApplicationSet)
+
+    ArgoCD->>K8s: 5. Create namespace dagster-team-sales
+    ArgoCD->>K8s: 6. Apply ResourceQuota + NetworkPolicy
+    ArgoCD->>K8s: 7. Deploy Dagster (Helm)
+    K8s-->>ArgoCD: 8. Health check (Healthy)
+
+    Note over Dev,K8s: Total time: ~5 minutes (was 2 hours manual)
+```
+
+**Steps détaillés:**
 
 ```bash
 # 1. Créer un nouveau tenant
@@ -165,7 +294,7 @@ git add tenant-configs/team-sales/
 git commit -m "Add team-sales tenant"
 git push origin main
 
-# 4. ArgoCD détecte le changement (30s max)
+# 4. ArgoCD détecte automatiquement (< 30s)
 # → Crée Application ArgoCD automatiquement
 # → Déploie Dagster dans namespace dagster-team-sales
 # → ~3min plus tard: tenant opérationnel ✅
