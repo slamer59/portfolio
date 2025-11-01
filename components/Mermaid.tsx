@@ -11,7 +11,6 @@ export function Mermaid({ chart }: MermaidProps) {
 	const [svg, setSvg] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [isDarkMode, setIsDarkMode] = useState(false);
-	console.log("🚀 ~ Mermaid ~ isDarkMode:", isDarkMode)
 
 	// Detect dark mode
 	useEffect(() => {
