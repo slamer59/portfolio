@@ -1,4 +1,3 @@
-import AnimatedText from "@/components/AnimatedText";
 import PhotoProjectLayout from "@/components/Photo/PhotoProjectLayout";
 import TransitionEffect from "@/components/TransitionEffect";
 import Layout from "components/Layout";
@@ -30,11 +29,11 @@ export default function Projects() {
 		<>
 			<TransitionEffect />
 			<Layout className="flex flex-col items-center justify-center w-full mb-16 dark:text-light">
-				<AnimatedText
-					text="L'imagination l'emporte sur la connaissance !"
-					className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl"
-				>
-					<h2 className="mb-4 text-xl text-center dark:text-light">
+				<div className="flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden text-center sm:py-0">
+					<h1 className="inline-block text-dark dark:text-light font-bold w-full text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl 2xl:text-6xl mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl">
+						L'imagination l'emporte sur la connaissance !
+					</h1>
+					<p className="mb-4 text-xl text-center dark:text-light">
 						C'est souvent dit que l'
 						<span className="font-bold text-primary dark:text-light">
 							imagination
@@ -58,7 +57,7 @@ export default function Projects() {
 							découvertes
 						</span>{" "}
 						et des réalisations importantes.
-					</h2>
+					</p>
 					<div className="mb-4 text-xl text-center dark:text-light">
 						Je vous ouvre les portes de mes explorations photographiques,
 						cherchant à immortaliser des instants uniques et inspirants à
@@ -80,7 +79,7 @@ export default function Projects() {
 						</span>
 						.
 					</div>
-				</AnimatedText>
+				</div>
 				<PhotoProjectLayout />
 			</Layout>
 		</>

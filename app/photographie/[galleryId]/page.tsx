@@ -17,6 +17,60 @@ export const revalidate = 30; // revalidate at most 30 seconds
 const widths = [500, 1000, 1600];
 const ratios = [2.2, 4, 6, 8];
 
+/**
+ * Generates metadata for an individual photo within a gallery
+ */
+async function generatePhotoMetadata(
+	galleryId: string,
+	photoId: number,
+	galleryData: Awaited<ReturnType<typeof getGalleryImages>>,
+	galleryNextData: Awaited<ReturnType<typeof getGalleryNextImages>>,
+): Promise<Metadata> {
+	const galleryImageData = await getGalleryImageByIndex(galleryId, photoId);
+	const photoData = galleryNextData.gallery.images[photoId];
+
+	// Generate unique title for the photo
+	const photoTitle = photoData?.title
+		? `${photoData.title} | ${galleryData.title} | Portfolio de Thomas PEDOT`
+		: `${galleryData.title} - Photo #${photoId + 1} | Portfolio de Thomas PEDOT`;
+
+	// Use photo description, fall back to alt text, then gallery description
+	const photoDescription =
+		photoData?.description || photoData?.alt || galleryData.description;
+
+	// Generate optimized photo image URL
+	const photoImage = urlFor(galleryImageData.image[0]).format("webp").url();
+
+	// Construct canonical URL for the specific photo
+	const canonicalUrl = `${domain}/photographie/${galleryId}?photoId=${photoId}`;
+
+	return {
+		title: photoTitle,
+		description: photoDescription,
+		keywords: galleryData.keywords,
+		authors: galleryData.author
+			? [{ name: galleryData.author.name }]
+			: undefined,
+		openGraph: {
+			title: photoTitle,
+			description: photoDescription,
+			type: "website",
+			url: canonicalUrl,
+			images: [photoImage],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: photoTitle,
+			description: photoDescription,
+			images: [photoImage],
+			creator: galleryData.author ? galleryData.author.name : undefined,
+		},
+		alternates: {
+			canonical: canonicalUrl,
+		},
+	};
+}
+
 export async function generateMetadata(
 	{
 		params,
@@ -33,21 +87,25 @@ export async function generateMetadata(
 		? Number(resolvedSearchParams.photoId)
 		: 0;
 	const galleryData = await getGalleryImages(resolvedParams.galleryId);
-	const galleryImageData = await getGalleryImageByIndex(
-		resolvedParams.galleryId,
-		photoId,
-	);
 	const galleryNextData = await getGalleryNextImages(resolvedParams.galleryId);
 
-	const ogImages = resolvedSearchParams.photoId
-		? [urlFor(galleryImageData.image[0]).format("webp").url()]
-		: galleryNextData.gallery.images.map((image) =>
-				urlFor(image).format("webp").url(),
-			);
+	// Generate unique metadata for individual photo pages
+	if (resolvedSearchParams.photoId) {
+		return generatePhotoMetadata(
+			resolvedParams.galleryId,
+			photoId,
+			galleryData,
+			galleryNextData,
+		);
+	}
 
-	// Construct the canonical URL
-	const baseUrl = domain; // Replace with your actual base URL
-	const canonicalUrl = `${baseUrl}/photographie/${resolvedParams.galleryId}`;
+	// Default gallery-level metadata (when no photoId is present)
+	const ogImages = galleryNextData.gallery.images.map((image) =>
+		urlFor(image).format("webp").url(),
+	);
+
+	// Construct the canonical URL for the gallery
+	const canonicalUrl = `${domain}/photographie/${resolvedParams.galleryId}`;
 
 	return {
 		title: galleryData.title,
@@ -60,7 +118,7 @@ export async function generateMetadata(
 			title: galleryData.title,
 			description: galleryData.description,
 			type: "website",
-			url: canonicalUrl, // Add the canonical URL here
+			url: canonicalUrl,
 			images: ogImages,
 		},
 		twitter: {
@@ -71,7 +129,7 @@ export async function generateMetadata(
 			creator: galleryData.author ? galleryData.author.name : undefined,
 		},
 		alternates: {
-			canonical: canonicalUrl, // Add the canonical URL here
+			canonical: canonicalUrl,
 		},
 	};
 }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Modal from "@/components/Modal";
 import Carousel from "@/components/Photo/Carousel";
@@ -9,33 +9,43 @@ import { useEffect, useRef } from "react";
 //   return galleryImageData
 // }
 
-export default function GalleryPage({ galleryImageData, galleryData, photoId
+export default function GalleryPage({
+	galleryImageData,
+	galleryData,
+	photoId,
 }) {
+	const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
+	const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
 
-    const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
-    const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
+	useEffect(() => {
+		// This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
+		if (lastViewedPhoto && lastViewedPhotoRef.current && !photoId) {
+			lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
+			setLastViewedPhoto(0);
+		}
+	}, [photoId, lastViewedPhoto, setLastViewedPhoto]);
 
-    useEffect(() => {
-        // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-        if (lastViewedPhoto && lastViewedPhotoRef.current && !photoId) {
-            lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-            setLastViewedPhoto(0);
-        }
-    }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
-
-    // const currentPhotoUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
-    return (
-        <>
-            {photoId && (
-                <Modal
-                    photoId={photoId}
-                    images={galleryData.gallery.images}
-                    returnTo={`/photographie/${galleryData.slug.current}`}
-                    onClose={() => {
-                        setLastViewedPhoto(Number(photoId));
-                    }} />
-            )}
-            <Carousel images={galleryData.gallery.images} currentPhoto={galleryImageData.image[0]} index={Number(photoId)} />
-        </>
-    );
+	// const currentPhotoUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_2560/${currentPhoto.public_id}.${currentPhoto.format}`;
+	return (
+		<>
+			{photoId && (
+				<Modal
+					photoId={photoId}
+					images={galleryData.gallery.images}
+					returnTo={`/photographie/${galleryData.slug.current}`}
+					onClose={() => {
+						setLastViewedPhoto(Number(photoId));
+					}}
+				/>
+			)}
+			<Carousel
+				images={galleryData.gallery.images}
+				currentPhoto={galleryImageData.image[0]}
+				index={Number(photoId)}
+				galleryTitle={galleryData.title}
+				galleryDescription={galleryData.description}
+				publishedDate={galleryData.date}
+			/>
+		</>
+	);
 }

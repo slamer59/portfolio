@@ -35,10 +35,10 @@ export default async function Projects({ searchParams }: ProjectsPageProps) {
 		<>
 			<TransitionEffect />
 			<Layout className="flex flex-col items-center justify-center w-full pt-20 mb-16 dark:text-light">
-				<AnimatedText
-					text="Galaxie Numérique : Exploration des Projets"
-					className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl"
-				>
+				<div className="flex flex-col items-center justify-center w-full py-2 mx-auto overflow-hidden text-center sm:py-0">
+					<h1 className="inline-block text-dark dark:text-light font-bold w-full text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-6xl 2xl:text-6xl mb-16 !text-8xl !leading-tight lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl">
+						Galaxie Numérique : Exploration des Projets
+					</h1>
 					<div className="mb-4 text-xl text-center dark:text-light">
 						Voici la vitrine{" "}
 						<span className="font-bold text-primary dark:text-light">
@@ -64,7 +64,7 @@ export default async function Projects({ searchParams }: ProjectsPageProps) {
 						, offrant ainsi aux autres la possibilité d'explorer et d'apprécier
 						mon travail au sein de la communauté GitHub et au-delà.
 					</div>
-				</AnimatedText>
+				</div>
 				<DevProjectsClient projects={projects} searchParams={params} />
 			</Layout>
 		</>

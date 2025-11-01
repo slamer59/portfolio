@@ -26,13 +26,9 @@ export async function generateStaticParams() {
 }
 
 // Custom components for MDX
+// Note: H1 is omitted because the page already has an H1 from the article title
+// MDX content should start with H2 for proper heading hierarchy
 const components = {
-	h1: (props: ComponentProps<"h1">) => (
-		<h1
-			className="mb-4 mt-8 border-b border-dark/20 dark:border-light/20 pb-2 text-4xl font-bold text-dark dark:text-light"
-			{...props}
-		/>
-	),
 	h2: (props: ComponentProps<"h2">) => (
 		<h2
 			className="mb-3 mt-6 text-3xl font-semibold text-dark dark:text-light"
@@ -178,8 +174,12 @@ export async function generateMetadata(
 
 	const previousImages = (await parent).openGraph?.images || [];
 
+	// Use absolute title (not template) to keep titles under 60 chars for SEO
+	// The template adds " | Portfolio de Thomas PEDOT" which makes titles too long
 	return {
-		title: data.title,
+		title: {
+			absolute: data.title,
+		},
 		description: data.summary || data.title,
 		openGraph: {
 			title: data.title,

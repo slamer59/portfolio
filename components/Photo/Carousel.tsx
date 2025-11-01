@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useLastViewedPhoto } from "@/lib/useLastViewedPhoto";
 import { urlFor } from "@/sanity/lib/client";
@@ -8,53 +8,61 @@ import useKeypress from "react-use-keypress";
 import SharedModal from "./SharedModal";
 
 export default function Carousel({
-  index,
-  currentPhoto,
-  images,
+	index,
+	currentPhoto,
+	images,
+	galleryTitle,
+	galleryDescription,
+	publishedDate,
 }: {
-  index: number;
-  currentPhoto, //: ImageProps;
-  images, //: ImageProps[];
+	index: number;
+	currentPhoto; //: ImageProps;
+	images; //: ImageProps[];
+	galleryTitle?: string;
+	galleryDescription?: string;
+	publishedDate?: string;
 }) {
+	const router = useRouter();
+	const [, setLastViewedPhoto] = useLastViewedPhoto();
 
-  const router = useRouter();
-  const [, setLastViewedPhoto] = useLastViewedPhoto();
+	function closeModal() {
+		setLastViewedPhoto(currentPhoto.id);
+		router.push("/");
+	}
 
-  function closeModal() {
-    setLastViewedPhoto(currentPhoto.id);
-    router.push("/");
-  }
+	function changePhotoId(newVal: number) {
+		return newVal;
+	}
 
-  function changePhotoId(newVal: number) {
-    return newVal;
-  }
+	useKeypress("Escape", () => {
+		closeModal();
+	});
 
-  useKeypress("Escape", () => {
-    closeModal();
-  });
-
-  return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <button
-        className="absolute inset-0 z-30 bg-black cursor-default backdrop-blur-2xl"
-        onClick={closeModal}
-      >
-        <Image
-          src={urlFor(currentPhoto).format("webp").url()}
-          className="w-full h-full pointer-events-none"
-          alt="blurred background"
-          fill
-          priority
-        />
-      </button>
-      <SharedModal
-        index={index}
-        images={images}
-        changePhotoId={changePhotoId}
-        currentPhoto={currentPhoto}
-        closeModal={closeModal}
-        navigation={false}
-      />
-    </div>
-  );
+	return (
+		<div className="fixed inset-0 flex items-center justify-center">
+			<button
+				className="absolute inset-0 z-30 bg-black cursor-default backdrop-blur-2xl"
+				onClick={closeModal}
+			>
+				<Image
+					src={urlFor(currentPhoto).format("webp").url()}
+					className="w-full h-full pointer-events-none"
+					alt="blurred background"
+					fill
+					priority
+				/>
+			</button>
+			<SharedModal
+				index={index}
+				images={images}
+				changePhotoId={changePhotoId}
+				currentPhoto={currentPhoto}
+				closeModal={closeModal}
+				navigation={false}
+				galleryTitle={galleryTitle}
+				galleryDescription={galleryDescription}
+				publishedDate={publishedDate}
+			/>
+		</div>
+	);
 }
