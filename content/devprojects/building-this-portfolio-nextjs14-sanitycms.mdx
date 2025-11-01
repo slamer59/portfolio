@@ -12,7 +12,7 @@ featured: false
 keywords: ["nextjs portfolio sanity cms", "build portfolio with nextjs 14", "nextjs app router tutorial", "sanity cms nextjs integration", "developer portfolio typescript"]
 type: "web-app"
 ---
-# **Pourquoi cette Stack ? 5 Raisons**
+## Pourquoi cette Stack ? 5 Raisons
 
 Nous avons vu quelques applications web récente.
 En 2024, j'ai reconstruit mon portfolio, en 3 jours :
@@ -28,22 +28,22 @@ En 2024, j'ai reconstruit mon portfolio, en 3 jours :
 Ce projet utilise une stack moderne : <TechBadge technology="Next.js" /> <TechBadge technology="TypeScript" /> <TechBadge technology="Sanity CMS" variant="compact" /> <TechBadge technology="Tailwind CSS" variant="compact" />
 
 
-# **Pourquoi ces Choix ?**
+## Pourquoi ces Choix ?
 
-## **Next.js 14 – Le Cœur de l'Application**
+### Next.js 14 – Le Cœur de l'Application
 
 L'**App Router** de <TechBadge technology="Next.js" variant="minimal" /> révolutionne l'expérience utilisateur grâce à ses **Server Components**, qui réduisent le poids du JavaScript côté client et améliorent les temps de chargement.
 > Bon la raison principale était mon envie de le faire en très peu de temps et que je connaissais bien nextjs.
 
 Le **streaming** et **Suspense** permettent un rendu progressif, offrant une interface réactive même lors du chargement de données asynchrones. L'optimisation native des **images**, **polices** et **scripts** (via le compilateur Rust de Next.js) garantit des performances optimales sans configuration complexe.
 L'intégration de <TechBadge technology="TypeScript" variant="minimal" /> renforce la sécurité du code et simplifie la maintenance, tandis que les **API Routes** facilitent la connexion avec des services externes comme Sanity CMS, sans sacrifier la simplicité.
-## **Sanity CMS – La Puissance du Headless**
+### Sanity CMS – La Puissance du Headless
 
-Sanity se distingue par son approche **TypeScript-first** : les schémas de contenu bénéficient d’une **validation en temps réel** et d’une autocomplétion dans l’éditeur, éliminant les erreurs de structure. Son langage de requête **GROQ** permet d’extraire précisément les données nécessaires, limitant ainsi la surcharge réseau. 
+Sanity se distingue par son approche **TypeScript-first** : les schémas de contenu bénéficient d'une **validation en temps réel** et d'une autocomplétion dans l'éditeur, éliminant les erreurs de structure. Son langage de requête **GROQ** permet d'extraire précisément les données nécessaires, limitant ainsi la surcharge réseau. 
 > Aujourd'hui, après un an d'utilisation, je trouve que Sanity est correcte mais s'intègre mal à l'écosystemè. Pour faire un blog, j'utilise principalement du markdown. Si le Portable Document Format semble bien au départ, il n'est pas très... portable vu que c'est du json ! Qui n'est pas un document pour nous les humains...
 
-Le système de **Rich Text** supporte nativement les blocs de code, les images, et les médias enrichis, idéal pour un portfolio technique. Enfin, son **pipeline d’images** automatise le redimensionnement, la compression et la conversion de formats (WebP, AVIF), pour des visuels légers et adaptés à tous les écrans.
-# **Structure du Projet : Une Organisation Claire**
+Le système de **Rich Text** supporte nativement les blocs de code, les images, et les médias enrichis, idéal pour un portfolio technique. Enfin, son **pipeline d'images** automatise le redimensionnement, la compression et la conversion de formats (WebP, AVIF), pour des visuels légers et adaptés à tous les écrans.
+## Structure du Projet : Une Organisation Claire
 
 ```bash
 portfolio/
@@ -65,9 +65,9 @@ portfolio/
 └── package.json
 ```
 
-## **Implémentation Technique : Le Code en Pratique**
+### Implémentation Technique : Le Code en Pratique
 
-### **Server Components – Performance par Défaut**
+#### Server Components – Performance par Défaut
 
 ```javascript
 // app/articles/page.tsx
@@ -83,7 +83,7 @@ export default async function ArticlesPage() {
 ```
 
 → **Avantage** : Réduction des requêtes client et chargement progressif.
-### **Schémas Sanity – Contenu Typé et Validé**
+#### Schémas Sanity – Contenu Typé et Validé
 
 ```javascript
 // sanity/schemas/devProject.ts
@@ -107,7 +107,7 @@ export default defineType({
 ```
 
 → **Pourquoi ?** : Un CMS qui parle le même langage que votre code.
-### **Optimisation des Images – Chaque Ko Compte**
+#### Optimisation des Images – Chaque Ko Compte
 
 ```javascript
 // components/GalleryImage.tsx
@@ -127,7 +127,7 @@ export function GalleryImage({ image }: Props) {
 ```
 
 → **Résultat** : Images légères, chargement différé, et *placeholder* pour éviter le *CLS*.
-### **SEO Dynamique – Métadonnées Générées à la Volée**
+#### SEO Dynamique – Métadonnées Générées à la Volée
 
 ```javascript
 // app/articles/[slug]/page.tsx
@@ -146,7 +146,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 ```
 
 → **Impact** : Meilleure indexation et partage sur les réseaux sociaux.
-## **Performance : 94/100 sur Lighthouse**
+### Performance : 94/100 sur Lighthouse
 
 | Métrique | Résultat | Technique Utilisée |
 | --- | --- | --- |
@@ -162,21 +162,21 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 - **Lazy Loading** : Composants et images chargés à la demande
 - **GROQ Optimisé** : Requêtes ciblées pour limiter la taille des payloads
 
-# **Retours d’Expérience : Ce Qui a (Vraiment) Fonctionné**
+## Retours d'Expérience : Ce Qui a (Vraiment) Fonctionné
 
-## **Points Forts**
+### Points Forts
 
 - **App Router** : Simplifie la gestion des données et du cache.
 - **Optimisation automatique** : Next.js gère 80% des bonnes pratiques.
 
-## **Défis à Anticiper**
+### Défis à Anticiper
 
 - **Migration vers App Router** : Certains plugins/composants ne sont pas encore compatibles.
 - **Sanity + TypeScript** : Une DX inégalée pour les développeurs. -> Je préfère MDX maintenant. 
 - **Dark Mode SSR** : Nécessite une gestion fine des cookies et du contexte.
-- **Courbe d’apprentissage GROQ** : Syntaxe puissante mais spécifique.
+- **Courbe d'apprentissage GROQ** : Syntaxe puissante mais spécifique.
 
-# **Une Architecture Réplicable**
+## Une Architecture Réplicable
 
 Ce portfolio prouve qu’avec **Next.js 14**, **Sanity CMS**, et une approche méthodique, on peut allier : 
 - **Performance** (94/100 Lighthouse)
