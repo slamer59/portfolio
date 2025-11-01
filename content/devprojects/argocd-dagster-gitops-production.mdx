@@ -1,0 +1,222 @@
+---
+title: "ArgoCD GitOps Architecture: Multi-Tenant Kubernetes"
+slug: "argocd-dagster-gitops-production"
+date: "2025-03-20T10:00:00.000Z"
+summary: "Build scalable multi-tenant GitOps with ArgoCD and Dagster. Automate Kubernetes deployments, reduce deploy time from 2h to 5min with zero-downtime."
+author: "Thomas Pedot"
+technologies: ["ArgoCD", "Kubernetes", "Helm", "GitOps", "Git"]
+image: "/images/devprojects/argocd-gitops.png"
+published: true
+featured: true
+keywords: ["gitops architecture", "argocd multi-tenant", "kubernetes deployment", "dagster infrastructure", "continuous deployment"]
+type: "article"
+github: "https://github.com/slamer59/dagster-argocd-configuration"
+pillarPage: "cloud-native-devops-expertise"
+pillarTitle: "Kubernetes Production & DevOps: Helm, GitOps, ArgoCD"
+---
+
+> 📚 Part of the [Cloud Native & DevOps Expertise](/articles/cloud-native-devops-expertise) series
+
+## GitOps : Au-Delà du Buzzword
+
+GitOps n'est pas qu'un terme à la mode. C'est une méthodologie révolutionnaire qui transforme la façon dont nous gérons l'infrastructure et les déploiements.
+
+### Définition GitOps
+
+1. **Git comme source de vérité**
+2. **Déploiement déclaratif**
+3. **Synchronisation automatique**
+4. **Traçabilité complète**
+
+## Le Défi : Déploiements Multi-Tenant
+
+Comment déployer et gérer plusieurs environnements de données (tenants) avec :
+- Isolation complète
+- Configuration dynamique
+- Zéro intervention manuelle
+- Sécurité renforcée
+
+## Notre Architecture
+
+### Structure des Repositories
+
+```
+1. argocd-apps/              # ApplicationSets et Apps ArgoCD
+   ├── applicationset.yaml
+   └── apps/
+       ├── dagster-tenant-1.yaml
+       ├── dagster-tenant-2.yaml
+       └── ...
+
+2. helm-charts/              # Charts Helm customs
+   ├── dagster/
+   │   ├── Chart.yaml
+   │   ├── values.yaml
+   │   └── templates/
+   └── monitoring/
+
+3. tenant-configs/           # Configurations par tenant
+   ├── team-analytics/
+   │   └── values.yaml
+   ├── team-ml/
+   │   └── values.yaml
+   └── ...
+```
+
+### ApplicationSet Multi-Tenant
+
+```yaml
+# argocd-apps/applicationset.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dagster-tenants
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/slamer59/tenant-configs
+        revision: main
+        directories:
+          - path: '*'  # Un dossier = un tenant
+
+  template:
+    metadata:
+      name: 'dagster-{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/slamer59/helm-charts
+        targetRevision: main
+        path: dagster
+        helm:
+          valueFiles:
+            - https://github.com/slamer59/tenant-configs/{{path.basename}}/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'dagster-{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+```
+
+## Isolation Multi-Tenant
+
+### Namespace Kubernetes
+
+```yaml
+# Namespace dédié
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dagster-team-sales
+  labels:
+    tenant: team-sales
+
+---
+# Resource Quotas
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: tenant-quota
+  namespace: dagster-team-sales
+spec:
+  hard:
+    requests.cpu: "10"
+    requests.memory: "40Gi"
+    persistentvolumeclaims: "10"
+
+---
+# Network Policy
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: tenant-isolation
+  namespace: dagster-team-sales
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - podSelector: {}  # Autoriser au sein du namespace
+  egress:
+    - to:
+      - podSelector: {}  # Autoriser au sein du namespace
+    - to:  # Autoriser PostgreSQL
+      - namespaceSelector:
+          matchLabels:
+            name: databases
+```
+
+## Workflow Développeur
+
+```bash
+# 1. Créer un nouveau tenant
+mkdir tenant-configs/team-sales
+cp tenant-configs/_template/values.yaml tenant-configs/team-sales/
+
+# 2. Personnaliser la configuration
+vim tenant-configs/team-sales/values.yaml
+
+# 3. Commit & Push
+git add tenant-configs/team-sales/
+git commit -m "Add team-sales tenant"
+git push origin main
+
+# 4. ArgoCD détecte le changement (30s max)
+# → Crée Application ArgoCD automatiquement
+# → Déploie Dagster dans namespace dagster-team-sales
+# → ~3min plus tard: tenant opérationnel ✅
+```
+
+## Métriques de Performance
+
+### Avant l'Architecture GitOps
+
+- Déploiement manuel : **2 heures**
+- Provisioning tenant : Intervention humaine requise
+- Taux de déploiement : 5-10 par semaine
+- Rollback : Complexe, risqué
+
+### Après l'Architecture GitOps
+
+- Déploiement automatique : **5 minutes**
+- Provisioning tenant : Zéro intervention
+- Taux de déploiement : 50+ par jour
+- Rollback : Simple, instantané (git revert)
+
+**Statistiques Clés:**
+- 5 tenants actifs
+- 99.5% de déploiements réussis
+- Temps moyen de rollback : 45 secondes
+
+## Related Cloud Native Articles
+
+- [Helm Chart Visualization Tool](/articles/helm-chart-visualization-tool) - Maîtriser les dépendances Helm
+- [Edge Computing with Jetson Xavier](/articles/edge-computing-docker-jetson-xavier) - Optimisation Docker pour ARM64
+
+## Technologies Clés
+
+- **ArgoCD** : Synchronisation Git → Kubernetes
+- **Helm** : Templating de charts
+- **Kubernetes** : Orchestration
+- **Mustache** : Templating dynamique
+- **Git** : Source de vérité
+
+## Lessons Learned
+
+1. **Automatisation totale** : Moins de tâches manuelles = moins d'erreurs
+2. **Isolation par défaut** : Sécurité intégrée, pas ajoutée après coup
+3. **Configuration as Code** : Traçabilité et reproductibilité
+
+## Conclusion
+
+Cette architecture GitOps n'est pas qu'une solution technique. C'est une transformation culturelle : déployer devient un acte de configuration, pas d'intervention.
+
+<ViewRepository url="https://github.com/slamer59/dagster-argocd-configuration" text="Voir le projet sur GitHub" />
+
+---
+
+**Explorez tous mes projets Cloud Native →** [Cloud Native & DevOps Hub](/articles/cloud-native-devops-expertise)

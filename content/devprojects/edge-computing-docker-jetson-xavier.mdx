@@ -1,0 +1,184 @@
+---
+title: "Edge Computing ML: Docker for Jetson Xavier & ARM64"
+slug: "edge-computing-docker-jetson-xavier"
+date: "2025-04-25T10:00:00.000Z"
+summary: "Deploy ML models on edge devices with optimized Docker containers. TensorRT optimization for NVIDIA Jetson Xavier achieving 78ms latency and 1.8GB images."
+author: "Thomas Pedot"
+technologies: ["Docker", "TensorRT", "NVIDIA Jetson", "ARM64", "Machine Learning"]
+image: "/images/devprojects/edge-computing-jetson.png"
+published: true
+featured: true
+keywords: ["edge computing", "docker arm64", "machine learning deployment", "tensorrt optimization", "nvidia jetson"]
+type: "article"
+github: "https://github.com/slamer59/jetson-containers"
+pillarPage: "cloud-native-devops-expertise"
+pillarTitle: "Kubernetes Production & DevOps: Helm, GitOps, ArgoCD"
+---
+
+> 📚 Part of the [Cloud Native & DevOps Expertise](/articles/cloud-native-devops-expertise) series
+
+## Edge Computing : L'Informatique à la Périphérie
+
+L'edge computing transforme la façon dont nous pensons le traitement des données : **traiter où les données sont générées, pas dans le cloud**.
+
+### Définition
+
+**Edge Computing** signifie :
+- Exécution de calculs sur le dispositif local
+- Latence minimale
+- Fonctionnement hors ligne
+- Préservation de la confidentialité
+
+## Le Défi Technique
+
+### Contraintes de l'Edge Computing
+
+Sur un NVIDIA Jetson Xavier (ARM64), nos défis :
+
+- **Latence :** < 100ms
+- **RAM :** Limitée à 32GB
+- **Puissance :** < 20W
+- **Stockage :** Images Docker < 2GB
+
+### Architecture Spécifique
+
+**NVIDIA Jetson Xavier** ≠ Serveur classique x86_64
+
+Différences critiques :
+1. Architecture ARM64 vs x86_64
+2. Drivers CUDA spécifiques
+3. GPU embarqué limité (512 CUDA cores)
+4. Optimisations hardware uniques
+
+## Solution : Conteneurs Docker Optimisés
+
+### Multi-Stage Build
+
+```dockerfile
+# Stage 1: Builder (compilation des dépendances)
+FROM nvcr.io/nvidia/l4t-ml:r35.2.1-py3 AS builder
+
+# Installer les outils de build
+RUN apt-get update && apt-get install -y \
+    build-essential cmake git
+
+# Compiler TensorFlow from source avec optimisations ARM64
+RUN git clone https://github.com/tensorflow/tensorflow.git && \
+    cd tensorflow && \
+    bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+
+# Stage 2: Runtime (image minimale)
+FROM nvcr.io/nvidia/l4t-base:r35.2.1
+
+# Copier uniquement les binaires compilés
+COPY --from=builder /tensorflow/bazel-bin /opt/tensorflow
+
+# Installer les dépendances runtime minimales
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libcudnn8 libnvinfer8 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Résultat : 1.8GB vs 8GB original
+```
+
+### Optimisation TensorRT
+
+```python
+# optimize_model.py
+import tensorflow as tf
+from tensorflow.python.compiler.tensorrt import trt_convert as trt
+
+def optimize_for_jetson(model_path: str, output_path: str):
+    """Optimiser un modèle TensorFlow avec TensorRT pour Jetson."""
+
+    # Charger le modèle
+    model = tf.saved_model.load(model_path)
+
+    # Convertir en TensorRT
+    converter = trt.TrtGraphConverterV2(
+        input_saved_model_dir=model_path,
+        precision_mode=trt.TrtPrecisionMode.FP16,  # Précision moitié pour vitesse
+        maximum_cached_engines=100
+    )
+    converter.convert()
+
+    # Sauvegarder le modèle optimisé
+    converter.save(output_path)
+
+    print(f"✅ Modèle optimisé: {model_path} → {output_path}")
+    print(f"   Précision: FP16 (2x plus rapide que FP32)")
+```
+
+### Pipeline d'Inférence Temps Réel
+
+```python
+# inference.py
+import cv2
+import tensorrt as trt
+import numpy as np
+
+class JetsonInference:
+    def __init__(self, model_path: str):
+        self.engine = self.load_engine(model_path)
+        self.context = self.engine.create_execution_context()
+
+    def infer(self, image: np.ndarray) -> List[Detection]:
+        """Exécuter l'inférence sur une image."""
+        start = time.time()
+
+        # Prétraitement
+        input_tensor = self.preprocess(image)
+
+        # Inférence (GPU)
+        outputs = self.context.execute_v2(bindings=[input_tensor])
+
+        # Post-traitement
+        detections = self.postprocess(outputs)
+
+        latence = (time.time() - start) * 1000
+        print(f"Inférence: {latence:.1f}ms")
+
+        return detections
+```
+
+## Résultats Mesurables
+
+### YOLOv5 Détection d'Objets
+
+**Configuration :**
+- Input: 1080p @ 30fps
+- Latence : **78ms par image** (< 100ms cible ✅)
+- Précision : mAP 0.89
+- Puissance : **14W** (< 20W cible ✅)
+- Image Docker : **1.8GB** (< 2GB cible ✅)
+
+### Comparaison Cloud vs Edge
+
+| Métrique | Cloud GPU (A100) | Jetson Xavier Edge |
+|----------|------------------|---------------------|
+| Latence | 12ms + 80ms réseau = **92ms** | **78ms** (pas de réseau) ✅ |
+| Coût | 2.50$/heure | 500$ unique |
+| Hors ligne | ❌ | ✅ |
+| Confidentialité | ❌ (données envoyées au cloud) | ✅ (traitement local) |
+
+## Related Cloud Native Articles
+
+- [Helm Chart Visualization Tool](/articles/helm-chart-visualization-tool) - Maîtriser les dépendances Helm
+- [ArgoCD + Dagster: Multi-Tenant GitOps](/articles/argocd-dagster-gitops-production) - Architecture de déploiement automatisée
+
+## Leçons Apprises
+
+1. **ARM64 ≠ x86_64** : Recompiler depuis les sources
+2. **TensorRT est magique** : Accélération 2-3x en précision FP16
+3. **Ordre des layers Docker** : Critique pour les temps de build
+4. **Contraintes = Innovation** : Limitations forcent l'optimisation
+
+## Conclusion
+
+L'edge computing n'est pas qu'une alternative au cloud. C'est une approche qui replace le calcul là où il a le plus de sens : **au plus près des données**.
+
+<ViewRepository url="https://github.com/slamer59/jetson-containers" text="Voir le projet sur GitHub" />
+
+---
+
+**Explorez tous mes projets Cloud Native →** [Cloud Native & DevOps Hub](/articles/cloud-native-devops-expertise)

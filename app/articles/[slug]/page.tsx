@@ -82,7 +82,7 @@ const components = {
 			return (
 				<a
 					href={props.href}
-					className="text-primary underline transition-colors hover:text-primary/80"
+					className="text-primary dark:text-primaryDark underline transition-colors hover:text-primary/80 dark:hover:text-primaryDark/80"
 					target="_blank"
 					rel="noopener noreferrer"
 					{...props}
@@ -96,7 +96,7 @@ const components = {
 		return (
 			<Link
 				href={href || "#"}
-				className="text-primary underline transition-colors hover:text-primary/80"
+				className="text-primary dark:text-primaryDark underline transition-colors hover:text-primary/80 dark:hover:text-primaryDark/80"
 				{...rest}
 			>
 				{props.children}
@@ -276,7 +276,7 @@ export default async function ArticlePage({ params }: Props) {
 			)}
 
 			{/* Article Content with MDX */}
-			<div className="mt-8 prose prose-lg dark:prose-invert max-w-none prose-li:marker:text-primary prose-a:text-primary">
+			<div className="mt-8 prose prose-lg dark:prose-invert max-w-none prose-li:marker:text-primary prose-a:text-primary dark:prose-a:text-primaryDark">
 				<MDXRemote
 					source={data.content || ""}
 					// biome-ignore lint/suspicious/noExplicitAny: MDX components type compatibility
